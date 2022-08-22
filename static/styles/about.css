@@ -1,0 +1,115 @@
+.about-container
+{
+    font-size: 20px;
+    padding: 10px;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+
+.subtext {
+  font-size: 25px;
+}
+
+.about-container-title
+{
+    font-size: 50px;
+    margin-bottom: -5px;
+}
+
+#opening-times
+{
+    list-style: none;
+    text-align: center;
+    padding:  0;
+}
+
+#opening-times li
+{
+    font-size: 20px;
+    margin: 5px;
+}
+
+.chef-img
+{
+    border-radius: 50%;
+    display: block;
+}
+
+.chef-name
+{
+    font-size: 30px;
+}
+
+.chef-desc
+{
+    font-size: 25px;
+    width: auto;
+    margin-left: 10rem;
+
+}
+
+.chef-profile
+{
+    overflow: auto;
+    margin: 20px;
+}
+
+
+.chef-img
+{
+    float: left
+}
+
+
+.chef-content
+{
+    margin-left: 200px
+}
+
+.chef-name
+{
+    margin-top: -1px;
+    font-size: 40px;
+    margin-left: 10rem;
+}
+
+@media screen and (max-width: 900px)
+{
+    .about-container
+    {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .chef-desc
+    {
+        width: 100%;
+        font-size: 15px;
+    }
+
+    .chef-name
+    {
+        margin-bottom: -5px;
+    }
+}
+
+@media screen and (max-width: 600px)
+{
+    .about-container
+    {
+        margin-left: 0;
+        margin-right: 0;
+        text-align: center;
+    }
+
+    .chef-img
+    {
+        float: none;
+    }
+
+    .chef-content
+    {
+        margin-left: 0;
+    }
+}
+

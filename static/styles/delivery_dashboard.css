@@ -1,0 +1,429 @@
+:root {
+    --general-background-color: rgba(255, 0, 0, 0);
+    --general-text-color: rgb(0, 0, 0);
+    --navbar-background-color: rgba(34, 34, 34);
+    --general-font-size: 50px;
+}
+
+
+navbar, nav * {
+    background-color: transparent;
+    color: #ACACAC;
+}
+
+.logo{ /* Resize Logo */
+    width: 240px;
+    height: auto;
+    transition: all 0.5s ease;
+}
+
+.deliverysidebar{
+    height: 100%;
+    position: fixed;
+    width: 240px;
+    background: url('https://static.wixstatic.com/media/27eac3_499a4d4d3039486ba9baacaa16504a27~mv2.jpg/v1/fill/w_1467,h_1408,al_c,q_90/27eac3_499a4d4d3039486ba9baacaa16504a27~mv2.webp');
+    transition: all 0.5s ease;
+
+}
+
+.deliverytablinks{
+    height: 60px;
+    min-width: 100%;
+    align-items: center;
+    transition: all 0.4s ease;
+    background: none;
+    border: none;
+    color: #fff;
+    display: flex;
+    font-size: 18px;
+    font-weight: 400;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.deliverysidebar .deliverytablinks:hover{
+    background: #ACACAC;
+}
+
+.deliverysidebar .deliverytablinks i{
+    /* background: red; */
+    min-width: 60px;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+}
+
+.deliverysidebar.active .logo{
+    width: 60px;
+    height: auto;
+    transition: all 0.5s ease;
+}
+
+.deliverysidebar.active{
+    width: 60px;
+    transition: all 0.5s ease;
+}
+
+/* delivery home section navigation bar css */
+
+.delivery-home-section{
+    position: relative;
+    background: #f5f5f5;
+    width: calc(100% - 240px);
+    left: 240px;
+    transition: all 0.5s ease;
+}
+
+
+.delivery-home-section .delivery-nav{
+    height: 100px;
+    padding: 0 20px;
+    display:flex;
+    align-items: center;
+    background: #fff;
+    justify-content: space-between;
+}
+
+
+.delivery-home-section .delivery-nav .delivery-sidebar-button{
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.delivery-home-section .delivery-nav .delivery-sidebar-button i{
+    font-size: 35px;
+    margin-right: 10px;
+    color: #646464;
+}
+
+.delivery-home-section .delivery-nav .delivery-welcome{
+    height: 50px;
+    width: 550px;
+    margin: 0 20px;
+    position: relative;
+    color: #646464;
+    /* display: block;
+    align-items: center; */
+    font-size: 30px !important;
+    font-weight: 500 !important;
+}
+
+.delivery-home-section .delivery-nav .delivery-dashboard{
+    color: #646464;
+} 
+
+
+/* this is for main delivery dashboard */
+
+.warning-section{
+    padding: 20px;
+    position: relative;
+    width: calc(100% - 240px);
+    left: 240px;
+    transition: all 0.5s ease;
+    display: flex;
+    justify-content: center;
+}
+
+.deliverysidebar.active ~ .warning-section{
+    width: calc(100% - 60px);
+    left: 60px;
+}
+
+.class{
+    font-family:Quicksand;
+    font-size: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+/* warning section dashboard */
+
+#Dashboard .dashboard-buttons{ 
+    background-color: #fff;
+    backface-visibility: hidden;
+    border-radius: .375rem;
+    border-style: solid;
+    cursor: pointer;
+    display: block;
+    font-family: Circular,Helvetica,sans-serif;
+    font-size: 1.125rem;
+    letter-spacing: .5em;
+    line-height: 1.3;
+    width: 100%;
+    padding: .875rem 1.125rem;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transform: translateZ(0) scale(1);
+    transition: transform .2s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+#Dashboard .dashboard-buttons:hover, #Dashboard .dashboard-buttons:focus{
+    box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+    transform: translateY(-0.25em);
+    border-radius: .375rem;
+}
+
+#Dashboard.deliverytabcontent{
+    display: block;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.alert{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    border-radius:5px;
+    margin-left: 235px;
+    border-radius: .375rem;
+}
+
+.warning-alert .text{
+    color: rgb(0, 0, 0);
+}
+
+.warning-alert .bx-angry{
+    display: flex;
+    color: red;
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+}
+
+.warning-alert .bx-wink-smile{
+    display: flex;
+    color: rgb(94, 255, 0);
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+}
+
+.warning-alert .bx-error{
+    display: flex;
+    color: rgb(255, 174, 0);
+    justify-content: center;
+    align-items: center;
+    font-size: 3em;
+}
+
+.alert .text{
+    position: relative;
+    font-size: 20px;
+} 
+/* Past Deliveries content */
+
+
+#Current_deliveries .past-delivery-section .delivery-number-overview-box .delivery-number{
+    font-size: 30px;
+    font-weight: 500;
+}
+
+#Current_deliveries .past-delivery-section .delivery-number-overview-box .delivery-box{
+    border-width: 2px;
+    border-color: black;
+    border-style:solid;
+    padding: 20px 50px 10px 50px;
+    margin: 50px;
+}
+
+#Current_deliveries .past-delivery-section .delivery-number-overview-box .delivery-name-food{
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: -5px;
+    display: inline-block;
+    padding: 5px;
+}
+
+#Current_deliveries .past-delivery-section .delivery-number-overview-box .delivery-qty{
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: -5px;
+    display: inline-block;
+    padding: 5px;
+}
+
+#Current_deliveries .past-delivery-section .delivery-number-overview-box .delivery-name-qty{
+    padding: 5px;
+}
+
+    /* address */
+
+#Current_deliveries .past-delivery-section .delivery-number-overview-box .delivery-customer-name{
+    padding: 5px;
+}
+#Current_deliveries .past-delivery-section .delivery-number-overview-box .delivery-customer-address{
+    padding: 5px;
+} 
+
+
+/* FOR TAB CONTENT */
+
+.deliverysidebar.active ~ .delivery-home-section{
+    width: calc(100% - 60px);
+    left: 60px;
+}
+
+.delivery-home-section{
+    position: relative;
+    background: #f5f5f5;
+    width: calc(100% - 240px);
+    left: 240px;
+    transition: all 0.5s ease;
+}
+
+.deliverytabcontent{
+    display: none;
+    padding: 20px;
+    position: relative;
+    width: calc(100% - 240px);
+    left: 240px;
+    transition: all 0.5s ease;
+    align-items: center;
+    justify-content: center;
+}
+
+.deliverysidebar.active ~ .deliverytabcontent{
+    width: calc(100% - 60px);
+    left: 60px;
+    align-items: center;
+    justify-content: center;
+}
+
+.deliverysidebar.active .deliverytablinks:hover{
+    background: none;
+}
+
+.deliverysidebar.active i{
+    min-width: 45px;
+    margin-right: 15px;
+    transition: all 0.5s ease;
+}
+
+.deliverysidebar.active .deliverytablinks{
+    color:rgba(255, 0, 0, 0);
+}
+/* Dispute buttons */
+
+.dispute-btn{
+    background-color: red;
+    display:flex;
+    padding:0.3em 1.2em;
+    margin:0 0.1em 0.1em 0;
+    border:0.16em solid rgba(255,255,255,0);
+    border-radius:2em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    color:#FFFFFF;
+    text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
+    text-align:center;
+    transition: all 0.2s;
+    
+}
+
+.dispute-btn:hover{
+    border-color: rgb(0, 0, 0);
+    box-shadow: 0 0.5em 0.5em -0.4em var(--hover);
+    transform: translateY(-0.25em);
+}
+
+.dispute-btn i{
+    margin-right: 5px;
+}
+
+.complain-btn{
+    background: #FF4742;
+    border: 1px solid #FF4742;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 16px;
+    min-height: 40px;
+    outline: 0;
+    padding: 12px 14px;
+    text-align: center;
+    text-rendering: geometricprecision;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    
+}
+.complain-btn:active,
+.complain-btn:hover{
+    background-color: initial;
+    background-position: 0 0;
+    color: #FF4742;
+    opacity: .5;
+}
+
+
+.complain-btn i{
+    margin-right: 5px;
+}
+
+
+/* date */
+.datepicker td,th{
+    text-align: center;
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+#calender-btn:hover{
+    background-color: #969696;
+    cursor: pointer;
+}
+
+#modal-fname:hover{
+    border-color: aqua;
+    border-width: 2px;
+    cursor: pointer;
+}
+
+#modal-lname:hover{
+    border-color: aqua;
+    border-width: 2px;
+    cursor: pointer;
+}
+
+#deliverydisputebox:hover{
+    border-color: aqua;
+    border-width: 2px;
+    cursor: pointer;
+}
+
+#txtdate:hover{
+    border-color: aqua;
+    border-width: 2px;
+    cursor: pointer;
+}
+
+#bid {
+    width: 70px;
+    border-radius: 3px;
+}
+
+#bid-submit {
+    border-radius: 3px;
+    background-color: rgb(70, 110, 255);
+    border-width: 1px;
+    border-color: rgb(140, 165, 255);
+    color: white;
+}

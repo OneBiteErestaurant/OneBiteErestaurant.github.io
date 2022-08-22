@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/faqs.css') }}">
+{% endblock links %}
+
+{% block titlePage %}
+    FAQs
+{% endblock titlePage %}
+
+{% block mainContent %}
+    <noscript>You need to enable javascript on this page</noscript>
+
+    <div id="faqs">
+        <h2>Frequency Asked Questions</h2>
+        <div id="faqs-accordion-container">
+            <button class="faq-accordion">Question 1</button>
+            <div class="faq-panel" style="display: none;">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid harum delectus veritatis 
+                id a necessitatibus nemo libero repellendus, earum architecto. Dolor minus eaque, temporibus 
+                consectetur beatae quae nostrum sapiente iusto!
+            </div>
+    
+            <button class="faq-accordion" >Question 2</button>
+            <div class="faq-panel" style="display: none;">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid harum delectus veritatis 
+                id a necessitatibus nemo libero repellendus, earum architecto. Dolor minus eaque, temporibus 
+                consectetur beatae quae nostrum sapiente iusto!
+            </div>
+    
+            <button class="faq-accordion">Question 3</button>
+            <div class="faq-panel" style="display: none;">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid harum delectus veritatis 
+                id a necessitatibus nemo libero repellendus, earum architecto. Dolor minus eaque, temporibus 
+                consectetur beatae quae nostrum sapiente iusto!
+            </div>
+
+            <button class="faq-accordion">Question 4</button>
+            <div class="faq-panel" style="display: none;">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid harum delectus veritatis 
+                id a necessitatibus nemo libero repellendus, earum architecto. Dolor minus eaque, temporibus 
+                consectetur beatae quae nostrum sapiente iusto!
+            </div>
+
+            <button class="faq-accordion">Question 5</button>
+            <div class="faq-panel" style="display: none;">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid harum delectus veritatis 
+                id a necessitatibus nemo libero repellendus, earum architecto. Dolor minus eaque, temporibus 
+                consectetur beatae quae nostrum sapiente iusto!
+            </div>
+        </div>
+
+        <br><br><br><br>
+    </div>
+
+    <script>
+        let accordion = document.getElementsByClassName("faq-accordion");
+        let panel = document.getElementsByClassName("faq-panel")
+
+        Array.prototype.forEach.call(accordion, (acc, index) => {
+            acc.addEventListener("click", () => {
+                if(panel[index].style.display === "block") panel[index].style.display = "none";
+                else panel[index].style.display = "block";
+            })
+        });
+    </script>
+{% endblock mainContent %}

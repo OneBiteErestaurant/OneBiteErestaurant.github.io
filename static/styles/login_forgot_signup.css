@@ -1,0 +1,143 @@
+#backgroundInfo{
+    text-align: center;
+    height: 100%;
+    align-content: center;
+    position: relative;
+    background-size: cover;
+    background-image: url('https://static.wixstatic.com/media/27eac3_499a4d4d3039486ba9baacaa16504a27~mv2.jpg/v1/fill/w_1467,h_1408,al_c,q_90/27eac3_499a4d4d3039486ba9baacaa16504a27~mv2.webp');
+}
+
+#everythingInfo{
+    display: inline-block;
+    padding: 45px;
+    padding-bottom: 30px;
+    border-style: outset;
+    border-radius: 50px;
+    background-color: white;
+    margin: 10% auto;
+}
+
+#infoHeader{
+    font-size: 30px;
+    background: inherit;
+    letter-spacing: 5px;
+}
+
+#infoForm{
+    background-color: white;
+    text-align: left;
+}
+
+.col-flex{
+    display: flex;
+    flex-flow: column;
+}
+
+.row-flex {
+    display: flex;
+    flex-flow: row;
+}
+
+.flex1 {
+    flex: 1;
+}
+
+.flex2 {
+    flex: 2.5;
+}
+
+.flex3 {
+    flex: 3;
+    text-align: right;
+    margin-left: 10px;
+}
+
+.padding8 {
+    padding-top: 8px;
+}
+
+.margin20 {
+    margin-left: 20px;
+}
+
+#inputForm{
+    background: inherit;
+    padding-top: 5px;
+}
+
+#registerform{
+    background:inherit;
+    text-align: right;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    flex: 1;
+}
+
+label[for="fname"], label[for="lname"], label[for="username"], label[for="email"], label[for="password"], label[for="newpass"], label[for="conpass"], label[for="phone"], label[for="cardnum"] { 
+    font-size: 20px; 
+    background:inherit;
+    color: rgb(40,38,71);
+}
+
+#fname, #lname, #username, #uname, #email, #password, #newpass, #conpass, #phone, #cardnum {
+    height:30px;
+    border-radius: 5px;
+    padding-left: 5px;
+    padding-top: 5px;
+    margin-bottom: 15px;
+}
+
+#fname:hover, #lname:hover, #username:hover, #uname:hover, #email:hover, #password:hover, #newpass:hover, #conpass:hover, #phone:hover, #cardnum:hover {
+    cursor: pointer;
+    background-color: #eee;
+}
+
+#buttondiv{
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+
+.references{
+    text-align: center;
+    background-color: white;
+    color: rgb(40,38,71);
+}
+
+#inputButton{
+    padding: 15px 35px;
+    font-size: 100%;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 15px;
+    font-weight: bold;
+    border: 2px solid;
+    transform: translateY(-0.2em);
+    transition: transform 0.1s ease;
+    letter-spacing: 2px;
+}
+
+#inputButton:hover{
+    cursor: pointer;
+    background-color:rgb(216, 216, 216);
+    transform: translateY(-0.33em);
+}
+
+#inputButton:active{
+    transform: translateY(0);
+}
+
+@media screen and (max-width: 730px)
+{
+    #infoForm, .flex3, #registerform {
+        text-align: center;
+    }
+
+   .row-flex {
+       flex-flow: column;
+   }
+
+   .margin20 {
+        margin-left: 0;
+   }
+}

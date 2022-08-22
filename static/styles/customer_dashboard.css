@@ -1,0 +1,589 @@
+:root {
+    --general-background-color: rgba(255, 0, 0, 0);
+    --general-text-color: rgb(0, 0, 0);
+    --navbar-background-color: rgba(34, 34, 34);
+    --general-font-size: 50px;
+}
+
+
+navbar, nav * {
+    background-color: transparent;
+    color: #ACACAC;
+}
+
+#user-nav, #footer, #credits, footer {
+    display: none;
+}
+
+.logo{ /* Resize Logo */
+    width: 240px;
+    height: auto;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    transition: all 0.5s ease;
+}
+
+.customersidebar{
+    height: 100%;
+    position: fixed;
+    width: 240px;
+    background: url('https://static.wixstatic.com/media/27eac3_499a4d4d3039486ba9baacaa16504a27~mv2.jpg/v1/fill/w_1467,h_1408,al_c,q_90/27eac3_499a4d4d3039486ba9baacaa16504a27~mv2.webp');
+    transition: all 0.5s ease;
+
+}
+
+.customertablinks{
+    height: 60px;
+    min-width: 100%;
+    align-items: center;
+    transition: all 0.4s ease;
+    background: none;
+    border: none;
+    color: #fff;
+    display: flex;
+    font-size: 18px;
+    font-weight: 400;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.customersidebar .customertablinks:hover{
+    background: #ACACAC;
+    cursor: pointer;
+}
+
+.customersidebar .customertablinks i{
+    min-width: 50px;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    padding-right: 5px;
+}
+
+.customersidebar.active .logo{
+    width: 60px;
+    height: auto;
+    transition: all 0.5s ease;
+}
+
+.customersidebar.active{
+    width: 60px;
+    transition: all 0.5s ease;
+}
+
+
+/* customer home section navigation bar css */
+.customer-home-section{
+    position: relative;
+    background: #f5f5f5;
+    width: calc(100% - 240px);
+    left: 240px;
+    transition: all 0.5s ease;
+}
+
+
+.customer-home-section .customer-nav{
+    height: 100px;
+    padding: 0 20px;
+    display:flex;
+    align-items: center;
+    background: #fff;
+    justify-content: space-between;
+}
+
+
+.customer-home-section .customer-nav .customer-sidebar-button{
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.customer-home-section .customer-nav .customer-sidebar-button i{
+    font-size: 35px;
+    margin-right: 10px;
+    color: #646464;
+}
+
+.customer-home-section .customer-nav .customer-welcome{
+    height: 50px;
+    width: 550px;
+    margin: 0 20px;
+    position: relative;
+    color: #646464;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.customer-home-section .customer-nav .customer-dashboard{
+    color: #646464;
+} 
+/* end customer home section navigation bar css */
+
+
+/* box details */
+/*.customer-dashboard-section .customer-home-content .orders-boxes .recent-order{
+    width: 93%;
+    background: #fff;
+    padding: 20px 30px;
+    margin: 0 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}*/
+
+.customer-dashboard-section .customer-home-content .orders-boxes .customer-order-details{
+    width: 100%;
+    display: inline-block;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.customer-dashboard-section .orders-boxes .customer-box .customer-title{
+    font-size: 24px;
+    font-weight: 1000;
+    color: black;
+    background: white;
+    display: flex;
+    left: 0;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+/* end box details */
+
+
+/* customer dashboard homepage */
+#CustomerDashboard{
+    display: block;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+.forumButton {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    /*optional*/
+    font-family: arial, sans-serif;
+    /*input has OS specific font-family*/
+    color: #FF0042;
+    font-weight: bolder;
+    cursor: pointer;
+}
+/* end customer dashboard homepage */
+
+/* forum page */
+.postButton {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    /*optional*/
+    font-family: arial, sans-serif;
+    /*input has OS specific font-family*/
+    color: #FF0042;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.backButton {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    /*optional*/
+    font-family: arial, sans-serif;
+    /*input has OS specific font-family*/
+    color: #FF0042;
+    text-decoration: underline;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+#appetizers-post1 {
+    display: none;
+}
+#appetizers-post2 {
+    display: none;
+}
+#entree-post1 {
+    display: none;
+}
+#entree-post2 {
+    display: none;
+}
+#drinks-post1 {
+    display: none;
+}
+#drinks-post2 {
+    display: none;
+}
+
+.create-post {
+    position: absolute;
+    right: 10%;
+    cursor: pointer;
+}
+
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 28px;
+  width: 280px;
+}
+
+.postcomment-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 23px;
+  right: 300px;
+  width: 280px;
+}
+
+/* The popup form - hidden by default */
+.form-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 15px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+  background: white;
+}
+
+.postcomment-popup {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  right: 280px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+  background: white;
+}
+
+.reportform-popup {
+  display: none;
+ /* position: ;
+  bottom: 500px;
+  left: 1000px;*/
+  float: center;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+  background: white;
+}
+
+/* Add styles to the form container */
+.form-container {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.form-container input[type=id], .form-container input[type=text], .form-container input[type=title], .form-container textarea{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.form-container input[type=id], .form-container input[type=text]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.form-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.form-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+.reportform-container {
+  max-width: 1000px;
+  padding: 10px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+.reportform-container input[type=id], .reportform-container input[type=text], .reportform-container input[type=title], .reportform-container textarea{
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* When the inputs get focus, do something */
+.reportform-container input[type=id], .reportform-container input[type=text]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit/login button */
+.reportform-container .btn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom:10px;
+  opacity: 0.8;
+}
+
+/* Add a red background color to the cancel button */
+.reportform-container .cancel {
+  background-color: red;
+}
+
+/* Add some hover effects to buttons */
+.reportform-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+
+.postmodal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.postmodal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  overflow-y: initial !important
+}
+
+.forumContainer {
+    height: 80vh;
+    overflow-y: auto;
+}
+
+.forum-title-wrapper {
+    padding-top: 100px;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.report-user {
+    background: none!important;
+    border: none;
+    padding: 0!important;
+    /*optional*/
+    font-family: arial, sans-serif;
+    /*input has OS specific font-family*/
+    color: #FF0042;
+    text-decoration: underline;
+    font-weight: bolder;
+    cursor: pointer;
+}
+
+.post-date {
+    float: right;
+}
+
+.report-user {
+    float: right;
+}
+
+
+/* end forum page */
+
+
+/* customer comments page */
+#user-comments {
+    margin-top: 40px;
+}
+
+.comments-container {
+    padding-left: 50px;
+}
+
+#user-comments select[type='Type'],
+#user-comments select[type='Subject'],
+#user-comments input[type='text'],
+#user-comments textarea {
+    margin-left: 0;
+    margin-bottom: 20px;
+    display: block;
+    width: 93%;
+
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+
+    line-height: 1.4em;
+}
+
+#nextStep {
+    position: absolute;
+    right: 8%;
+}
+
+#thankyou {
+    display: none;
+}
+
+#thankyou h3, p {
+    text-align: center;
+}
+
+#thankyou button[type="submit"] {
+    position: absolute;
+    left: 48%;
+    cursor: pointer;
+}
+/* customer comments page */
+
+
+/* FOR TAB CONTENT */
+
+.customersidebar.active ~ .customer-home-section{
+    width: calc(100% - 60px);
+    left: 60px;
+}
+
+.customersidebar.active .customertablinks:hover{
+    background: none;
+}
+
+.customer-home-section{
+    position: relative;
+    background: #f5f5f5;
+    width: calc(100% - 240px);
+    left: 240px;
+    transition: all 0.5s ease;
+}
+
+.customertabcontent{
+    display: none;
+    padding: 20px;
+    position: relative;
+    width: calc(100% - 240px);
+    left: 240px;
+    transition: all 0.5s ease;
+    /* display: flex;
+    justify-content: center; */
+}
+
+.customersidebar.active ~ .customertabcontent{
+    width: calc(100% - 60px);
+    left: 60px;
+}
+
+/* Responsive Media Query */
+@media (max-width: 1150px) {
+    .customer-home-content .orders-boxes{
+        flex-direction: column;
+    }
+    .customer-home-content .orders-boxes .customer-box{
+        width: 100%;
+        overflow-x: scroll;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .customer-overview-boxes .customer-box{
+        width: calc(100% / 2 - 15px);
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 700px) {
+    .customer-home-content .orders-boxes .customer-order-details{
+        width: 560px;
+    }
+}
+
+@media (max-width: 550px) {
+    .customer-overview-boxes .customer-box{
+        width: 100%;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 400px) {
+    .customersidebar{
+        width: 0;
+    }
+    .customersidebar.active{
+        width: 60px;
+    }
+    .customer-home-section{
+        width: 100%;
+        left: 0;
+    }
+    .customersidebar.active ~ .customer-home-section{
+        left: 60px;
+        width: calc(100% - 60px);
+    }
+    .customer-home-section .customer-nav{
+        width: 100%;
+        left: 0;
+    }
+    .customersidebar.active ~ .customer-home-section .customer-nav{
+        left: 60px;
+        width: calc(100% - 60px);
+    }
+}

@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/login_forgot_signup.css') }}">
+{% endblock links %}
+
+{% block titlePage %} Login {% endblock %}
+
+{% block mainContent %}
+
+<div id = "backgroundInfo">
+    <div id = "everythingInfo">
+        <h1 id="infoHeader">Login</h1>
+        <form id = "infoForm" method = "POST" action = "">
+            <div class = "col-flex">
+                <div class = "flex1 row-flex" id = "username-row">
+                    <div class = "flex1 padding8">
+                        <label for="username">Username</label>
+                    </div>
+                    <div class = "flex3">
+                        <input type="text" id = "username" name="username" placeholder = "Enter Username" required>
+                    </div>
+                </div>
+                <div class = "flex1 row-flex" id = "password-row">
+                    <div class = "flex1 row-flex">
+                        <div class = "flex2 padding8">
+                            <label for="password">Password</label>
+                        </div>
+                        <div class = "flex3">
+                            <input type="password" id = "password" name="password" placeholder = "Enter Password" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class = "references">
+                <p id = "cap" style = "display: none;"><b style = "color:rgb(191, 58, 58);">WARNING! Caps lock is on.</b></p>
+            </div>
+            <div class = "references">
+                <input type = "checkbox" onclick = "showPass()">Show Password
+            </div>
+            <div id = "buttondiv">
+                <input type="submit" id = "inputButton" value = "Login">
+            </div>
+            <div class = "references">
+                <a href="{{ url_for('forgotpassPage') }}" id = "forgotpassword">Forgot Password?</a>
+            </div>
+            <div class = "references">
+                <a href="{{ url_for('newuserPage') }}" id = "newuser">New User?</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function showPass() {
+        var pw = document.getElementById("password");
+        if (pw.type === "password") {
+            pw.type = "text";
+        } else {
+            pw.type = "password";
+        }
+    }
+
+    var pw = document.getElementById("password");
+    var cap = document.getElementById("cap");
+    pw.addEventListener("keyup", function(event) {
+
+    if (event.getModifierState("CapsLock")) {
+        cap.style.display = "block";
+    } else {
+        cap.style.display = "none"
+    }
+    });
+</script>
+{% endblock %}

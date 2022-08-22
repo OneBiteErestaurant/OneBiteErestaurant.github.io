@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/about.css') }}">
+{% endblock links %}
+
+{% block titlePage %}
+    About
+{% endblock titlePage %}
+
+{% block mainContent %}
+    <div class="cover">
+        <h2 class="title">About Us</h2>
+    </div>
+
+    <div id="about-us-intro" class="about-container">
+        <h3 class="about-container-title">Our Story</h3>
+        <p class="subtext">
+            The vision of Head Chef Melinda and our General Manager and co-owner Dennis is to provide everyone with a
+            savory experience, right here in New York. At OneBite, we re-create many original dishes with a touch of our love.
+        </p>
+    </div>
+
+    <div id="opening-time" class="about-container">
+        <h3 class="about-container-title">Opening Hours</h3>
+
+        <p class="subtext">
+            We are open from 10 AM to 8 PM every day, not including holidays
+        </p>
+    </div>
+
+        <div id="opening-time" class="about-container">
+        <h3 class="about-container-title">Reservations</h3>
+
+        <p class="subtext">
+            Reservations must be made at least 24 hours before. Please call us at 123-456-7890 for more info. We look
+            forward to seeing you!
+        </p>
+    </div>
+
+    <div id="meet-the-staff" class="about-container">
+        <h3 class="about-container-title">Meet our Staff</h3>
+
+        <div class="chef-profile">                
+            <div class="chef-img">
+                <img src="../static/assets/mft2.jpg"/></div>
+            <div class="chef-content">
+                <h3 class="chef-name">Melinda F. Thompson</h3>
+                <p class="chef-desc">Our founder and Head Chef Melinda is the heart of OneBite. Growing up in New York,
+                she was able to experience the diverse cultures, communities and their food. This inspired her to travel
+                to 48 different countries to unlock the secrets of cooking.</p>
+           </div>
+        </div>
+
+        <div class="chef-profile">
+            <div class="chef-img">
+                <img src="../static/assets/doj.jpg"/></div>
+            <div class="chef-content">
+                <h3 class="chef-name">Dennis O. Johnson</h3>
+                <p class="chef-desc">Our General Manager and co-owner Denis is a close friend of Malinda. He makes sures
+                that here in OneBite, our customers get only the best and freshest ingredients.</p>
+           </div>
+        </div>
+
+        <div class="chef-profile">                
+            <div class="chef-img">
+                <img src="../static/assets/tsb2.jpg"/></div>
+            <div class="chef-content">
+                <h3 class="chef-name">Thomas S. Brooks</h3>
+                <p class="chef-desc">Thomas is our assistant chef. Not only is he a baking wizard, he can also bring out
+                the flavors in our dishes.</p>
+           </div>
+        </div>
+    </div>
+{% endblock mainContent %}

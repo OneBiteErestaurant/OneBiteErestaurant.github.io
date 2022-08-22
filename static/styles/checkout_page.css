@@ -1,0 +1,140 @@
+/* vertical split screen container */
+.split-vertical {
+    display: flex;
+    flex-direction: row;
+}
+
+/* left screen for summary */
+#split-left {
+    flex: 2;
+}
+
+/* right screen for order summary */
+#split-right {
+    flex: 1;
+}
+
+/* horizontal split screen container */
+.split-horizontal {
+    display: flex;
+    flex-direction: column;
+}
+
+/* top screen for order type */
+#split-top {
+    flex: 1;
+}
+
+/* bottom screen for cart summary */
+#split-bottom {
+    flex: 3;
+}
+
+/* container for cart and order summaries */
+.summary-container {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px;
+}
+
+.summary-title {
+    font-size: 27px;
+}
+
+.title-thin {
+    font-weight: 100;
+    font-size: 20px;
+}
+
+.change-btn {
+    border-radius: 4px;
+    margin-top: 10px;
+    font-size: 15px; 
+    color: rgb(40,38,71);
+    font-weight: 400;
+}
+
+.change-btn:hover {
+    background-color: #eee;
+}
+
+/* centers summary info within the container */
+.summary-info {
+    display: flex;
+    flex-flow: row wrap;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+}
+
+.align-left {
+    flex: 1;
+    text-align: left;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+.align-right {
+    flex: 1;
+    text-align: right;
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+
+#confirm-button {
+    padding: 3% 7.5%;
+    text-align: center;
+    border-radius: 15px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    width: 100%;
+    text-overflow: ellipsis;
+    background-color: #ccc;
+}
+
+#confirm-button:hover {
+    cursor: pointer;
+    background-color: darkgray;
+    color: white;
+}
+
+label[for = "delivery-type"] { 
+    font-size: 20px; 
+    background:inherit;
+    color: rgb(40,38,71);
+}
+
+label[for = "pickup-type"] { 
+    font-size: 20px; 
+    background:inherit;
+    color: rgb(40,38,71);
+}
+
+#return-cart {
+    text-align: center;
+    padding: 0px;
+    margin-bottom: 10%;
+    margin-top: 10px;
+}
+
+#summary-cart {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#summary-cart td, #summary-cart th {
+    padding: 8px;
+}
+
+#summary-cart th {
+    border-bottom: 1px solid rgb(60, 60, 60);
+    text-align: left;
+    color: rgb(85, 107, 107);
+}
+
+@media screen and (max-width: 950px)
+{
+    .split-vertical {
+        flex-direction: column;
+    }
+}

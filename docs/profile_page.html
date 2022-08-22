@@ -1,0 +1,261 @@
+{% extends 'base.html' %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/profile_page.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans">
+{% endblock links %}
+
+{% block titlePage %} Profile {% endblock %}
+
+{% block mainContent %}
+<div class = "cover">
+    <h2 class = "title">Profile</h2>
+</div>
+
+<div class = "info-container">
+    <div class = "flex-info">
+        <div class = "profile-container">
+            <h1 style = "font-size: 25px; color:rgb(65, 65, 65);">Personal Information</h1><hr>
+            <div class = "name-container">
+                <div>Name</div>
+                <div class = "padding-txt">{{ user.firstName }} {{ user.lastName }}</div>
+            </div>
+
+            <div class = "email-container">
+                <div>Email</div>
+                <div class = "padding-txt">{{ user.email }}</div>
+            </div>
+
+            <div class = "username-container">
+                <div>Username</div>
+                <div class = "padding-txt">{{ user.username }}</div>
+            </div>
+
+            <div class = "password-container">
+                <div class = "pw-container">Password</div>
+                <div class = "pw-container">
+                    <div class = "change-pw padding-txt">
+                        <!-- change pasword modal form -->
+                        <button onclick = "document.getElementById('change-pass').style.display = 'block'" class = "modal-btn">Change Password</button>
+                        <div id = "change-pass" class = "modal">
+                            <form class = "modal-content animate" action = "" method = "post" style = "margin-top: 1.5%;">
+                                <div class = "pass-container">
+                                    <h1 class = "modal-header">Change Password</h1>
+                                    <div class = "flex-info" id = "change-form">
+                                        <label for = "email" class = "form-info">Email</label>
+                                        <input type = "email" id = "email" name = "email" placeholder = "Enter Email" required> <br>
+                                        <label for = "username" class = "form-info">Username</label>
+                                        <input type = "text" id = "username" name = "username" placeholder = "Enter Username" required> <br>
+                                        <label for = "newpass" class = "form-info">New Password</label>
+                                        <input type = "password" id = "newpass" name = "newpass" placeholder = "Enter New Password" autocomplete = "off" required> <br>
+                                        <label for = "conpass" class = "form-info">Confirm New Password</label>
+                                        <input type = "password" id = "conpass" name = "conpass" placeholder = "Confirm New Password" autocomplete = "off" required>
+                                    </div>
+                                    <div class = "references">
+                                        <p id = "cap" style = "display: none;"><b style = "color:rgb(191, 58, 58);">WARNING! Caps lock is on.</b></p>
+                                    </div>
+                                    <div class = "references" style = "margin-top: 15px;">
+                                        <input type = "checkbox" onclick = "showPass()">Show Password
+                                    </div>
+                                </div>
+                                <div class = "btn-container">
+                                    <button type = "button" onclick = "document.getElementById('change-pass').style.display = 'none'" class = "cancel-btn">Cancel</button>
+                                    <button type = "submit" class = "confirm-btn" name = "pass-submit">Confirm</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "phone-container">
+                <div>Phone Number</div>
+                <div class = "padding-txt">({{ user.phoneNumber[0:3] }})-{{ user.phoneNumber[3:6] }}-{{ user.phoneNumber[6:] }}</div>
+            </div>
+
+            <div class = "address-container">
+                <div>Address</div>
+                <div class = "padding-txt" style = "padding-bottom: 10px;">{{ user.address }}</div>
+                <div class = "funds-btn padding-txt">
+                    <!-- set address modal form -->
+                    <button onclick = "document.getElementById('set-address').style.display = 'block'" class = "modal-btn">{% if user.address == None %}Set Address{% else %}Change Address{% endif %}</button>
+                    <div id = "set-address" class = "modal">
+                        <form class = "modal-content animate modal-add" action = "" method = "post" style = "margin-top: 2.5%;">
+                            <div class = "addr-container">
+                                <h1 class = "modal-header">{% if user.address == None %}Set Address{% else %}Change Address{% endif %}</h1>
+                                <div class = "flex-info" id = "change-form">
+                                    <label for = "address" class = "form-info">Address</label>
+                                    <input type = "text" id = "address" name = "address" placeholder = "Enter Address" required> <br>
+                                    <label for = "city" class = "form-info">City</label>
+                                    <input type = "text" id = "city" name = "city" placeholder = "Enter City" required> <br>
+                                    <label for = "state" class = "form-info">State</label>
+                                    <input type = "text" id = "state" name = "state" placeholder = "Enter State" required> <br>
+                                    <label for = "zipcode" class = "form-info">Zip Code</label>
+                                    <input type = "text" id = "zipcode" name = "zipcode" placeholder = "Enter Zip Code" required>
+                                </div>
+                            </div>
+                            <div class = "btn-container">
+                                <button type = "button" onclick = "document.getElementById('set-address').style.display = 'none'" class = "cancel-btn">Cancel</button>
+                                <button type = "submit" class = "confirm-btn" name = "address-submit">Confirm</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class = "status-container">
+                <div>Account Status</div>
+                {% if user.isVIP == 0 %}
+                    <div class = "padding-txt">Registered Customer</div>
+                {% else %}
+                    <div class = "padding-txt"><i class="fa fa-fw fa-certificate" style = "color: rgb(247, 203, 61); font-size: larger;"></i>VIP Customer</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class = "wallet-container">
+            <h1 style = "font-size: 25px; color:rgb(65, 65, 65); padding-top: 5px;">Wallet</h1><hr>
+            <div class = "card-container">
+                <div>Card Number</div>
+                <div class = "padding-txt"> **** **** **** {{ user.cardNumber[12:] }}</div>
+            </div>
+            <div class = "card-btn padding-txt">
+                <!-- change payment method modal form -->
+                <button onclick = "document.getElementById('change-card').style.display = 'block'" class = "modal-btn">Change Payment Method</button>
+                <div id = "change-card" class = "modal">
+                    <form class = "modal-content animate modal-add" action = "" method = "post">
+                        <div class = "change-container">
+                            <h1 class = "modal-header">Change Payment Method</h1>
+                            <div style = "text-align: center; font-size: 20px; padding-bottom: 10px;">Current Card Number: **** **** **** {{ user.cardNumber[12:] }}</div>
+                            <div class = "change-to modal-info">
+                                <label for = "card">Update Card Number</label>
+                                <div class = "modal-info">
+                                    <input type = "number" id = "card" name = "card" placeholder = "Enter Card Number" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "btn-container">
+                            <button type = "button" onclick = "document.getElementById('change-card').style.display = 'none'" class = "cancel-btn">Cancel</button>
+                            <button type = "submit" class = "confirm-btn" name = "card-submit">Confirm</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class = "balance-container">
+                <div>Balance</div>
+                <div class = "padding-txt">
+                    <div style = "padding-bottom: 10px;"><span id = "current-amount">{{ "$%.2f"|format(user.wallet) }}</span></div>
+                    <div class = "funds-btn">
+                        <!-- charge funds modal form -->
+                        <button onclick = "document.getElementById('add-funds').style.display = 'block'" class = "modal-btn">Add Funds</button>
+                        <div id = "add-funds" class = "modal">
+                            <form class = "modal-content animate modal-add" action = "" method = "post">
+                                <div class = "money-container">
+                                    <h1 class = "modal-header">Add Funds</h1>
+                                    <div style = "text-align: center; font-size: 20px; padding-bottom: 10px;"><span id = "current-amount">Current Balance: {{ "$%.2f"|format(user.wallet) }}</span></div>
+                                    <div class = "charge-amt modal-info">
+                                        <label for = "funds">Amount to Add</label>
+                                        <div class = "modal-info">
+                                            <input type = "number" step = "0.01" id = "funds" name = "funds" placeholder = "Enter Amount" autocomplete = "off" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class = "btn-container">
+                                    <button type = "button" onclick = "document.getElementById('add-funds').style.display = 'none'" class = "cancel-btn">Cancel</button>
+                                    <button type = "submit" class = "confirm-btn" name = "wallet-submit">Confirm</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class = "warnings-container">
+            <h1 style = "font-size: 25px; color:rgb(65, 65, 65); padding-top: 5px;">Warnings</h1><hr>
+            <div class = "flex-container num-container">
+                <div>Number of Warnings</div>
+                <div class = "padding-txt">{{ user.warnings }}</div>
+            </div>
+            {% if user.isVIP == 0 %}
+                <div style = "font-size: 13px; color:rgb(146, 92, 92); text-align: center;">*CAUTION: Receiving 3 warnings will result in your account being blacklisted.</div>
+            {% else %}
+                <div style = "font-size: 13px; color:rgb(146, 92, 92); text-align: center;">*CAUTION: Receiving 2 warnings as a VIP will result in your account being downgraded to registered customer status.</div>
+            {% endif %}
+        </div>
+
+        <div class = "delete-container">
+            <h1 style = "font-size: 25px; color:rgb(65, 65, 65); padding-top: 5px;">Delete Account</h1><hr>
+            <div class = "del-modal" style = "text-align: center; ">
+                <!-- delete account modal -->
+                <button onclick = "document.getElementById('delete-acc').style.display = 'block'" class = "modal-btn">Delete Account</button>
+                <div id = "delete-acc" class = "modal">
+                    <form class = "modal-content modal-delete animate" action = "" method = "post">
+                        <div class = "del-container">
+                            <h1 class = "modal-header">Delete Account</h1>
+                            <p class = "modal-info" style = "font-size: 20px;">Are you sure you want to delete your account?</p>
+                            <p class = "modal-info" style = "font-size: 13px; color:rgb(146, 92, 92);">*CAUTION: Account CANNOT be recovered once it is deleted.</p>
+                            <div class = "btn-container">
+                                <button type = "button" onclick = "document.getElementById('delete-acc').style.display = 'none'" class = "cancel-btn">Cancel</button>
+                                <button type = "submit" class = "delete-btn" name = "delete-submit">Delete</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <p class = "modal-info" style = "font-size: 13px; color:rgb(146, 92, 92);">*CAUTION: Account CANNOT be recovered once it is deleted.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById('change-pass');
+    var modal1 = document.getElementById('add-funds');
+    var modal2 = document.getElementById('delete-acc');
+    var modal3 = document.getElementById('change-card');
+    var modal4 = document.getElementById('set-address');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if ((event.target == modal) || (event.target == modal1) || (event.target == modal2) || (event.target == modal3) || (event.target == modal4)) {
+            modal.style.display = "none";
+            modal1.style.display = "none";
+            modal2.style.display = "none";
+            modal3.style.display = "none";
+            modal4.style.display = "none";
+        }
+    }
+
+    function showPass() {
+        var pw = document.getElementById("newpass");
+        var pw2 = document.getElementById("conpass");
+        if (pw.type === "password") {
+            pw.type = "text";
+            pw2.type = "text";
+        } else {
+            pw.type = "password";
+            pw2.type = "password";
+        }
+    }
+
+    var pw = document.getElementById("newpass");
+    var pw2 = document.getElementById("conpass");
+    var cap = document.getElementById("cap");
+
+    pw.addEventListener("keyup", function(event) {
+        if (event.getModifierState("CapsLock")) {
+            cap.style.display = "block";
+        } else {
+            cap.style.display = "none"
+        }
+    });
+    pw2.addEventListener("keyup", function(event) {
+        if (event.getModifierState("CapsLock")) {
+            cap.style.display = "block";
+        } else {
+            cap.style.display = "none"
+        }
+    });
+</script>
+{% endblock %}

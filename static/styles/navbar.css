@@ -1,0 +1,170 @@
+:root {
+    --navbar-background-color: rgb(34,34,34);
+
+    --navbar-text-color: white;
+    --navbar-hover-color: rgb(255, 255, 255);
+    --navbar-active-color: blue;
+    --navbar-hover-text-color: black;
+    --navbar-active-text-color: orange;
+
+    --navbar-font-item-size: 20px;
+    --navbar-font-item-color: rgb(204, 203, 203);
+}
+
+navbar, nav * 
+{
+    background-color: var(--navbar-background-color);
+    color: var(--navbar-font-item-color);
+}
+
+.navbar-hamburger-menu {
+    margin: 0 40px 0 0;
+    font-size: 40px;
+    line-height: 55px;
+    /*float: none;
+    display: none;
+    transform: translate(90%, -5%);*/
+}
+
+#toggle {
+    display: none;
+}
+
+.logo-icon {
+    position: absolute;
+    background-color: var(--navbar-background-color);
+    height: 55px;
+    width: 150px;
+    top: 0;
+    left: 0;
+}
+
+.navbar {
+    position: relative;
+    overflow: visible;
+    background-color: var(--navbar-background-color);
+}
+
+.navbar i {
+    background-color: transparent;
+    color: var(--navbar-font-item-color);
+}
+
+.navbar a {
+    float: left;
+}
+
+.navbar a, .drop-btn {
+    color: var(--navbar-font-item-color);
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    font-size: var(--navbar-font-item-size);
+    background-color: var(--navbar-background-color);
+    border: none;
+}
+
+.navbar a:hover, .user-drop:hover .drop-btn {
+    background-color: rgb(142, 142, 142);
+    color: var(--navbar-background-color);
+    transition: 0.2s;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.navbar a.active {
+    background-color: var(--navbar-active-color);
+    color: var(--navbar-active-text-color);
+}
+
+.navbar-right {
+    float: right;
+    right: 0;
+    top: 5px;
+    letter-spacing: 0.1em;
+}
+
+.navbar-all {
+    display: none;
+}
+
+.user-content, .user-content a {
+    list-style-type: none;
+    padding: 8px 20px;
+}
+
+.user-drop {
+    display: inline-block;
+}
+
+.user-content {
+    display: none;
+    position: absolute;
+    right: 0px;
+    top: 35px;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+  
+.user-drop:hover .user-content {
+    display: block;
+}
+
+@media only screen and (max-width: 750px) {
+    .navbar-hamburger-menu {
+        display: block;
+        cursor: pointer;
+        transform: translate(92%, -5%);
+    }
+
+    .navbar-right {
+        display: none;
+    }
+
+    .navbar-all {
+        text-align: center;
+        width: 100%;
+        /*display: none;*/
+    }
+
+    .navbar-all a {
+        margin: 0;
+        display: block;
+        float: none;
+        transform: translate(0%, 0%);
+    }
+
+    #toggle:checked + .navbar-all {
+        display: block;
+    }
+
+    .logo-icon {
+        height: 55px;
+        width: 150px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .navbar-hamburger-menu {
+        display: block;
+        cursor: pointer;
+        transform: translate(91%, -5%);
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .navbar-hamburger-menu {
+        display: block;
+        cursor: pointer;
+        transform: translate(89%, -5%);
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    .navbar-hamburger-menu {
+        display: block;
+        cursor: pointer;
+        transform: translate(87%, -5%);
+    }
+}

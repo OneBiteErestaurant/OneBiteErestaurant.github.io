@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/orders.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans">
+
+    <title>Comment Form</title>
+</head>
+
+<body>
+    {% if comment_type == "compliment-chef" %}
+    <div id = "compliment-dish" class = "my-modal">
+        <form action = "" method = "post" id = "compliment-dish-form" class = "my-modal-content my-animate">
+            <h1 class = "my-modal-title">Compliment Chef</h1>
+            <h1 class = "my-modal-subtitle">{{ dish_name }}</h1>
+            <input type = "hidden" id = "dish_id" name = "dish_id" value = "{{ dish_id }}">
+            <div class = "my-desc-box">
+                <span>Enter Description of Compliment:</span><br>
+                <textarea name = "compliment-box" id = "compliment-box" class = "text-box" placeholder = "Complimenting because..." required></textarea>
+            </div>
+            <div class = "my-modal-footer">
+                <input type = "submit" name = "compliment-dish-submit" value = "Submit" class = "submit-btn">
+                <a href = "{{ url_for('orders') }}"><button type = "button" class = "close-btn">Cancel</button></a>
+            </div>
+        </form>
+    </div>
+    {% elif comment_type == "complaint-chef" %}
+    <div id = "complaint-dish" class = "my-modal">
+        <form action = "" method = "post" id = "complaint-dish-form" class = "my-modal-content my-animate">
+            <h1 class = "my-modal-title">Complain Chef</h1>
+            <h1 class = "my-modal-subtitle">{{ dish_name }}</h1>
+            <input type = "hidden" id = "dish_id" name = "dish_id" value = "{{ dish_id }}">
+            <div class = "my-desc-box">
+                <span>Enter Description of Complaint:</span><br>
+                <textarea name = "complaint-box" id = "complaint-box" class = "text-box" placeholder = "Complaining because..." required></textarea>
+            </div>
+            <div class = "my-modal-footer">
+                <input type = "submit" name = "complaint-dish-submit" value = "Submit" class = "submit-btn">
+                <a href = "{{ url_for('orders') }}"><button type = "button" class = "close-btn">Cancel</button></a>
+            </div>
+        </form>
+    </div>
+    {% elif comment_type == "compliment-delivery" %}
+    <div id = "compliment-delivery" class = "my-modal">
+        <form action = "" method = "post" id = "compliment-delivery-form" class = "my-modal-content my-animate">
+            <h1 class = "my-modal-title">Compliment Delivery</h1>
+            <h1 class = "my-modal-subtitle">Order ID #{{ order_id }}</h1>
+            <input type = "hidden" id = "order_id" name = "order_id" value = "{{ order_id }}">
+            <div class = "my-desc-box">
+                <span>Enter Description of Compliment:</span><br>
+                <textarea name = "compliment-box" id = "compliment-box" class = "text-box" placeholder = "Complimenting because..." required></textarea>
+            </div>
+            <div class = "my-modal-footer">
+                <input type = "submit" name = "compliment-delivery-submit" value = "Submit" class = "submit-btn">
+                <a href = "{{ url_for('orders') }}"><button type = "button" class = "close-btn">Cancel</button></a>
+            </div>
+        </form>
+    </div>
+    {% elif comment_type == "complaint-delivery" %}
+    <div id = "complaint-delivery" class = "my-modal">
+        <form action = "" method = "post" id = "complaint-delivery-form" class = "my-modal-content my-animate">
+            <h1 class = "my-modal-title">Complain Delivery</h1>
+            <h1 class = "my-modal-subtitle">Order ID #{{ order_id }}</h1>
+            <input type = "hidden" id = "order_id" name = "order_id" value = "{{ order_id }}">
+            <div class = "my-desc-box">
+                <span>Enter Description of Complaint:</span><br>
+                <textarea name = "complaint-box" id = "complaint-box" class = "text-box" placeholder = "Complaining because..." required></textarea>
+            </div>
+            <div class = "my-modal-footer">
+                <input type = "submit" name = "complaint-delivery-submit" value = "Submit" class = "submit-btn">
+                <a href = "{{ url_for('orders') }}"><button type = "button" class = "close-btn">Cancel</button></a>
+            </div>
+        </form>
+    </div>
+    {% endif %}
+</body>
+</html>

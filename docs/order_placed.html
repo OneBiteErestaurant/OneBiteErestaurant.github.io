@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/order_placed.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans">
+{% endblock links %}
+
+{% block titlePage %} Order {% endblock %}
+
+{% block mainContent %}
+
+{% if success %}
+    <div class = "cover">
+        <h2 class = "title">Order Complete</h2>
+    </div>
+
+    <div class = "successful-order">
+        <div class = "order-result">
+            <img class = "order-img" src = "../static/assets/checked.png"/>
+
+            <div class = "text-container">
+                <a class = "orders-page" href = "{{ url_for('orders')}}">View Order Details</a>
+            </div>
+        </div>
+        
+        <div class = "order-cd">
+            <h1 class = "time-cd">Estimated Time Remaining</h1>
+            <p id = "countdown"></p>
+        </div>
+
+        <div class = "order-dest">
+            {% if order_type == 'delivery' %}
+            <!-- if delivery -->
+                <h2 class = "dest-details-h2">Your order will be delivered to <h1 class = "dest-details-h1">{{ user.address }}</h1></h2>
+            {% elif order_type == 'pickup' %}
+                <!-- if pickup -->
+                <h2 class = "dest-details-h2">Your order will be available for pickup at <h1 class = "dest-details-h1"><b><a href = "https://www.google.com/maps/place/160+Convent+Ave,+New+York,+NY+10031/@40.8215941,-73.9492731,17z/data=!4m5!3m4!1s0x89c2f6652af1111b:0x7ed40bda91966edf!8m2!3d40.8216144!4d-73.9479427">160 Convent Ave, New York, NY 10031</a></b>.</h1></h2>
+            {% endif %}
+        </div>
+    </div>
+    
+{% else %}
+    <div class = "cover">
+        <h2 class = "title">Order Unsuccessful</h2>
+    </div>
+
+    <div class = "unsuccessful-order">
+        <div class = "order-result">
+            <img class = "order-img" src = "../static/assets/cancel.png"/>
+            
+            <div class = "text-container">
+                <a class = "orders-page" href = "{{ url_for('profilePage') }}">Deposit More Money</a>
+            </div>
+
+            <div class = "home-page">
+                <a class = "home-page" href = "{{ url_for('homePage') }}">Return to Home Page</a></div>
+        </div>
+        
+        <div class = "order-cd" style = "margin-top: 30px;">
+            <p id = "txt-fail">
+                {% if prevVIP == 1 %}
+                    Your order could not be completed because you did not have enough funds in your account.
+                    <b>Your warning count was increased by 1</b> due to the reckless use of your account.
+                    However, since you received 2 warnings in total, <b>your account has been downgraded
+                    from VIP status to Registered Customer status</b> and your warning count has been reset.</p>
+                {% else %}
+                    Your order could not be completed because you did not have enough funds in your account. 
+                    <b>Your warning count will be increased by 1</b> due to the reckless use of your account.</p>
+                {% endif %}
+        </div>
+
+        <div class = "order-dest">
+            <h1 class = "dest-details-h1">Order Total: {{ "$%.2f"|format(total) }}</h1>
+            <h1 class = "dest-details-h1">Funds Available in Account: {{ "$%.2f"|format(user.wallet) }}</h1>
+        </div>
+
+        <div class = "order-dest">
+            <h1 class = "dest-details-h1">Current Number of Warnings: {{ user.warnings }}</h1>
+        </div>
+    </div>
+{% endif %}
+<script>
+    // Set the date we're counting down to
+    var cdDate = new Date();
+    // cdDate.setHours(cdDate.getHours() + 0);
+    // cdDate.setMinutes(cdDate.getMinutes() + 30);
+    cdDate.setSeconds(cdDate.getSeconds() + 10);
+
+    // Update the count down every 1 second
+    var x = setInterval(
+        function() {
+            // Get today's date and time
+            var now = new Date().getTime();
+        
+            // Find the distance between now and the count down date
+            var distance = cdDate - now;
+        
+            // Time calculations for days, hours, minutes and seconds
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+            // Output the result in an element with id = "countdown"
+            document.getElementById("countdown").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
+        
+            // If the count down is over, write some text 
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "Your order is ready.";
+            }
+        }, 1000
+    );
+</script>
+{% endblock %}

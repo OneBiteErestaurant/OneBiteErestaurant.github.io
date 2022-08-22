@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/customer-support.css') }}">
+{% endblock links %}
+
+{% block titlePage %}
+    Customer Support
+{% endblock titlePage %}
+
+{% block mainContent %}
+    <div id="customer-support" style="text-align: center;">
+        <h2 style="text-align: center; font-size: 50px; margin-top: 50px;">Customer Support</h2>
+
+        <div class="customer-support-container">
+            <h3>For general inquiries</h3>
+            <p class="customer-support-desc">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Distinctio deleniti perferendis vero voluptate commodi temporibus doloremque, minima quo facere, 
+                hic error ducimus molestias odio omnis, modi voluptates iusto enim nemo.
+            </p>
+            <p class="customer-support-email">Email: <strong>general.example@example.com</strong></p>
+            <p class="customer-support-phone">Phone: <strong>111-222-3333</strong></p>
+            <p class="customer-support-hours">Hours: <strong>Monday - Friday 10 AM - 5 PM EST</strong></p>
+        </div>
+    
+        <div class="customer-support-container">
+            <h3>For payment inquiries</h3>
+            <p class="customer-support-desc">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Distinctio deleniti perferendis vero voluptate commodi temporibus doloremque, minima quo facere, 
+                hic error ducimus molestias odio omnis, modi voluptates iusto enim nemo.
+            </p>
+            <p class="customer-support-email">Email: <strong>payments.example@example.com</strong></p>
+            <p class="customer-support-phone">Phone: <strong>111-222-4444</strong></p>
+            <p class="customer-support-hours">Hours: <strong>Monday - Friday 10 AM - 5 PM EST</strong></p>
+        </div>
+
+        <div class="customer-support-container">
+            <h3>For account inquiries</h3>
+            <p class="customer-support-desc">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Distinctio deleniti perferendis vero voluptate commodi temporibus doloremque, minima quo facere, 
+                hic error ducimus molestias odio omnis, modi voluptates iusto enim nemo.
+            </p>
+            <p class="customer-support-email">Email: <strong>accounts.example@example.com</strong></p>
+            <p class="customer-support-phone">Phone: <strong>111-222-5555</strong></p>
+            <p class="customer-support-hours">Hours: <strong>Monday - Friday 10 AM - 5 PM EST</strong></p>
+        </div>
+        <br><br>
+    </div>
+{% endblock mainContent %}

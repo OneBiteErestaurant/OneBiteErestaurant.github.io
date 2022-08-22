@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/menu.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock links %}
+
+{% block titlePage %}Menu{% endblock %}
+
+{% block mainContent %}
+    <div class="cover">
+        <h2 class="title">Menu</h2>
+    </div>
+
+{% if user %}
+    {% if user.isVIP == 1 %}
+        <div class="category"><h3>OneBite Specials</h3></div>
+        <div class="container">
+            {% for special in specials %}
+                <div class="gridItem"><img class="gridImg" src="{{ special.img }}"></div>
+
+                <div class="gridItem">
+                    <div class="itemName"><h4 class="food-name item-attribute">{{ special.name }}</h4></div>
+                    <div class="itemDes"><h4 class="item-attribute">Description:</h4><p>{{ special.desc }}</p></div>
+                    <div class="itemDes"><h4 class="item-attribute">Price:</h4><p>{{ "$%.2f"|format(special.price) }}</p></div>
+                    <div class="itemDes"><h4 class="item-attribute">
+                        {% for i in range(5): %}
+                            {% if special.rating >= i+1 %}
+                                <span class="fa fa-star checked"></span>
+                            {% else %}
+                                <span class="fa fa-star"></span>
+                            {% endif %}
+                        {% endfor %}
+                        ({{special.num_ratings}})
+                    </div>
+                    <div class="itemDes">
+                        <form method="post" action="/add-dish-to-cart/{{ special.id }}">
+                            <button class="add-to-cart-btn" type="submit">Add to Cart</button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <div class="category"><h3>Appetizers</h3></div>
+    <div class="container">
+        {% for appetizer in appetizers %}
+            <div class="gridItem"><img class="gridImg" src="{{ appetizer.img }}"></div>
+
+            <div class="gridItem">
+                <div class="itemName"><h4 class="food-name item-attribute">{{ appetizer.name }}</h4></div>
+                <div class="itemDes"><h4 class="item-attribute">Description:</h4><p>{{ appetizer.desc }}</p></div>
+                <div class="itemDes"><h4 class="item-attribute">Price:</h4><p>{{ "$%.2f"|format(appetizer.price) }}</p></div>
+                <div class="itemDes"><h4 class="item-attribute">
+                    {% for i in range(5): %}
+                        {% if appetizer.rating >= i+1 %}
+                            <span class="fa fa-star checked"></span>
+                        {% else %}
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                    {% endfor %}
+                    ({{appetizer.num_ratings}})
+                </div>
+                <div class="itemDes">
+                    <form method="post" action="/add-dish-to-cart/{{ appetizer.id }}">
+                        <button class="add-to-cart-btn" type="submit">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="category"><h3>Entrees</h3></div>
+    <div class="container">
+        {% for entree in entrees %}
+            <div class="gridItem"><img class="gridImg" src="{{ entree.img }}"></div>
+
+            <div class="gridItem">
+                <div class="itemName"><h4 class="food-name item-attribute">{{ entree.name }}</h4></div>
+                <div class="itemDes"><h4 class="item-attribute">Description:</h4><p>{{ entree.desc }}</p></div>
+                <div class="itemDes"><h4 class="item-attribute">Price:</h4><p>{{ "$%.2f"|format(entree.price) }}</p></div>
+                <div class="itemDes"><h4 class="item-attribute">
+                    {% for i in range(5): %}
+                        {% if entree.rating >= i+1 %}
+                            <span class="fa fa-star checked"></span>
+                        {% else %}
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                    {% endfor %}
+                    ({{entree.num_ratings}})
+                </div>
+                <div class="itemDes">
+                    <form method="post" action="/add-dish-to-cart/{{ entree.id }}">
+                        <button class="add-to-cart-btn" type="submit">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="category"><h3>Desserts</h3></div>
+    <div class="container">
+        {% for desert in deserts %}
+            <div class="gridItem"><img class="gridImg" src="{{ desert.img }}"></div>
+
+            <div class="gridItem">
+                <div class="itemName"><h4 class="food-name item-attribute">{{ desert.name }}</h4></div>
+                <div class="itemDes"><h4 class="item-attribute">Description:</h4><p>{{ desert.desc }}</p></div>
+                <div class="itemDes"><h4 class="item-attribute">Price:</h4><p>{{ "$%.2f"|format(desert.price) }}</p></div>
+                <div class="itemDes"><h4 class="item-attribute">
+                    {% for i in range(5): %}
+                        {% if desert.rating >= i+1 %}
+                            <span class="fa fa-star checked"></span>
+                        {% else %}
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                    {% endfor %}
+                    ({{desert.num_ratings}})
+                </div>
+                <div class="itemDes">
+                    <form method="post" action="/add-dish-to-cart/{{ desert.id }}">
+                        <button class="add-to-cart-btn" type="submit">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="category"><h3>Drinks</h3></div>
+    <div class="container">
+        {% for drink in drinks %}
+            <div class="gridItem"><img class="gridImg" src="{{ drink.img }}"></div>
+
+            <div class="gridItem">
+                <div class="itemName"><h4 class="food-name item-attribute">{{ drink.name }}</h4></div>
+                <div class="itemDes"><h4 class="item-attribute">Description:</h4><p>{{ drink.desc }}</p></div>
+                <div class="itemDes"><h4 class="item-attribute">Price:</h4><p>{{ "$%.2f"|format(drink.price) }}</p></div>
+                <div class="itemDes"><h4 class="item-attribute">
+                    {% for i in range(5): %}
+                        {% if drink.rating >= i+1 %}
+                            <span class="fa fa-star checked"></span>
+                        {% else %}
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                    {% endfor %}
+                    ({{drink.num_ratings}})
+                </div>
+                <div class="itemDes">
+                    <form method="post" action="/add-dish-to-cart/{{ drink.id }}">
+                        <button class="add-to-cart-btn" type="submit">Add to Cart</button>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div><br>
+
+<!-- menu for visitors -->
+{% else %}
+    <div class="category"><h3>Appetizers</h3></div>
+    <div class="container">
+        {% for appetizer in appetizers %}
+            <div class="gridItem"><img class="gridImg" src="{{ appetizer.img }}"></div>
+
+            <div class="gridItem">
+                <div class="itemName"><h4 class="food-name item-attribute">{{ appetizer.name}}</h4></div>
+                <div class="itemDes"><h4 class="item-attribute">Description:</h4><p>{{ appetizer.desc }}</p></div>
+                <div class="itemDes"><h4 class="item-attribute">Price:</h4><p>{{ "$%.2f"|format(appetizer.price) }}</p></div>
+                <div class="itemDes"><h4 class="item-attribute">
+                    {% for i in range(5): %}
+                        {% if appetizer.rating >= i+1 %}
+                            <span class="fa fa-star checked"></span>
+                        {% else %}
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                    {% endfor %}
+                    ({{appetizer.num_ratings}})
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="category"><h3>Entrees</h3></div>
+    <div class="container">
+        {% for entree in entrees %}
+            <div class="gridItem"><img class="gridImg" src="{{ entree.img }}"></div>
+
+            <div class="gridItem">
+                <div class="itemName"><h4 class="food-name item-attribute">{{ entree.name }}</h4></div>
+                <div class="itemDes"><h4 class="item-attribute">Description:</h4><p>{{ entree.desc }}</p></div>
+                <div class="itemDes"><h4 class="item-attribute">Price:</h4><p>{{ "$%.2f"|format(entree.price) }}</p></div>
+                <div class="itemDes"><h4 class="item-attribute">
+                    {% for i in range(5): %}
+                        {% if entree.rating >= i+1 %}
+                            <span class="fa fa-star checked"></span>
+                        {% else %}
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                    {% endfor %}
+                    ({{entree.num_ratings}})
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="category"><h3>Desserts</h3></div>
+    <div class="container">
+        {% for desert in deserts %}
+            <div class="gridItem"><img class="gridImg" src="{{ desert.img }}"></div>
+
+            <div class="gridItem">
+                <div class="itemName"><h4 class="food-name item-attribute">{{ desert.name }}</h4></div>
+                <div class="itemDes"><h4 class="item-attribute">Description:</h4><p>{{ desert.desc }}</p></div>
+                <div class="itemDes"><h4 class="item-attribute">Price:</h4><p>{{ "$%.2f"|format(desert.price) }}</p></div>
+                <div class="itemDes"><h4 class="item-attribute">
+                    {% for i in range(5): %}
+                        {% if desert.rating >= i+1 %}
+                            <span class="fa fa-star checked"></span>
+                        {% else %}
+                            <span class="fa fa-star"></span>
+                        {% endif %}
+                    {% endfor %}
+                    ({{desert.num_ratings}})
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="category"><h3>Drinks</h3></div>
+    <div class="container">
+        {% for drink in drinks %}
+            <div class="gridItem"><img class="gridImg" src="{{ drink.img }}"></div>
+
+            <div class="gridItem">
+                <div class="itemName"><h4 class="food-name item-attribute">{{ drink.name }}</h4></div>
+                <div class="itemDes"><h4 class="item-attribute">Description:</h4><p>{{ drink.desc }}</p></div>
+                <div class="gridBottom">
+                    <div class="itemDes"><h4 class="item-attribute">Price:</h4><p>{{ "$%.2f"|format(drink.price) }}</p></div>
+                    <div class="itemDes"><h4 class="item-attribute">
+                        {% for i in range(5): %}
+                            {% if drink.rating >= i+1 %}
+                                <span class="fa fa-star checked"></span>
+                            {% else %}
+                                <span class="fa fa-star"></span>
+                            {% endif %}
+                        {% endfor %}
+                        ({{drink.num_ratings}})
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div><br>
+{% endif %}
+
+{% endblock %}

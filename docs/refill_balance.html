@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block titlePage %}
+    Refill Balance
+{% endblock titlePage %}
+
+{% block mainContent %}
+    <style>
+        .refill-container {
+            font-size: 30px;
+            margin: 30px;
+        }
+
+    </style>
+    <div class="cover">
+        <h2 class="title">Refill Your Balance</h2>
+    </div>
+
+    <div>
+        <div class="refill-container">Current Amount: $<span id="current-amount">{{ user.wallet }}</span></div>
+        <div class="refill-container">
+            Card Number: <span id="card-num">{{ user.cardNumber }}</span>
+            <button onclick="displayChangeCardNumber()">Change Payment Method...</button>
+        </div>
+        <div id="change-payment-method" style="display: none;" class="refill-container">
+            <label>Change Card Number</label>
+            <input type="number" min="0" id="new-card-num">
+            <button onclick="updateCardNumber()">Update Card Number</button>
+        </div>
+
+        <div class="refill-container">
+            <label>Refill your amount: $</label>
+            <input type="number" min="0" id="new-amount">
+            <button onclick="submitAmount()">Submit</button>
+        </div>
+
+        <script>
+            const changePayment = document.getElementById("change-payment-method");
+
+            function displayChangeCardNumber() {
+                changePayment.style.display = "block";
+            }
+
+            function updateCardNumber() {
+                changePayment.style.display = "none";
+                document.getElementById("card-num").innerHTML = document.getElementById("new-card-num").value;
+            }
+
+            function submitAmount() {
+                const currentAmount = document.getElementById("current-amount").innerHTML;
+                const refilledAmount = document.getElementById("new-amount").value;
+
+                const total = parseFloat(currentAmount) + parseFloat(refilledAmount);
+
+                document.getElementById("current-amount").innerHTML = total;
+            }
+        </script>
+    </div>
+
+
+{% endblock mainContent %}

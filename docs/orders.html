@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/orders.css') }}">
+{% endblock links %}
+
+{% block titlePage %}
+    Your Orders
+{% endblock titlePage %}
+
+{% block mainContent %}
+    <div class="cover"><h2 class="title">Your Orders</h2></div>
+
+    <div class = "whole-container">
+        <div class = "inprogress">
+            <h1 class = "order-title">Orders In Progress</h1>
+            {% if recentOrders %}
+                {% for order in recentOrders %}
+                    <div class = "order-item">
+                        <button type = "button" class = "collapsible">
+                            <div class = "order-col2">Order ID #{{ order["order_id"] }}</div>
+                            <div class = "order-col1 text-right">
+                                {% if order["type"] == 'delivery' %}
+                                    Delivery ({{ order["num_items"] }} items)
+                                {% else %}
+                                    Pick Up ({{ order["num_items"] }} items)
+                                {% endif %}
+                            </div>
+                            <div class = "order-col1 text-right">{{ order["datetime"] }}</div>
+                        </button>
+                        <div class = "content">
+                            <div class = "header-content">
+                                <div class = "order-col1">ID</div>
+                                <div class = "order-col2">Product Name</div>
+                                <div class = "order-col1">Price</div>
+                                <div class = "order-col1">Quantity</div>
+                                <div class = "order-col1">Total</div>
+                            </div>
+                            
+                            <hr>
+                            {% for orderItem in recentDetails %}
+                                {% for item in orderItem %}
+                                    {% if item["order_id"] == order["order_id"] %}
+                                        <div class = "order-content">
+                                            <div class = "order-col1">{{ item["dish_id"] }}</div>
+                                            <div class = "order-col2">{{ item["name"] }}</div>
+                                            <div class = "order-col1">{{ "$%.2f"|format(item["price"]) }}</div>
+                                            <div class = "order-col1">{{ item["quantity"] }}</div>
+                                            <div class = "order-col1">{{ "$%.2f"|format(item["price"]*item["quantity"]) }}</div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                            <hr>
+                            <div class = "width40 transparent align-right">
+                                <div class = "info-row">
+                                    <p class = "align-left">Subtotal:</p>
+                                    <p class = "align-right">{{ "$%.2f"|format(order["subtotal"]) }}</p>
+                                </div>
+                                <div class = "info-row">
+                                    <p class = "align-left">Tax:</p>
+                                    <p class = "align-right">{{ "$%.2f"|format(order["tax"]) }}</p>
+                                </div>
+                                {% if order["discount"] > 0.0 %}
+                                <div class = "info-row">
+                                    <p class = "align-left">Discount:</p>
+                                    <p class = "align-right">{{ "$%.2f"|format(order["discount"]) }}</p>
+                                </div>
+                                {% endif %}
+                                {% if order["type"] == 'delivery' %}
+                                    {% if order["isFree"] == 1 %}
+                                        <div class = "info-row">
+                                            <p class = "align-left">Delivery:</p>
+                                            <p class = "align-right">Your Delivery is Free</p>
+                                        </div>
+                                    {% else %}
+                                        <div class = "info-row">
+                                            <p class = "align-left">Delivery:</p>
+                                            <p class = "align-right">To Be Determined</p>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
+                                <hr class = "info-row">
+                                <div class = "info-row">
+                                    <p class = "align-left info-total">Total:</p>
+                                    <p class = "align-right info-total">{{ "$%.2f"|format(order["total"]) }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h1 class = "empty-order">YOU HAVE NO ORDERS IN PROGRESS</h1>
+            {% endif %}
+        </div>
+        
+        <div class = "completed">
+            <h1 class = "order-title">Completed Orders</h1>
+            {% if pastOrders %}
+                {% for order in pastOrders %}
+                    <div class = "order-item">
+                        <button type = "button" class = "collapsible">
+                            <div class = "order-col2">Order ID #{{ order["order_id"] }}</div>
+                            <div class = "order-col1 text-right">
+                                {% if order["type"] == 'delivery' %}
+                                    Delivery ({{ order["num_items"] }} items)
+                                {% else %}
+                                    Pick Up ({{ order["num_items"] }} items)
+                                {% endif %}
+                            </div>
+                            <div class = "order-col1 text-right">{{ order["datetime"] }}</div>
+                        </button>
+                        <div class = "content">
+                            <div class = "header-content">
+                                <div class = "order-col1">ID</div>
+                                <div class = "order-col2">Product Name</div>
+                                <div class = "order-col1">Price</div>
+                                <div class = "order-col1">Quantity</div>
+                                <div class = "order-col1">Total</div>
+                                <div class = "order-col1"></div>
+                                <div class = "order-col1"></div>
+                            </div>
+                            
+                            <hr>
+                            {% for orderItem in pastDetails %}
+                                {% for item in orderItem %}
+                                    {% if item["order_id"] == order["order_id"] %}
+                                        <div class = "order-content">
+                                            <div class = "order-col1">{{ item["dish_id"] }}</div>
+                                            <div class = "order-col2">{{ item["name"] }}</div>
+                                            <div class = "order-col1">{{ "$%.2f"|format(item["price"]) }}</div>
+                                            <div class = "order-col1">{{ item["quantity"] }}</div>
+                                            <div class = "order-col1">{{ "$%.2f"|format(item["price"]*item["quantity"]) }}</div>
+                                            <div class = "order-col1">
+                                                <!-- compliment dish -->
+                                                <form action = "" method = "post" class = "transparent">
+                                                    <input type = "hidden" id = "order_id" name = "order_id" value = "{{ order['order_id'] }}">
+                                                    <input type = "hidden" id = "dish_id" name = "dish_id" value = "{{ item['dish_id'] }}">
+                                                    <input type = "hidden" id = "dish_name" name = "dish_name" value = "{{ item['name'] }}">
+                                                    <input type = "submit" name = "compliment-dish" value = "Compliment" class = "compliment-btn">
+                                                </form>
+                                            </div>
+                                            <div class = "order-col1">
+                                                <!-- complaint dish -->
+                                                <form action = "" method = "post" class = "transparent">
+                                                    <input type = "hidden" id = "order_id" name = "order_id" value = "{{ order['order_id'] }}">
+                                                    <input type = "hidden" id = "dish_id" name = "dish_id" value = "{{ item['dish_id'] }}">
+                                                    <input type = "hidden" id = "dish_name" name = "dish_name" value = "{{ item['name'] }}">
+                                                    <input type = "submit" name = "complaint-dish" value = "Complain" class = "complaint-btn">
+                                                </form>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% endfor %}
+                            <hr>
+
+                            <div class = "width40 transparent align-right">
+                                <div class = "info-row">
+                                    <p class = "align-left">Subtotal:</p>
+                                    <p class = "align-right">{{ "$%.2f"|format(order["subtotal"]) }}</p>
+                                </div>
+                                <div class = "info-row">
+                                    <p class = "align-left">Tax:</p>
+                                    <p class = "align-right">{{ "$%.2f"|format(order["tax"]) }}</p>
+                                </div>
+                                {% if order["discount"] > 0.0 %}
+                                <div class = "info-row">
+                                    <p class = "align-left">Discount:</p>
+                                    <p class = "align-right">{{ "$%.2f"|format(order["discount"]) }}</p>
+                                </div>
+                                {% endif %}
+                                {% if order["type"] == 'delivery' %}
+                                    {% if order["isFree"] == 1 %}
+                                        <div class = "info-row">
+                                            <p class = "align-left">Delivery:</p>
+                                            <p class = "align-right">Your Delivery was Free.</p>
+                                        </div>
+                                    {% else %}
+                                        <div class = "info-row">
+                                            <p class = "align-left">Delivery:</p>
+                                            <p class = "align-right">{{ "$%.2f"|format(order["delivery_fee"]) }}</p>
+                                        </div>
+                                    {% endif %}
+                                {% endif %}
+                                <hr class = "info-row">
+                                <div class = "info-row">
+                                    <p class = "align-left info-total">Total:</p>
+                                    <p class = "align-right info-total">{{ "$%.2f"|format(order["total"]) }}</p>
+                                </div>
+                            </div>
+                            {% if order["type"] == 'delivery' %}
+                                <div class = "btn-row transparent">
+                                    <!-- compliment delivery -->
+                                    <form action = "" method = "post" class = "transparent width40">
+                                        <input type = "hidden" id = "order_id" name = "order_id" value = "{{ order['order_id'] }}">
+                                        <input type = "submit" name = "compliment-delivery" value = "Compliment Delivery" class = "compliment-btn">
+                                    </form>
+                                </div>
+                                <div class = "btn-row transparent">
+                                    <!-- complaint delivery -->
+                                    <form action = "" method = "post" class = "transparent width40">
+                                        <input type = "hidden" id = "order_id" name = "order_id" value = "{{ order['order_id'] }}">
+                                        <input type = "submit" name = "complaint-delivery" value = "Complain Delivery" class = "complaint-btn">
+                                    </form>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <h1 class = "empty-order">YOU HAVE NO COMPLETED ORDERS</h1>
+            {% endif %}
+        </div>
+    </div>
+
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+
+    for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+        content.style.display = "none";
+        } else {
+        content.style.display = "block";
+        }
+    });
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,197 @@
+.info-container {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.flex-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.padding-txt {
+    padding-left: 27%;
+}
+
+.flex-container{
+    display: flex;
+}
+
+.flex1 {
+    flex: 1;
+}
+
+.flex2 {
+    flex: 2;
+}
+
+#change-form {
+    width: 70%;
+    margin: auto;
+}
+
+.form-info {
+    font-size: 20px;
+}
+
+.current-funds {
+    display: flex;
+    width: 60%;
+    margin: auto;
+    font-size: 20px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0, 0.4);
+    cursor: pointer;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    border: 1px solid #888;
+    width: 50%;
+    height: 80%;
+    margin: auto;
+    margin-top: 5%;
+    cursor: default;
+}
+
+.modal-delete, .modal-add {
+    height: 50%;
+}
+
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s;
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.modal-header {
+    font-size: 50px;
+    text-align: center;
+    padding-top: 5%;
+    letter-spacing: 7px;
+}
+
+.modal-info {
+    text-align: center;
+}
+
+.btn-container {
+    float: center;
+    text-align: center;
+    padding-top: 5%;
+    display: flex;
+    padding-bottom: 5%;
+}
+
+.modal-btn {
+    border-radius: 4px;
+    background-color: #eeeeee;
+}
+
+.modal-btn:hover {
+    background-color: #f8f8f8;
+    cursor: pointer;
+}
+
+.confirm-btn, .delete-btn, .cancel-btn {
+    padding: 2% 4%;
+    text-align: center;
+    border-radius: 5px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    width: 35%;
+    text-overflow: ellipsis;
+    background-color: #eeeeee;
+    margin: auto;
+}
+
+.confirm-btn {
+    background-color: rgb(108, 227, 142);
+    border-color: rgb(84, 182, 112);
+}
+
+.confirm-btn:hover {
+    cursor: pointer;
+    background-color: rgb(196, 255, 198);
+    color: black;
+}
+
+.delete-btn {
+    background-color: rgb(225, 54, 54);
+    border-color: rgb(177, 44, 44);
+    color: white;
+}
+
+.delete-btn:hover {
+    cursor: pointer;
+    background-color: rgb(255, 173, 173);
+    color: black;
+}
+
+.cancel-btn:hover {
+    cursor: pointer;
+    background-color: #ccc;
+    color: black;
+}
+
+label[for = "email"], label[for = "username"], label[for = "newpass"], label[for = "conpass"], label[for = "funds"], label[for = "card"] {
+    font-size: 20px; 
+    color: rgb(40,38,71);
+}
+
+label[for = "address"], label[for = "zipcode"], label[for = "city"], label[for = "state"] {
+    font-size: 20px; 
+    color: rgb(40,38,71);
+}
+
+#email, #username, #newpass, #conpass, #funds, #card, #address, #zipcode, #city, #state {
+    height: 30px;
+    border-radius: 3px;
+    padding-left: 5px;
+    padding-top: 5px;
+    border-color:  rgb(169, 169,169);
+    background-color: #f8f8f8;
+}
+
+#email:hover, #username:hover, #newpass:hover, #conpass:hover, #funds:hover, #card:hover, #address:hover, #zipcode:hover, #city:hover, #state:hover {
+    cursor: text;
+    background-color: #eeeeee;
+}
+
+
+.name-container, .email-container, .username-container, .password-container, .phone-container, .address-container, .newaddress-container .status-container, .card-container, .num-container {
+    padding-bottom: 1em;
+}
+
+.references{
+    text-align: center;
+    background-color: white;
+    color: rgb(40,38,71);
+}

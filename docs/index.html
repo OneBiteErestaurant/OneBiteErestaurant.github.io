@@ -1,0 +1,119 @@
+<body>
+    <div class="top-bar">
+        <h1>
+            My Forum
+        </h1>
+    </div>
+    <div class="main">
+        <ol>
+        </ol>
+    </div>
+    <script>
+    var defaultThreads = [
+    {
+        id: 1,
+        title: "Thread 1",
+        author: "Aaron",
+        date: Date.now(),
+        content: "Thread content",
+        comments: [
+            {
+                author: "Jack",
+                date: Date.now(),
+                content: "Hey there"
+            },
+            {
+                author: "Arthur",
+                date: Date.now(),
+                content: "Hey to you too"
+            }
+        ]
+    },
+    {
+        id: 2,
+        title: "Thread 2",
+        author: "Aaron",
+        date: Date.now(),
+        content: "Thread content 2",
+        comments: [
+            {
+                author: "Jack",
+                date: Date.now(),
+                content: "Hey there"
+            },
+            {
+                author: "Arthur",
+                date: Date.now(),
+                content: "Hey to you too"
+            }
+        ]
+    }
+]
+
+var threads = defaultThreads
+if (localStorage && localStorage.getItem('threads')) {
+    threads = JSON.parse(localStorage.getItem('threads'));
+} else {
+    threads = defaultThreads;
+    localStorage.setItem('threads', JSON.stringify(defaultThreads));
+}
+    </script>
+    <script>
+        console.log(threads);
+        var container = document.querySelector('ol');
+        for (let thread of threads) {
+            var html = `
+            <li class="row">
+                <a href="/thread.html?${thread.id}">
+                    <h4 class="title">
+                        ${thread.title}
+                    </h4>
+                    <div class="bottom">
+                        <p class="timestamp">
+                            ${new Date(thread.date).toLocaleString()}
+                        </p>
+                        <p class="comment-count">
+                            ${thread.comments.length} comments
+                        </p>
+                    </div>
+                </a>
+            </li>
+            `
+            container.insertAdjacentHTML('beforeend', html);
+        }
+    </script>
+    <style>
+        body {
+            margin: 10px 60px;
+        }
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        h1, h4, ol {
+            margin: 0;
+        }
+        p {
+            margin: 5px 0;
+        }
+        .top-bar {
+            background-color: skyblue;
+            padding: 0 40px;
+        }
+        .main {
+            background-color: #F6F6EF;
+            padding: 10px 15px;
+        }
+        .row {
+            padding: 5px 0;
+        }
+        .bottom {
+            display: flex;
+            color: grey;
+            font-size: 12px;
+        }
+        .timestamp {
+            padding-right: 10px;
+        }
+    </style>
+</body>

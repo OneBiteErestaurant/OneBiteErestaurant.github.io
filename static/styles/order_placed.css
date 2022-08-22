@@ -1,0 +1,104 @@
+.successful-order, .unsuccessful-order {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.order-result {
+    flex: 1;
+}
+
+.order-img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+    padding: 30px;
+}
+
+.text-container {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.orders-page {
+    border: 1px solid rgb(156, 161, 221);
+    color: rgb(52, 74, 160);
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 10px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.home-page {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 13px;
+    color: rgb(65, 65, 65);
+}
+
+.orders-page:hover {
+    background-color: rgb(243, 243, 243);
+    font-weight: 600;
+}
+
+.order-cd {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px;
+    margin-top: 40px;
+    width: 50%;
+    display: flex;
+}
+
+#txt-fail {
+    text-align: center;
+    line-height: 25px;
+}
+
+.time-cd {
+    flex: 1;
+    font-size: 25px;
+    margin: 0;
+}
+
+#countdown {
+    flex: 1;
+    text-align: center;
+    font-size: 50px;
+    margin: 0;
+}
+
+.order-dest {
+    flex: 1;
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin: 20px;
+    margin-top: 10px;
+    width: 50%;
+}
+
+.dest-details-h1 {
+    font-size: 25px;
+    text-align: center;
+}
+
+.dest-details-h2 {
+    font-size: 17px;
+}
+
+.remove-btn {
+    font-size: 14px;
+    font-weight: 600;
+    color: #e44c4c;
+    border: 1px solid #df6767;
+    border-radius: 4px;
+}
+
+.remove-btn:hover {
+    background-color: #e44c4c;
+    color: white;
+}

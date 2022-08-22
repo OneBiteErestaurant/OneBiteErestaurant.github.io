@@ -1,0 +1,70 @@
+:root {
+    --faqs-font-size: 50px;
+    --accordion-background-color: rgb(230, 230, 230);
+    --faqs-text-color: black;
+}
+
+#faqs h2
+{
+    margin-top: 50px;
+    font-size: var(--faqs-font-size);
+    text-align: center;
+}
+
+#faqs-accordion-container
+{
+    text-align: center;
+}
+
+.faq-accordion 
+{
+    background-color: var(--accordion-background-color);
+    color: var(--faqs-font-size);
+    cursor: pointer;
+    padding: 18px;
+    width: 50%;
+    border: none;
+    transition: 0.2s;
+  }
+  
+.faq-accordion:hover 
+{
+    background-color: rgb(179, 179, 179);
+}
+  
+.faq-panel 
+{
+    background-color: white;
+    padding: 50px;
+    font-size: 20px;
+    margin-left: 350px;
+    margin-right: 350px;
+    overflow: hidden;
+}
+
+@media screen and (max-width:1120px)
+{
+    .faq-panel 
+    {
+        margin-left: 200px;
+        margin-right: 200px;
+    }
+}
+
+@media screen and (max-width:900px)
+{
+    .faq-panel 
+    {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
+
+@media screen and (max-width:700px)
+{
+    .faq-panel 
+    {
+        margin-left: 0;
+        margin-right: 0;
+    }
+}

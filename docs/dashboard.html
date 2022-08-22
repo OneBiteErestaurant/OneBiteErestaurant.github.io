@@ -1,0 +1,2837 @@
+{% extends 'base.html' %}
+
+{% block links %}
+    <!-- CSS -->
+    <!-- for userType == "customer" -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/customer_dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/forum.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css">
+
+    <!-- for userType == "manager" -->
+
+    <!-- for userType == "chef" -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/chef_dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/delivery_dashboard.css') }}">
+    {% if userType == "manager" %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/manager_dashboard.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css">
+
+    {% endif %}
+    <!-- Bootstrap  Delivery -->
+    {% if userType == "delivery" %}
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/delivery_dashboard.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css">
+    {% endif %}
+
+    {% if userType == "customer" %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/customer_dashboard.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/forum.css') }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css">
+    {% endif %}
+    <!-- for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    {% if userType == "chef" %}
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
+    {% endif %}
+
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css">
+
+    <!-- Font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/948ea8d5ef.js" crossorigin="anonymous"></script>
+{% endblock links %}
+
+{% block titlePage %}
+    Dashboard
+{% endblock titlePage %}
+
+{% block mainContent %}
+    {% if userType == "customer" %}
+    <div class="customersidebar">
+        <div class = "logo-details">
+            <img class = "logo" alt="My Image" src="../static/assets/onebite_logo.png" />
+        </div>
+        <a href = "{{ url_for('homePage') }}" style = "text-decoration: none;"><button class = "customertablinks" type = "button"><i class="fa-solid fa-home"></i>Return to OneBite</button></a>
+        <button class="customertablinks" onclick="openTab2(event, 'CustomerDashboard')"><i class='bx bx-grid-alt'></i>Discussions</button>
+        <button class="customertablinks" onclick="openTab2(event, 'CustomerCompliments')"><i class='bx bx-wink-smile'></i>Compliments</button>
+        <button class="customertablinks" onclick="openTab2(event, 'CustomerComplaints')"><i class='bx bx-angry' ></i>Complaints</button>
+        <a href = "{{ url_for('logout') }}" style = "text-decoration: none;"><button class = "customertablinks" type = "button"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</button></a>
+    </div>
+
+    <section class = "customer-home-section">
+        <nav class = "customer-nav">
+            <div class = "customer-sidebar-button">
+                <i class='bx bx-menu customersidebarBtn'></i>
+                <span class="customer-dashboard">Dashboard</span>
+            </div>
+            <div class="customer-welcome">
+                Welcome, Customer {{ user.firstName }} {{ user.lastName }}
+            </div>
+            <div class="customer-logout"></div>
+        </nav>
+    </section> 
+
+    <!-- main forum page -->
+    <div id = "CustomerDashboard" class = "customertabcontent">
+        <section class = "customer-dashboard-section">
+            <!-- main forum content -->
+            <div id="mainForumPage">
+                <div class="forum-title">
+                    <h2 class="maintitle">Discussion Forum</h2>
+                </div>
+
+                <div class="mainForumContainer">
+                    <div class="posts-table">
+                        <div class="table-head">
+                            <div class="subjects">Title</div>
+                            <div class="last-reply">Created</div>
+                        </div>
+
+                        {% for post in posts: %}
+                            <div class="table-row">
+                                <div class="status"><i class="fa fa-cutlery"></i></div>
+                                <div class="subjects">
+                                    <button class="postButton" id="nextPage">{{ post["post_title"] }}</button>
+                                    <br>
+                                    <span>Started by <b><a class="linkForum" href="">{{ post["post_author"] }}</a></b>.</span>
+                                </div>
+
+                                <div class="last-reply">
+                                    {{ post["post_date"] }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <button class="open-button" onclick="openPost()">Create a Post</button>
+
+                <div class="form-popup" id="myPost">
+                    <h1>Create A New Post</h1>
+
+                    <form class="form-container" id="postform" method="post">
+                        <label for="post_author" class="required">ID:</label>
+                        <input name="userID" id="userid" type ="text" class="form-control" value ="{{ user['id'] }}" readonly>
+
+                        <label for="post_author" class="required">Name:</label>
+                        <input type="text" name="author" required="required" value ="{{ user['firstName'] }} {{ user['lastName'] }}" readonly>
+
+                        <label for="Title" class="required">Post Title:</label>
+                        <input type="title" name="Title" required="required" placeholder="ex: My Favorite Dish">
+                            
+                        <label for="post" class="required">Post Comment:</label>
+                        <textarea name="post-comment" required="required" placeholder="Type your post here..."></textarea>
+
+                        <button type="submit" name="postsubmit" class="btn">Submit</button>
+                        <button type="button" class="btn cancel" onclick="closePost()">Close</button>
+                    </form>
+                </div>
+
+                <div id="myPostModal" class="postmodal">
+                    <!-- Modal content -->
+                    <div class="postmodal-content">
+                        <span class="close">&times;</span>
+                        {% for post in posts: %}
+                        <div class="forum-title-wrapper">
+                            <h2 class="forum-title"><i class="fa fa-cutlery"></i> {{ post["post_title"] }}</h2>
+                        </div>
+                        <div class="forumContainer">
+                            <div class="forumPost">
+                                <!--Topic Section-->
+                                <div class="topic-container">
+                                    <!--Original thread-->
+                                        <div class="head">
+                                            <div class="authors">Author</div>
+                                        </div>
+
+                                        <div class="comments-body">
+                                            <div class="authors">
+                                                <div class="username"><a class="linkForum" href="">{{ post["post_author"] }}</a></div>
+                                                <img src="../static/assets/defaultimg.jpg" alt="">
+                                            </div>
+                                            <div class="content">
+                                                {{ post["post_content"] }}
+                                                <hr>
+                                                <div class="post-date">
+                                                Posted on: {{ post["post_date"] }}
+                                                </div>
+                                                <br>
+                                                <button onclick="openReportForm()" class="report-user" id="report-user">Report this user</button>
+                                                    <div class="reportform-popup" id="reportForm">
+                                                        <form class="reportform-container" id="postform" method="post">
+                                                            <label for="post_author" class="required">Your Name:</label>
+                                                            <input type="text" name="warningAuthor" required="required" value="{{ user['firstName'] }} {{ user['lastName'] }}" readonly>
+
+                                                            <label for="post_author" class="required">You are reporting:</label>
+                                                            <input type="text" name="warningAccused" required="required" placeholder="ex: Jane Doe">
+                                                                    
+                                                            <label for="post" class="required">Reason:</label>
+                                                            <textarea name="warning-comment" required="required" placeholder="Type your reason here..."></textarea>
+
+                                                            <button type="submit" name="warningsubmit" class="btn">Submit</button>
+                                                            <button type="button" class="btn cancel" onclick="closeReportForm()">Close</button>
+                                                        </form>
+                                                    </div>
+                                            </div>
+                                        </div>
+                                </div>
+
+                                <div class="already-commented">
+                                    {% for postcomment in postcomments: %}
+                                        <div class="comments-container">
+                                            <div class="comments-body">
+                                                <div class="authors">
+                                                    <div class="username"><a class="linkForum" href="">{{ postcomment["postcomment_author"] }}</a></div>
+                                                    <img src="../static/assets/defaultimg.jpg" alt="">
+                                                </div>
+                                                <div class="content">
+                                                    {{ postcomment["postcomment_content"] }}
+                                                    <hr>
+                                                    <div class="post-date">
+                                                    Posted on: {{ postcomment["postcomment_date"] }}
+                                                    </div>
+                                                    <br>
+                                                    <button onclick="openReportForm1()" class="report-user" id="report-user">Report this user</button>
+                                                    <div class="reportform-popup" id="reportForm1">
+                                                        <form class="reportform-container" id="postform" method="post">
+                                                            <label for="post_author" class="required">Your Name:</label>
+                                                            <input type="text" name="warningAuthor" required="required" value="{{ user['firstName'] }} {{ user['lastName'] }}" readonly>
+
+                                                            <label for="post_author" class="required">You are reporting:</label>
+                                                            <input type="text" name="warningAccused" required="required" placeholder="ex: Jane Doe">
+                                                                    
+                                                            <label for="post" class="required">Reason:</label>
+                                                            <textarea name="warning-comment" required="required" placeholder="Type your reason here..."></textarea>
+
+                                                            <button type="submit" name="warningsubmit" class="btn">Submit</button>
+                                                            <button type="button" class="btn cancel" onclick="closeReportForm1()">Close</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+
+                                <button class="postcomment-button" onclick="openComment()">Comment</button>
+
+                                <div class="postcomment-popup" id="myComment">
+                                    <h1>Comment</h1>
+
+                                    <form class="form-container" id="postform" method="post">
+                                        <label for="post_author" class="required">ID:</label>
+                                        <input name="userID" id="userid" type ="text" class="form-control" value ="{{ user['id'] }}" readonly>
+
+                                        <label for="post_author" class="required">Name:</label>
+                                        <input type="text" name="postcommentauthor" required="required" value ="{{ user['firstName'] }} {{ user['lastName'] }}" readonly>
+
+                                        <label for="post" class="required">Comment:</label>
+                                        <textarea name="comment-box" required="required" placeholder="comment here ..."></textarea>
+
+                                        <button type="submit" name="postcommentsubmit" class="btn">Submit</button>
+                                        <button type="button" class="btn cancel" onclick="closeComment()">Close</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <!-- end main forum content -->
+        </section>
+    </div>
+    <!-- end main forum page -->
+
+    <div id = "CustomerCompliments" class = "customertabcontent">
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Compliment ID</th>
+                <th scope="col">Description Of Compliment</th>
+     
+              </tr>
+            </thead>
+            <tbody>
+                {% for info in compliments %}
+                <tr>
+                    <td>{{ info['compliment_id'] }}</td>
+                    <td>{{ info['compliment_content'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+    
+    <div id = "CustomerComplaints" class = "customertabcontent">
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">Complaint ID</th>
+                <th scope="col">Description Of Complaint</th>
+                <th scope="col">Dispute</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+            {% for info in complaints %}
+                <tr>
+                    <td>{{ info['complaint_id'] }}</td>
+                    <td>{{ info['complaint_content'] }}</td>
+                    <td> 
+                        <!-- <section class="bg-light" > -->
+                            <button class = "dispute-btn d-block mx-auto" data-bs-toggle="modal" data-bs-target="#delivery-modal"><i class="bi bi-x-octagon"></i>Dispute</button>
+                                <div class="modal fade" id = "delivery-modal" tabindex="-1" aria-labelledby = "modal-title" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class = "modal-title" id = "modal-title">Dispute Form</h5>
+                                                <button type = "button" class="modal-delivery-button-close btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form action="" method = "post">
+                                                    <input type="hidden" id="complainerid" name="complainerid" value="{{ info['complainer_id'] }}">
+                                                    <div class="form-group">
+                                                        <label for="userid">Your User ID:</label>
+                                                        <input name="userid" id="userid" type ="text" class="form-control" value ="{{ user['id'] }}" readonly>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="modal-fname" class = "form-label">Enter Your First Name:</label>
+                                                        <input name = "firstname" type="text" class = "form-control" id = "modal-fname" placeholder="First Name">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="modal-lname" class = "form-label">Enter Your Last Name:</label>
+                                                        <input name = "lastname" type="text" class = "form-control" id = "modal-lname" placeholder="Last Name">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="deliverydisputebox">Enter Dispute Description:</label>
+                                                        <textarea name="deliverydispute" id="deliverydisputebox" type ="text" cols="20" rows="5" class="form-control" placeholder="Smelly..."></textarea>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="date">Enter Date:</label>
+                                                        <div class="input-group date" class="datepicker" data-provide="datepicker">
+                                                            <input name ="disputedate" onload="getDate()" id="txtdate" type="text" class = "form-control" placeholder="MM/DD/YYYY">
+                                                            <span class="input-group-addon" for="txtdate">
+                                                                <span id ="calender-btn" class="btn btn-default">
+                                                                    <i class='bx bxs-calendar'></i> 
+                                                                </span> 
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <div class="modal-footer"> -->
+                                                        <input name = "disputesubmit" type = "submit" class="btn btn-primary d-block" value = "submit">  
+                                                    <!-- </div> -->
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        <!-- </section> -->
+
+                    </td>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.20.0/dist/bootstrap-table.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script>
+        // to stop the refresh from looping info into database
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+
+        // Get the modal
+        var postmodal = document.getElementById("myPostModal");
+
+        // Get the button that opens the modal
+        var customerbtn = document.getElementById("nextPage");
+        var customerbtn1 = document.getElementById("nextPage");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        customerbtn.onclick = function() {
+            postmodal.style.display = "block";
+        }
+        customerbtn1.onclick = function() {
+            postmodal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            postmodal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == postmodal) {
+            postmodal.style.display = "none";
+            }
+        }
+
+        
+
+
+        // open popup form
+        function openPost() {
+            document.getElementById("myPost").style.display = "block";
+        }
+        function openComment() {
+            document.getElementById("myComment").style.display = "block";
+        }
+        function openReportForm() {
+            document.getElementById("reportForm").style.display = "block";
+        }
+        function openReportForm1() {
+            document.getElementById("reportForm1").style.display = "block";
+        }
+
+        // close popup form
+        function closePost() {
+            document.getElementById("myPost").style.display = "none";
+        }
+        function closeComment() {
+            document.getElementById("myComment").style.display = "none";
+        }
+        function closeReportForm() {
+            document.getElementById("reportForm").style.display = "none";
+        }
+        function closeReportForm1() {
+            document.getElementById("reportForm1").style.display = "none";
+        }
+
+        // sidenav function           
+            let customersidebar = document.querySelector(".customersidebar");
+            let customersidebarBtn = document.querySelector(".customersidebarBtn");
+
+            customersidebarBtn.onclick = function(){
+                customersidebar.classList.toggle("active");
+            }
+        // end sidenav function
+
+
+        // tabs system
+            function openTab2(evt, tabName) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("customertabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("customertablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+                document.getElementById(tabName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+        // end tabs system
+
+
+        // thanks page
+        var nextStep = document.querySelector('#nextStep');
+
+        nextStep.addEventListener('click', function (e) {
+            e.preventDefault();
+            // Hide first view
+            document.getElementById('thankyou').style.display = 'none';
+
+            // Show thank you message element
+            document.getElementById('comments-form').style.display = 'block';
+        });
+        // end thanks page
+    </script>
+       
+    {% else %}
+        {% if userType == "manager" %}
+            <div class="managersidebar">
+                <div class = "logo-details">
+                    <img class = "logo" alt="My Image" src="../static/assets/onebite_logo.png" />
+                </div>
+                <button class="managertablinks" onclick="openTab1(event, 'mDashboard')"><i class='bx bx-grid-alt'></i>Dashboard</button>
+                <button class="managertablinks" onclick="openTab1(event, 'CustomerAccounts')"><i class='fa-regular fa-user'></i>Customer Accounts</button>
+                <button class="managertablinks" onclick="openTab1(event, 'EmployeeAccounts')"><i class='fa-regular fa-id-badge'></i>Employee Accounts</button>
+                <button class="managertablinks" onclick="openTab1(event, 'Discussions')"><i class='fa-regular fa-comments'></i>Discussions</button>
+                <button class="managertablinks" onclick="openTab1(event, 'CustomerComments')"><i class='fa-regular fa-message'></i>Comments</button>
+                <button class="managertablinks" onclick="openTab1(event, 'DeliveryBidding')"><i class='bx bx-money-withdraw'></i>Delivery Bidding</button>
+                <a href = "{{ url_for('logout') }}" style = "text-decoration: none;"><button class = "managertablinks" type = "button"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</button></a>
+            </div>
+
+            <section class = "manager-home-section">
+                <nav class = "manager-nav">
+                    <div class = "manager-sidebar-button">
+                        <i class='bx bx-menu managersidebarBtn'></i>
+                        <span class="manager-dashboard">Dashboard</span>
+                    </div>
+                    <div class="manager-welcome">
+                        Welcome, Manager {{ user.firstName }} {{ user.lastName }}
+                    </div>
+                    <div class="manager-logout"></div>
+                </nav>
+            </section>
+
+
+            <!-- manager dashboard home page -->
+            <div id = "mDashboard" class = "managertabcontent">
+                <section class = "manager-dashboard-section">
+                    
+                    <div class="manager-home-content">
+                        <div class="manager-overview-boxes">
+                            <div class="manager-box">
+                                <div class="manager-right">
+                                    <div class="manager-box-topic">Total Orders</div>
+                                    <div class="manager-number">5</div>
+                                    <div class="manager-indicator">
+                                        <i class='bx bx-up-arrow-alt'></i>
+                                        <span class="manager-text">Up from yesterday</span>
+                                    </div>
+                                </div>
+                                    <i class='bx bx-cart-alt cart'></i>
+                            </div>
+                            <div class="manager-box">
+                                <div class="manager-right">
+                                    <div class="manager-box-topic">Total Customers</div>
+                                    <div class="manager-number">1</div>
+                                    <div class="manager-indicator">
+                                        <i class='bx bx-up-arrow-alt'></i>
+                                        <span class="manager-text">Up from yesterday</span>
+                                    </div>
+                                </div>
+                                    <i class='bx bxs-cart-add cart two' ></i>
+                            </div>
+                            <div class="manager-box">
+                                <div class="manager-right">
+                                    <div class="manager-box-topic">Total Profit</div>
+                                    <div class="manager-number">$100</div>
+                                    <div class="manager-indicator">
+                                        <i class='bx bx-up-arrow-alt'></i>
+                                        <span class="manager-text">Up from yesterday</span>
+                                    </div>
+                                </div>
+                                    <i class='bx bx-cart cart three' ></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="manager-home-content">
+                        <div class="orders-boxes">
+                            <div class="recent-order manager-box">
+                                <div class="manager-title"><h3>Recent Orders</h3></div>
+                                <hr class = "header-divider" class="solid">
+                                <div class="manager-order-details">
+                                    <table id="recent-orders" class="recent-orders-table">
+                                        <tr>
+                                            <th>Order #</th>
+                                            <th>Customer</th>
+                                            <th>Type</th>
+                                            <th>Total</th>
+                                        </tr>
+                                        <tr>
+                                           <td><li>Order #1</li></td>
+                                           <td><li>Alex Doe</li></td>
+                                           <td><li>Delivery</li></td>
+                                           <td><li>$204.98</li></td>
+                                        </tr>
+                                        <tr>
+                                           <td><li>Order #2</li></td>
+                                           <td><li>David Mart</li></td>
+                                           <td><li>Pickup</li></td>
+                                           <td><li>$24.55</li></td>
+                                        </tr>
+                                        <tr>
+                                           <td><li>Order #3</li></td>
+                                           <td><li>Roe Parter</li></td>
+                                           <td><li>Pickup</li></td>
+                                           <td><li>$25.88</li></td>
+                                        </tr>
+                                        <tr>
+                                           <td><li>Order #4</li></td>
+                                           <td><li>Diana Penty</li></td>
+                                           <td><li>Delivery</li></td>
+                                           <td><li>$170.66</li></td>
+                                        </tr>
+                                        <tr>
+                                           <td><li>Order #5</li></td>
+                                           <td><li>Martin Paw</li></td>
+                                           <td><li>Delivery</li></td>
+                                           <td><li>$56.56</li></td>
+                                        </tr>
+                                        <tr>
+                                           <td><li>Order #6</li></td>
+                                           <td><li>Doe Alex</li></td>
+                                           <td><li>Pickup</li></td>
+                                           <td><li>$44.95</li></td>
+                                        </tr>
+                                        <tr>
+                                           <td><li>Order #7</li></td>
+                                           <td><li>Aiana Lexa</li></td>
+                                           <td><li>Delivery</li></td>
+                                           <td><li>$67.33</li></td>
+                                        </tr>
+                                        <tr>
+                                           <td><li>Order #8</li></td>
+                                           <td><li>Rexel Mags</li></td>
+                                           <td><li>Pickup</li></td>
+                                           <td><li>$23.53</li></td>
+                                        </tr>
+                                        <tr>
+                                           <td><li>Order #9</li></td>
+                                           <td><li>Tiana Loths</li></td>
+                                           <td><li>Delivery</li></td>
+                                           <td><li>$46.52</li></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <a href="#" id="recent-orders-load" class="see-all-button">See All</a>
+                            </div>
+                        </div> 
+                    </div>
+
+                </section>
+            </div>
+            <!-- end manager dashboard home page -->
+
+
+            <!-- customer accounts page -->
+            <div id = "CustomerAccounts" class = "managertabcontent">
+                <section class = "manager-dashboard-section">
+                                
+                    <div class="manager-home-content">
+                        <div class="manager-overview-boxes">
+                            <div class="manager-box">
+                                <div class="manager-right">
+                                    <div class="manager-box-topic">Total Orders</div>
+                                    <div class="manager-number">5</div>
+                                    <div class="manager-indicator">
+                                        <i class='bx bx-up-arrow-alt'></i>
+                                        <span class="manager-text">Up from yesterday</span>
+                                    </div>
+                                </div>
+                                    <i class='bx bx-cart-alt cart'></i>
+                            </div>
+                            <div class="manager-box">
+                                <div class="manager-right">
+                                    <div class="manager-box-topic">Total Customers</div>
+                                    <div class="manager-number">1</div>
+                                    <div class="manager-indicator">
+                                        <i class='bx bx-up-arrow-alt'></i>
+                                        <span class="manager-text">Up from yesterday</span>
+                                    </div>
+                                </div>
+                                    <i class='bx bxs-cart-add cart two' ></i>
+                            </div>
+                            <div class="manager-box">
+                                <div class="manager-right">
+                                    <div class="manager-box-topic">Total Profit</div>
+                                    <div class="manager-number">$100</div>
+                                    <div class="manager-indicator">
+                                        <i class='bx bx-up-arrow-alt'></i>
+                                        <span class="manager-text">Up from yesterday</span>
+                                    </div>
+                                </div>
+                                    <i class='bx bx-cart cart three' ></i>
+                            </div>
+                        </div>
+                    </div>
+                                
+                    <div class="manger-home-content">
+                        <div class="orders-boxes">
+                            <div class="recent-order manager-box">
+                                <div class="manager-title"><h3>Registered Customers</h3></div>
+                                <hr class = "header-divider" class="solid">
+                                <div class="manager-order-details">
+                                    <table id="registered-customers" class="registered-customers-table">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Username</th>
+                                            <th>Email</th>
+                                            <th>Phone</th>
+                                            <th>Card Number</th>
+                                            <th>VIP</th>
+                                            <th>Give Warning</th>
+                                        </tr>
+                                        {% for customer in customers %}
+                                            <tr>
+                                                <td><li>{{ customer["id"] }}</li></td>
+                                                <td><li>{{ customer["fname"] }}</li></td>
+                                                <td><li>{{ customer["lname"] }}</li></td>
+                                                <td><li>{{ customer["username"] }}</li></td>
+                                                <td><li>{{ customer["email"] }}</li></td>
+                                                <td><li>{{ customer["phone"] }}</li></td>
+                                                <td><li>{{ customer["cardnumber"] }}</li></td>
+                                                <td>
+                                                    {% if customer.isVIP == 1 %}
+                                                        <input type="checkbox" checked>
+                                                    {% else %}
+                                                        <input type="checkbox" unchecked>
+                                                    {% endif %}
+                                                </td>
+                                                <td>
+                                                    <form action="" method="POST">
+                                                        <input type="hidden" name="commentType" value="">
+                                                        <input type="hidden" name="id" value="">
+                                                        <input type="hidden" id="usertype" name="usertype" value="customer">
+
+                                                        <button name="givewarning" value = "{{ customer['id'] }}" id = "givewarning" class="actionButton"><i class="fa-solid fa-triangle-exclamation"></i></button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                                <a href="#" id="registered-customers-load" class="see-all-button">See All</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="manger-home-content">
+                        <div class="orders-boxes">
+                            <div class="recent-order manager-box">
+                                <div class="manager-title"><h3>Previous Customers</h3></div>
+                                <hr class = "header-divider" class="solid">
+                                <div class="manager-order-details">
+                                    <table id="lost-customers" class="lost-customers-table">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Last Name</th>
+                                            <th>Email</th>
+                                            <th>Username</th>
+                                            <th>Balance</th>
+                                            <th>Warnings</th>
+                                            <th>Type</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                        {% for customer in previousCustomers %}
+                                        <tr>
+                                            <td><li>{{ customer["customer_id"] }}</li></td>
+                                            <td><li>{{ customer["lname"] }}</li></td>
+                                            <td><li>{{ customer["email"] }}</li></td>
+                                            <td><li>{{ customer["username"] }}</li></td>
+                                            <td><li>{{ "$%.2f"|format(customer["wallet"]) }}</li></td>
+                                            <td><li>{{ customer["warnings"] }}</li></td>
+                                            <td><li>
+                                                {% if customer["isBlacklisted"] == 1 %}
+                                                    Blacklisted
+                                                {% elif customer["isClosed"] == 1 %}
+                                                    Closed
+                                                {% endif %}
+                                            </li></td>
+                                            <td>
+                                                <form action = "" method = "post" id = "cleardeposit">
+                                                    <input type = "hidden" id = "customer_id" name = "customer_id" value = "{{ customer['customer_id'] }}">
+                                                    <input type = "hidden" if = "lost_type" name = "lost_type" value = "closed">
+                                                    <button id = "cleardeposit" name = "cleardeposit" value = "{{ customer['customer_id'] }}" class="actionButton"><i class="fa-solid fa-arrow-rotate-left"></i></button>
+                                                </form>
+                                                <form action = "" method = "post" id = "deleteaccount">
+                                                    <input type = "hidden" id = "customer_id" name = "customer_id" value = "{{ customer['customer_id'] }}">
+                                                    {% if customer["isBlacklisted"] == 1 %}
+                                                        <input type = "hidden" if = "lost_type" name = "lost_type" value = "blacklisted">
+                                                    {% elif customer["isClosed"] == 1 %}
+                                                        <input type = "hidden" if = "lost_type" name = "lost_type" value = "closed">
+                                                    {% endif %}
+                                                    <button id = "deleteaccount" name = "deleteaccount" value = "{{ customer['customer_id'] }}" class="actionButton"><i class="fa-solid fa-trash-can"></i></button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                                <a href="#" id="lost-customers-load" class="see-all-button">See All</a>
+                            </div>
+                        </div>
+                    </div>
+                                           
+                </section>
+            </div>
+
+            <!-- end customer accounts page -->
+
+
+            <!-- employee accounts page -->
+            <div id = "EmployeeAccounts" class = "managertabcontent">
+                <section class = "manager-dashboard-section">
+                                
+                    <div class="manager-home-content">
+                        <div class="manager-overview-boxes">
+                            <div class="manager-box">
+                                <div class="manager-right">
+                                    <div class="manager-box-topic">Total Orders</div>
+                                    <div class="manager-number">5</div>
+                                    <div class="manager-indicator">
+                                        <i class='bx bx-up-arrow-alt'></i>
+                                        <span class="manager-text">Up from yesterday</span>
+                                    </div>
+                                </div>
+                                    <i class='bx bx-cart-alt cart'></i>
+                            </div>
+                            <div class="manager-box">
+                                <div class="manager-right">
+                                    <div class="manager-box-topic">Total Customers</div>
+                                    <div class="manager-number">1</div>
+                                    <div class="manager-indicator">
+                                        <i class='bx bx-up-arrow-alt'></i>
+                                        <span class="manager-text">Up from yesterday</span>
+                                    </div>
+                                </div>
+                                    <i class='bx bxs-cart-add cart two' ></i>
+                            </div>
+                            <div class="manager-box">
+                                <div class="manager-right">
+                                    <div class="manager-box-topic">Total Profit</div>
+                                    <div class="manager-number">$100</div>
+                                    <div class="manager-indicator">
+                                        <i class='bx bx-up-arrow-alt'></i>
+                                        <span class="manager-text">Up from yesterday</span>
+                                    </div>
+                                </div>
+                                    <i class='bx bx-cart cart three' ></i>
+                            </div>
+                        </div>
+                    </div>
+                                
+                    <div class="manger-home-content">
+                        <div class="orders-boxes">
+                            <div class="recent-order manager-box">
+                                <div class="manager-title"><h3>Chefs</h3></div>
+                                <hr class = "header-divider" class="solid">
+                                <div class="manager-order-details">
+                                    <table id="chef-table" class="chef-table">
+                                        <tr>
+                                            <th>Employee ID</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Username</th>
+                                            <th>Phone Number</th>
+                                            <th>Salary</th>
+                                            <th>Total Compliments</th>
+                                            <th>Total Complaints</th>
+                                            <th>Total Warnings</th>
+                                            <th>Demotions</th>
+                                            <th>Give Warning</th>
+                                        </tr>
+                                        {% for chef in chefs: %}
+                                            <tr>
+                                                <td><li>{{ chef["id"] }}</li></td>
+                                                <td><li>{{ chef["fname"] }}</li></td>
+                                                <td><li>{{ chef["email"] }}</li></td>
+                                                <td><li>{{ chef["username"] }}</li></td>
+                                                <td><li>{{ chef["phone"] }}</li></td>
+                                                <td><li>{{ chef["salary"] }}</li></td>
+                                                <td><li>{{ chef["num_compliment"] }}</li></td>
+                                                <td><li>{{ chef["num_complaint"] }}</li></td>
+                                                <td><li>{{ chef["warnings"] }}</li></td>
+                                                <td><li>{{ chef["demotions"] }}</li></td>
+                                                <td>
+                                                    <form action="" method="POST">
+                                                        <input type="hidden" name="commentType" value="">
+                                                        <input type="hidden" name="id" value="">
+                                                        <input type="hidden" id="usertype" name="usertype" value="chef">
+                                                        <button name="givewarning" value = "{{ chef['id'] }}" id = "givewarning" class="actionButton"><i class="fa-solid fa-triangle-exclamation"></i></button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="manger-home-content">
+                        <div class="orders-boxes">
+                            <div class="recent-order manager-box">
+                                <div class="manager-title"><h3>Delivery Workers</h3></div>
+                                <hr class = "header-divider" class="solid">
+                                <div class="manager-order-details">
+                                    <table id="delivery-table" class="delivery-table">
+                                        <tr>
+                                            <th>Employee ID</th>
+                                            <th>Name</th>
+                                            <th>Email</th>
+                                            <th>Username</th>
+                                            <th>Phone Number</th>
+                                            <th>Salary</th>
+                                            <th>Total Compliments</th>
+                                            <th>Total Complaints</th>
+                                            <th>Total Warnings</th>
+                                            <th>Demotions</th>
+                                            <th>Give Warning</th>
+                                        </tr>
+                                        {% for delivery in deliverys: %}
+                                            <tr>
+                                                <td><li>{{ delivery["id"] }}</li></td>
+                                                <td><li>{{ delivery["fname"] }}</li></td>
+                                                <td><li>{{ delivery["email"] }}</li></td>
+                                                <td><li>{{ delivery["username"] }}</li></td>
+                                                <td><li>{{ delivery["phone"] }}</li></td>
+                                                <td><li>{{ delivery["salary"] }}</li></td>
+                                                <td><li>{{ delivery["num_compliment"] }}</li></td>
+                                                <td><li>{{ delivery["num_complaint"] }}</li></td>
+                                                <td><li>{{ delivery["warnings"] }}</li></td>
+                                                <td><li>{{ delivery["demotions"] }}</li></td>
+                                                <td>
+                                                    <form action="" method="POST">
+                                                        <input type="hidden" name="commentType" value="">
+                                                        <input type="hidden" name="id" value="">
+                                                        <input type="hidden" id="usertype" name="usertype" value="delivery">
+                                                        <button name="givewarning" value = "{{ delivery['id'] }}" id = "givewarning" class="actionButton"><i class="fa-solid fa-triangle-exclamation"></i></button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                            </div>
+                        </div>      
+                    </div>
+                                           
+                </section>
+            </div>
+
+            <!-- end employee accounts page -->
+
+
+            <!-- discussions page -->
+            <div id = "Discussions" class = "managertabcontent">
+                <section class = "manager-dashboard-section">
+                                
+                    <div class="manager-home-content">
+                        <div class="manager-overview-boxes">
+                            <div class="manager-box">
+                                <div class="manager-right">
+                                    <div class="manager-box-topic">Messages</div>
+                                    <div class="manager-number">3</div>
+                                    <div class="manager-indicator">
+                                        <i class='bx bx-up-arrow-alt'></i>
+                                        <span class="manager-text">Likes: 5</span>
+                                    </div>
+                                </div>
+                                    <i class='bx bx-cart-alt cart'></i>
+                            </div>
+
+                            <div class="manager-box">
+                                <div class="manager-right">
+                                    <div class="manager-box-topic">Staff Online</div>
+                                    <div class="manager-number">1</div>
+                                </div>
+                                    <i class='bx bxs-cart-add cart two' ></i>
+                            </div>
+
+                            <div class="manager-box">
+                                <div class="manager-right">
+                                    <div class="manager-box-topic">Customers Online</div>
+                                    <div class="manager-number">1</div>
+                                </div>
+                                    <i class='bx bx-cart cart three' ></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- main forum content -->
+            <div id="mainForumPage">
+                <div class="forum-title-wrapper">
+                    <h2 class="maintitle">Discussion Forum</h2>
+                </div>
+
+                <div class="mainForumContainer">
+                    <div class="posts-table">
+                        <div class="table-head">
+                            <div class="subjects">Title</div>
+                            <div class="last-reply">Created</div>
+                        </div>
+
+                        {% for post in posts: %}
+                            <div class="table-row">
+                                <div class="status"><i class="fa fa-cutlery"></i></div>
+                                <div class="subjects">
+                                    <button class="postButton" id="nextPage">{{ post["post_title"] }}</button>
+                                    <br>
+                                    <span>Started by <b><a class="linkForum" href="">{{ post["post_author"] }}</a></b>.</span>
+                                </div>
+
+                                <div class="last-reply">
+                                    {{ post["post_date"] }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <button class="open-button" onclick="openPost1()">Create a Post</button>
+
+                <div class="form-popup" id="managerPost">
+                    <h1>Create A New Post</h1>
+
+                    <form class="form-container" id="postform" method="post">
+                        <label for="post_author" class="required">ID:</label>
+                        <input type="text" name="userID" required="required" value="1">
+
+                        <label for="post_author" class="required">Name:</label>
+                        <input type="text" name="author" required="required" value="Manager">
+
+                        <label for="Title" class="required">Post Title:</label>
+                        <input type="title" name="Title" required="required" placeholder="ex: My Favorite Dish">
+                            
+                        <label for="post" class="required">Post Comment:</label>
+                        <textarea name="post-comment" required="required" placeholder="Type your post here..."></textarea>
+
+                        <button type="submit" name="postsubmit" class="btn">Submit</button>
+                        <button type="button" class="btn cancel" onclick="closePost1()">Close</button>
+                    </form>
+                </div>
+
+                <div id="managerPostModal" class="postmodal">
+                    <!-- Modal content -->
+                    <div class="postmodal-content">
+                        <span class="close">&times;</span>
+                        {% for post in posts: %}
+                        <div class="forum-title-wrapper">
+                            <h2 class="forum-title"><i class="fa fa-cutlery"></i> {{ post["post_title"] }}</h2>
+                        </div>
+                        <div class="forumContainer">
+                            <div class="forumPost">
+                                <!--Topic Section-->
+                                <div class="topic-container">
+                                    <!--Original thread-->
+                                        <div class="head">
+                                            <div class="authors">Author</div>
+                                        </div>
+
+                                        <div class="comments-body">
+                                            <div class="authors">
+                                                <div class="username"><a class="linkForum" href="">{{ post["post_author"] }}</a></div>
+                                                <img src="../static/assets/defaultimg.jpg" alt="">
+                                            </div>
+                                            <div class="content">
+                                                {{ post["post_content"] }}
+                                                <hr>
+                                                <div class="post-date">
+                                                Posted on: {{ post["post_date"] }}
+                                                </div>
+                                                <br>
+                                                {% for customer in customers: %}
+                                                    <form action="" method="POST">
+                                                        <input type="hidden" id="usertype" name="usertype" value="customer">
+                                                        <button name="giveforumwarning" class="report-user" value = "{{ post['user_id'] }}" id = "giveforumwarning">Report this user</button>
+                                                    </form>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                </div>
+
+                                <div class="already-commented">
+                                    {% for postcomment in postcomments: %}
+                                        <div class="comments-container">
+                                            <div class="comments-body">
+                                                <div class="authors">
+                                                    <div class="username"><a class="linkForum" href="">{{ postcomment["postcomment_author"] }}</a></div>
+                                                    <img src="../static/assets/defaultimg.jpg" alt="">
+                                                </div>
+                                                <div class="content">
+                                                    {{ postcomment["postcomment_content"] }}
+                                                    <hr>
+                                                    <div class="post-date">
+                                                    Posted on: {{ postcomment["postcomment_date"] }}
+                                                    </div>
+                                                    <br>
+                                                    {% for customer in customers: %}
+                                                        <form action="" method="POST">
+                                                            <input type="hidden" id="usertype" name="usertype" value="customer">
+                                                            <button name="giveforumwarning" class="report-user" value = "{{ postcomment['user_id'] }}" id = "giveforumwarning">Report this user</button>
+                                                        </form>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+
+                                <button class="postcomment-button" onclick="openComment1()">Comment</button>
+
+                                <div class="postcomment-popup" id="managerComment">
+                                    <h1>Comment</h1>
+
+                                    <form class="form-container" id="postform" method="post">
+                                        <label for="post_author" class="required">ID:</label>
+                                        <input type="text" name="userID" required="required" value="1">
+
+                                        <label for="post_author" class="required">Name:</label>
+                                        <input type="text" name="postcommentauthor" required="required" value="Manager">
+
+                                        <label for="post" class="required">Comment:</label>
+                                        <textarea name="comment-box" required="required" placeholder="comment here ..."></textarea>
+
+                                        <button type="submit" name="postcommentsubmit" class="btn">Submit</button>
+                                        <button type="button" class="btn cancel" onclick="closeComment1()">Close</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+                </section>
+            </div>
+            <!-- end main forum page -->                     
+                </section>
+            </div>
+
+            <!-- end discussions page -->
+
+
+            <!-- customer comments page -->
+            <div id = "CustomerComments" class = "managertabcontent">
+                <section class = "manager-dashboard-section">
+                                
+                    <div class="manager-home-content">
+                        <div class="manager-overview-boxes">
+                            <div class="manager-box">
+                                <div class="manager-right">
+                                    <div class="manager-box-topic">Total Orders</div>
+                                    <div class="manager-number">5</div>
+                                    <div class="manager-indicator">
+                                        <i class='bx bx-up-arrow-alt'></i>
+                                        <span class="manager-text">Up from yesterday</span>
+                                    </div>
+                                </div>
+                                    <i class='bx bx-cart-alt cart'></i>
+                            </div>
+                            <div class="manager-box">
+                                <div class="manager-right">
+                                    <div class="manager-box-topic">Total Customers</div>
+                                    <div class="manager-number">1</div>
+                                    <div class="manager-indicator">
+                                        <i class='bx bx-up-arrow-alt'></i>
+                                        <span class="manager-text">Up from yesterday</span>
+                                    </div>
+                                </div>
+                                    <i class='bx bxs-cart-add cart two' ></i>
+                            </div>
+                            <div class="manager-box">
+                                <div class="manager-right">
+                                    <div class="manager-box-topic">Total Profit</div>
+                                    <div class="manager-number">$100</div>
+                                    <div class="manager-indicator">
+                                        <i class='bx bx-up-arrow-alt'></i>
+                                        <span class="manager-text">Up from yesterday</span>
+                                    </div>
+                                </div>
+                                    <i class='bx bx-cart cart three' ></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="manger-home-content">
+                        <div class="orders-boxes">
+                            <div class="recent-order manager-box">
+                                <div class="manager-title"><h3>Compliments</h3></div>
+                                <hr class = "header-divider" class="solid">
+                                <div class="manager-order-details">
+                                    <table id="compliment-table" class="compliment-table">
+                                        <tr>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Compliment ID</th>
+                                            <th>Complimenter ID</th>
+                                            <th>Warning for Complimenter</th>
+                                            <th>Receiver ID</th>
+                                            <th>Compliment Date</th>
+                                            <th>Compliment Content</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    
+                                        {% for info in compliments %}
+                                        <tr>
+                                            <td>{{ info["first_name"] }}</td>
+                                            <td>{{ info["last_name"] }}</td>
+                                            <td>{{ info["compliment_id"] }}</td>
+                                            <td>{{ info["complimenter_id"] }}</td>
+                                            <td>
+                                                <form action="" method="POST">
+                                                    <input type="hidden" id="usertype" name="usertype" value="unknown">
+                                                    <input type="hidden" name="commentType" value="compliment">
+                                                    <input type="hidden" name="id" value="{{ info['compliment_id'] }}">
+                                                    <button name="givewarning" value = "{{ info['complimenter_id'] }}" id = "givewarning" class="actionButton"><i class="fa-solid fa-triangle-exclamation"></i></button>
+                                                </form>
+                                            </td>
+                                            <td>{{ info["receiver_id"] }}</td>
+                                            <td>{{ info["compliment_date"].strftime('%m-%d-%Y') }}</td>
+                                            <td>{{ info["compliment_content"] }}</td>
+                                            <td>
+                                                <form action="">
+                                                    <button id = "letstay" class="actionButton"><i class='fa-solid fa-circle-check' ></i></button>
+                                                </form>
+                                                <form action="" method ="POST">
+                                                    <input type="hidden" name="commentType" value="compliment">
+                                                    <input type="hidden" name="id" value="{{ info['compliment_id'] }}">
+                                                    <button type="submit" id = "dismiss" name ="removecomment" class="actionButton"><i class='fa-solid fa-circle-xmark' ></i></button>
+                                                </form>
+                                           </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                                <a href="#" id="customer-comments-load" class="see-all-button">See All</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="manger-home-content">
+                        <div class="orders-boxes">
+                            <div class="recent-order manager-box">
+                                <div class="manager-title"><h3>Complaints</h3></div>
+                                <hr class = "header-divider" class="solid">
+                                <div class="manager-order-details">
+                                    <table id="complaint-table" class="complaint-table">
+                                        <tr>
+                                            <th>First Name</th>
+                                            <th>Last Name</th>
+                                            <th>Complaint ID</th>
+                                            <th>Complainer ID</th>
+                                            <th>Warning for Complainer</th>
+                                            <th>Receiver ID</th>
+                                            <th>Complaint Date</th>
+                                            <th>Complaint Content</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    
+                                        {% for info in complaints %}
+                                        <tr>
+                                            <td>{{ info["first_name"] }}</td>
+                                            <td>{{ info["last_name"] }}</td>
+                                            <td>{{ info["complaint_id"] }}</td>
+                                            <td>{{ info["complainer_id"] }}</td>
+                                            <td>
+                                                <form action="" method="POST">
+                                                    <input type="hidden" id="usertype" name="usertype" value="unknown">
+                                                    <button name="givewarning" value = "{{ info['complainer_id'] }}" id = "givewarning" class="actionButton"><i class="fa-solid fa-triangle-exclamation"></i></button>
+                                                </form>
+                                            </td>
+                                            <td>{{ info["receiver_id"] }}</td>
+                                            <td>{{ info["complaint_date"].strftime('%m-%d-%Y') }}</td>
+                                            <td>{{ info["complaint_content"] }}</td>
+                                            <td>
+                                                <button id = "letstay" class="actionButton"><i class='fa-solid fa-circle-check' ></i></button>
+                                                <form action="" method ="POST">
+                                                    <input type="hidden" name="commentType" value="complaint">
+                                                    <input type="hidden" name="id" value="{{ info['complaint_id'] }}">
+                                                    <button type="submit" id = "dismiss" name ="removecomment" class="actionButton"><i class='fa-solid fa-circle-xmark' ></i></button>
+                                                </form>
+                                           </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </table>
+                                </div>
+                                <a href="#" id="customer-comments-load" class="see-all-button">See All</a>
+                            </div>
+                        </div>
+                    </div>
+                                
+                    <div class="manger-home-content">
+                        <div class="orders-boxes">
+                            <div class="recent-order manager-box">
+                                <div class="manager-title"><h3>Disputed Comments</h3></div>
+                                <hr class = "header-divider" class="solid">
+                                <div class="manager-order-details">
+                                    <table id="disputed-comments-table" class="disputed-comments-table">
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Complainer ID</th>
+                                            <th>Complaint Date</th>
+                                            <th>Disputer ID</th>
+                                            <th>Warning for Disputer</th>
+                                            <th>Dispute Author (ID, Name)</th>
+                                            <th>Dispute Date</th>
+                                            <th>Dispute Claim</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    
+                                        {% for info in rows %}
+                                        <tr>
+                                            <td>{{ info["dispute_date"].strftime('%m-%d-%Y') }}</td>
+                                            <td>{{ info["complainer_id"] }}</td>
+                                            <td>{{ info["complaint_date"].strftime('%m-%d-%Y') }}</td>
+                                            <td>{{ info["disputer_id"] }}</td>
+                                            <td>
+                                                <form action="" method="POST">
+                                                    <input type="hidden" name="commentType" value="dispute">
+                                                    <input type="hidden" name="id" value="{{ info['disputer_id'] }}">
+                                                    <input type="hidden" id="usertype" name="usertype" value="unknown">
+                                                    <button name="givewarning" value = "{{ info['disputer_id'] }}" id = "givewarning" class="actionButton"><i class="fa-solid fa-triangle-exclamation"></i></button>
+                                                </form>
+                                            </td>
+                                            <td>{{ info["dispute_id"] }}, {{ info["first_name"] }} {{ info["last_name"] }}</td>
+                                            <td>{{ info["dispute_date"] }}</td>
+                                            <td>{{ info["dispute_content"] }}</td>
+                                            <td>
+                                                <button id = "letstay" class="actionButton"><i class='fa-solid fa-circle-check' ></i></button>
+                                                <form action="" method ="POST">
+                                                    
+                                                    <input type="hidden" name="commentType" value="dispute">
+                                                    <input type="hidden" name="id" value="{{ info['dispute_id'] }}">
+                                                    <button type="submit" id = "dismiss" name ="removecomment" class="actionButton"><i class='fa-solid fa-circle-xmark' ></i></button>
+                                                </form>
+                                           </td>
+                                        </tr>
+                                        {% endfor %}
+                                   
+                                    </table>
+
+                                </div>
+                                <a href="#" id="disputed-comments-load" class="see-all-button">See All</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="manger-home-content">
+                        <div class="orders-boxes">
+                            <div class="recent-order manager-box">
+                                <div class="manager-title"><h3>Discussion Warnings</h3></div>
+                                <hr class = "header-divider" class="solid">
+                                <div class="manager-order-details">
+                                    <table id="discussion-warnings-table" class="discussion-warnings-table">
+                                        <tr>
+                                            <th>Date</th>
+                                            <th>Warning ID</th>
+                                            <th>Reporter</th>
+                                            <th>Reported</th>
+                                            <th>Reason</th>
+                                            <th>Give Warning</th>
+                                        </tr>
+                                    </tr>
+                                    {% for forum in forumwarnings: %}
+                                        <td>{{ forum["forumwarning_date"].strftime('%m-%d-%Y') }}</td>
+                                        <td>{{ forum["forumwarning_id"] }}</td>
+                                        <td>{{ forum["forumwarning_author"] }}</td>
+                                        <td>{{ forum["forumwarning_accused"] }}</td>
+                                        <td>{{ forum["forumwarning_content"] }}</td>
+                                        <td>
+                                            <form action="" method="POST">                                                      
+                                                <input type="hidden" id="usertype" name="usertype" value="customer">
+                                                <button name="giveforumwarning" value = "{{ forum['reported_id'] }}" id = "giveforumwarning" class="actionButton"><i class="fa-solid fa-triangle-exclamation"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                    </table>
+
+                                </div>
+                                <a href="#" id="disputed-comments-load" class="see-all-button">See All</a>
+                            </div>
+                        </div>
+                    </div>
+                                           
+                </section>
+            </div>
+            <!-- end customer comments page -->
+
+            <!-- delivery bidding page -->
+            <div id = "DeliveryBidding" class = "managertabcontent">
+                <table class="table" id="assign-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Order ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Total</th>
+                        <th scope="col"># of Bids</th>
+                        <th scope="col">Current Bid</th>
+                        <th scope="col">Placed By</th>
+                        <th scope="col">Assign Bid</th>
+                        <th scope="col">Comment</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for customer in deliverybids %}
+                        <tr>
+                            <th scope="row">{{ customer["order_id"] }}</th>
+                            <td>{{ customer["fname"] }} {{ customer["lname"] }}</td>
+                            <td>{{ "$%.2f"|format(customer["total"]) }}</td>
+                            <td>{{ customer["num_bids"] }}</td>
+                            <td>{{ "$%.2f"|format(customer["delivery_bid"]) }}</td>
+                            <td>
+                                {% if customer["delivery_id"] == 0 %}
+                                    No Bid Placed
+                                {% else %}
+                                    Deliverer#{{ customer["delivery_id"] }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if customer["delivery_id"] == 0 %}
+                                    No Bid Placed
+                                {% else %}
+                                    <form action = "" method = "post">
+                                        <input type = "hidden" id = "order_id" name = "order_id" value = "{{ customer['order_id'] }}">
+                                        <input type = "hidden" id = "delivery_id" name = "delivery_id" value = "{{ customer['delivery_id'] }}">
+                                        <input type = "hidden" id = "delivery_bid" name = "delivery_bid" value = "{{ customer['delivery_bid'] }}">
+                                        <input type = "hidden" id = "total" name = "total" value = "{{ customer['total'] }}">
+                                        <input type = "submit" id = "assign-submit" name = "assign-submit" value = "Assign">
+                                    </form>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <input type = "text" id = "del-justify" name = "del-justify">
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <script>
+                if ( window.history.replaceState ) {
+                    window.history.replaceState( null, null, window.location.href );
+                }
+
+                $("input:checkbox").click(function() { return false; });
+                // see all button
+                $('table tr:nth-child(n+1):nth-child(-n+4)').addClass('active');
+
+                $('#recent-orders-load').on('click', function(e) {
+                    e.preventDefault();  
+                    var $rows = $('.recent-orders-table tr');
+                    var lastActiveIndex = $rows.filter('.active:last').index();
+                    $rows.filter(':lt(' + (lastActiveIndex + 7) + ')').addClass('active');
+                });
+
+                $('#registered-customers-load').on('click', function(e) {
+                    e.preventDefault();  
+                    var $rows = $('.registered-customers-table tr');
+                    var lastActiveIndex = $rows.filter('.active:last').index();
+                    $rows.filter(':lt(' + (lastActiveIndex + 7) + ')').addClass('active');
+                });
+
+                $('#vip-load').on('click', function(e) {
+                    e.preventDefault();  
+                    var $rows = $('.VIP-customers-table tr');
+                    var lastActiveIndex = $rows.filter('.active:last').index();
+                    $rows.filter(':lt(' + (lastActiveIndex + 7) + ')').addClass('active');
+                });
+
+                $('#lost-customers-load').on('click', function(e) {
+                    e.preventDefault();  
+                    var $rows = $('.lost-customers-table tr');
+                    var lastActiveIndex = $rows.filter('.active:last').index();
+                    $rows.filter(':lt(' + (lastActiveIndex + 7) + ')').addClass('active');
+                });
+
+                $('#discussions-load').on('click', function(e) {
+                    e.preventDefault();  
+                    var $rows = $('.forum-table tr');
+                    var lastActiveIndex = $rows.filter('.active:last').index();
+                    $rows.filter(':lt(' + (lastActiveIndex + 7) + ')').addClass('active');
+                });
+
+                $('#customer-comments-load').on('click', function(e) {
+                    e.preventDefault();  
+                    var $rows = $('.comments-table tr');
+                    var lastActiveIndex = $rows.filter('.active:last').index();
+                    $rows.filter(':lt(' + (lastActiveIndex + 7) + ')').addClass('active');
+                });
+
+                $('#disputed-comments-load').on('click', function(e) {
+                    e.preventDefault();  
+                    var $rows = $('.disputed-comments-table tr');
+                    var lastActiveIndex = $rows.filter('.active:last').index();
+                    $rows.filter(':lt(' + (lastActiveIndex + 7) + ')').addClass('active');
+                });
+                // end see all button
+
+
+                // sidenav function           
+                let managersidebar = document.querySelector(".managersidebar");
+                let managersidebarBtn = document.querySelector(".managersidebarBtn");
+
+
+                managersidebarBtn.onclick = function(){
+                    managersidebar.classList.toggle("active");
+                }
+                // end sidenav function
+
+
+                // tabs system
+                function openTab1(evt, tabName) {
+                    var i, tabcontent, tablinks;
+                    tabcontent = document.getElementsByClassName("managertabcontent");
+                    for (i = 0; i < tabcontent.length; i++) {
+                        tabcontent[i].style.display = "none";
+                    }
+                    tablinks = document.getElementsByClassName("managertablinks");
+                    for (i = 0; i < tablinks.length; i++) {
+                        tablinks[i].className = tablinks[i].className.replace(" active", "");
+                    }
+                    document.getElementById(tabName).style.display = "block";
+                    evt.currentTarget.className += " active";
+                }
+                // end tabs system
+
+                // buttons for customer comments page
+                    // start of dismiss button
+                    function removeRow(o) {
+                        var p=o.parentNode.parentNode;
+                            p.parentNode.removeChild(p);
+                    }
+                    // end of dismiss button
+                // buttons for customer comments page
+
+                // forum page
+        
+                // to stop the refresh from looping info into database
+                if ( window.history.replaceState ) {
+                    window.history.replaceState( null, null, window.location.href );
+                }
+
+                // Get the modal
+                var managerpostmodal = document.getElementById("managerPostModal");
+
+                // Get the button that opens the modal
+                var managerbtn = document.getElementById("nextPage");
+                var managerbtn1 = document.getElementById("nextPage");
+
+                // Get the <span> element that closes the modal
+                var span = document.getElementsByClassName("close")[0];
+
+                // When the user clicks the button, open the modal 
+                managerbtn.onclick = function() {
+                    managerpostmodal.style.display = "block";
+                }
+                managerbtn1.onclick = function() {
+                    managerpostmodal.style.display = "block";
+                }
+
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function() {
+                    managerpostmodal.style.display = "none";
+                }
+
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function(event) {
+                    if (event.target == managerpostmodal) {
+                    managerpostmodal.style.display = "none";
+                    }
+                }
+
+                function reportUser() {
+                    if (confirm("Are you sure you want to report this user?")) {
+                        // warning sent to manager
+                    }
+                
+                }
+                // open popup form
+                function openPost1() {
+                    document.getElementById("managerPost").style.display = "block";
+                }
+                function openComment1() {
+                    document.getElementById("managerComment").style.display = "block";
+                }
+
+                // close popup form
+                function closePost1() {
+                    document.getElementById("managerPost").style.display = "none";
+                }
+                function closeComment1() {
+                    document.getElementById("managerComment").style.display = "none";
+                }
+                // end forum page
+            </script>
+        {% else %}
+            {% if userType == "chef" %}
+                <div class="chefsidebar">
+                    <div class = "logo-details">
+                        <img class = "logo" alt="My Image" src="../static/assets/onebite_logo.png" />
+                    </div>
+                    <button class="cheftablinks" onclick="openTab(event, 'ChefDashboard')"><i class='bx bx-grid-alt'></i>Dashboard</button>
+                    <button class="cheftablinks" onclick="openTab(event, 'EditSpecials')"><i class='bx bxs-star'></i>Edit Specials</button>
+                    <button class="cheftablinks" onclick="openTab(event, 'EditAppetizers')"><i class='bx bxs-baguette' ></i>Edit Appetizers</button>
+                    <button class="cheftablinks" onclick="openTab(event, 'EditEntrees')"><i class='bx bxs-food-menu' ></i>Edit Entrees</button>
+                    <button class="cheftablinks" onclick="openTab(event, 'EditDesserts')"><i class='bx bxs-popsicle'></i>Edit Desserts</button>
+                    <button class="cheftablinks" onclick="openTab(event, 'EditDrinks')"><i class='bx bxs-drink'></i>Edit Drinks</button>
+                    <button class="cheftablinks" onclick="openTab(event, 'ChefCompliments')"><i class='bx bx-wink-smile'></i>Compliments</button>
+                    <button class="cheftablinks" onclick="openTab(event, 'ChefComplaints')"><i class='bx bx-angry' ></i>Complaints</button>
+                    <a href = "{{ url_for('logout') }}" style = "text-decoration: none;"><button class = "cheftablinks" type = "button"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</button></a>
+                </div>
+                
+                <section class = "chef-home-section">
+                    <nav class = "chef-nav">
+                        <div class = "chef-sidebar-button">
+                            <i class='bx bx-menu chefsidebarBtn'></i>
+                            <span class="chef-dashboard">Dashboard</span>
+                        </div>
+                        <div class="chef-welcome d-block mx-auto">
+                            Welcome, Chef {{ user.firstName}} {{ user.lastName }}
+                        </div>
+                        <div class="chef-logout">
+                        
+                        </div>
+                    </nav>
+                </section>
+
+                                
+                <div id = "ChefDashboard" class = "cheftabcontent">
+                    <div class="chef-home-content">
+                        <div class="overview-boxes">
+                            <div class="box">
+                                <div class="right-side">
+                                    <div class="box-topic">Warnings</div>
+                                    <div class="number">{{ user.warnings }}</div>
+                                    </div>
+                                        <i class='bx bxs-alarm-exclamation' ></i>
+                                    </div>
+                                <div class="box">
+                                    <div class="right-side">
+                                        <div class="box-topic">Compliments</div>
+                                        <div class="number">{{ user.compliments }}</div>
+                                    </div>
+                                    <i class='bx bx-happy-beaming happy' ></i>
+                                </div>
+                                <div class="box">
+                                    <div class="right-side">
+                                        <div class="box-topic">Complaints</div>
+                                        <div class="number">{{ user.complaints }}</div>
+                                    </div>
+                                    <i class='bx bx-sad sad' ></i>
+                                </div>
+                        </div>
+                        <div class="sales-boxes">
+                            <div class="recent-sales box">
+                                <div class="waviy">
+                                    <span style="--i:1">Y</span>
+                                    <span style="--i:2">O</span>
+                                    <span style="--i:3">U</span>
+                                    <span style="--i:4">R</span>
+                                    <span style="--i:5"></span>
+                                    <span style="--i:6">M</span>
+                                    <span style="--i:7">E</span>
+                                    <span style="--i:8">N</span>
+                                    <span style="--i:10">U</span>
+                                 
+                                   </div>
+                                <div class="sales-details" >
+                                    <table table data-toggle="table" class = "table table-bordered" data-pagination = "true" data-search="true">
+                                        <thead>
+                                            <tr>
+                                                <th>Dish</th>
+                                                <th>Dish Image</th>
+                                                <th>Name</th>
+                                                <th>Description</th>
+                                                <th>Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for info in menu %}
+                                            <tr>
+                                                <td>{{ info['dish_type'] }}</td>
+                                                <td class="images w-25 text-center">
+                                                    <img src="{{ info['img'] }} " class="img-fluid img-responsive img-thumbnail" class="foodimages" > 
+                                                </td>
+                                                <td>{{ info['name'] }}</td>
+                                                <td>{{ info['description'] }}</td>
+                                                <td>${{ info['price'] }}</td>
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id = "EditSpecials" class = "cheftabcontent">
+                    <div class="appetizer-items">
+                        <h1 class = "menu-item-heading">
+                            SPECIALS
+                        </h1>
+                        <hr class="solid">
+                        
+                        <button class="additembutton" data-bs-toggle="modal" data-bs-target="#addspecial-modal"><i class='bx bx-add-to-queue' ></i>Add Special</button>
+                        <div class="modal fade" id="addspecial-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id = "modal-title">Adding Special</h5>
+                                        <button type = "button" class="modal-delivery-button-close btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
+
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <form action="" method="POST" >
+                                            <div class="form-group">
+                                                <label for="chefid">Chef ID</label>
+                                                <input type="chefid" name="chefid" class="form-control" id="chefid" value="{{ user.id }}" placeholder="{{ user.id }}" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="dishid">Dish Type</label>
+                                                <input type="dishtype" name="dishtype" class="form-control" id="dishtype" value="special" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="customeFile">Upload Image</label>
+                                                <input type="imagename" name="image" class="form-control" id="customfile">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="modal-fname" class = "form-label">Item Name:</label>
+                                                <input name="itemname" type="itemname" class = "form-control" id = "modal-itemname" placeholder="Item Name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="modal-lname" class = "form-label">Description:</label>
+                                                <textarea name="description" class="form-control" id="description" cols="20" rows="5" placeholder="Description of food..."></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="price">Price</label>
+                                                <input type="price" name="price" class="form-control" id="modal-price" placeholder="$0.00" min="0.00" max="10000.00">
+                                            </div> 
+                                    
+                                            <div class="modal-footer">
+                                                <input name="addsubmit" type = "submit" class="btn btn-primary" value="Submit">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="tablecontainer d-block mx-auto">
+                            <table data-toggle="table" class = "table table-bordered" data-pagination = "true" data-search="true">
+                                <thead>
+                                    <tr>
+                                        <th>Dish ID</th>
+                                        <th>Dish Image</th>
+                                        <th>Dish Name</th>
+                                        <th>Dish Description</th>
+                                        <th>Dish Price</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                 </thead>
+                                <tbody>
+                                    {% for info in special %}
+                                    <tr>
+                                        <td class="text-center">{{ info['dish_id'] }}</td>
+                                        <td class="images w-25 text-center">
+                                            <img src="{{ info['img'] }} " class="img-fluid img-thumbnail img-responsive" class="foodimages"> 
+                                        </td>
+                                        <td class="text-center">{{ info['name'] }}</td>
+                                        <td class="text-center">{{ info['description'] }} </td>
+                                        <td class="text-center">${{ info['price'] }} </td>
+                                        <td class="text-center">
+                                            <div class = "buttons">
+                                                <button class = "edit-btn" data-bs-toggle="modal" data-bs-target="#edit-modal">Edit</button>
+                                                <div class="modal fade" id = "edit-modal" tabindex="-1" aria-labelledby = "modal-title" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class = "modal-title" id = "modal-title">Edit Item</h5>
+                                                                <button type = "button" class="modal-delivery-button-close btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="" method = "POST">
+                                                                    <div class="form-group">
+                                                                        <label for="dishid">Dish ID</label>
+                                                                        <input type="dishid" name="dishid" class="form-control" id="dishid" value= "{{ info['dish_id'] }}" readonly="{{ info['dish_id'] }}" placeholder="{{ info['dish_id'] }}">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="customeFile">Upload New Image</label>
+                                                                        <input type="file" name="newimage" class="form-control" id="customfile">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="modal-fname" class = "form-label">Edit Item Name:</label>
+                                                                        <input name="itemname" type="itemname" class = "form-control" id = "modal-itemname" placeholder="Item Name">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="modal-lname" class = "form-label">Edit Description:</label>
+                                                                        <textarea name="editdescription" class="form-control" id="editdescription" cols="20" rows="5" placeholder="Description of food..."></textarea>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="editprice">Edit Price</label>
+                                                                        <input type="editprice" name="editprice" class="form-control" id="modal-editprice" placeholder="$0.00" min="0.00" max="10000.00">
+                                                                    </div>
+                                                            
+                                                                    <div class="modal-footer">
+                                                                        <input name="editsubmit" type = "submit" class="btn btn-primary" value="Submit">
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <form action="" method="POST">
+                                                    <button name="removeitem" type = "submit" value = "{{ info['dish_id'] }}" class = "remove-btn">Remove</button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                        
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                </thead>
+                            </table>
+                        </div>
+                       
+                    </div>
+                </div>
+
+                <div id = "EditAppetizers" class = "cheftabcontent">
+                    <div class="appetizer-items">
+                        <h1 class = "menu-item-heading">
+                            APPETIZERS
+                        </h1>
+                        <hr class="solid">
+                        
+                        <button class="additembutton" data-bs-toggle="modal" data-bs-target="#addappetizer-modal"><i class='bx bx-add-to-queue' ></i>Add Appetizer</button>
+                        <div class="modal fade" id="addappetizer-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id = "modal-title">Adding Appetizer</h5>
+                                        <button type = "button" class="modal-delivery-button-close btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
+
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <form action="" method="POST" >
+                                            <div class="form-group">
+                                                <label for="chefid">Chef ID</label>
+                                                <input type="chefid" name="chefid" class="form-control" id="chefid" value="{{ user.id }}" placeholder="{{ user.id }}" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="dishid">Dish Type</label>
+                                                <input type="dishtype" name="dishtype" class="form-control" id="dishtype" value="appetizer" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="customeFile">Upload Image</label>
+                                                <input type="imagename" name="image" class="form-control" id="customfile">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="modal-fname" class = "form-label">Item Name:</label>
+                                                <input name="itemname" type="itemname" class = "form-control" id = "modal-itemname" placeholder="Item Name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="modal-lname" class = "form-label">Description:</label>
+                                                <textarea name="description" class="form-control" id="description" cols="20" rows="5" placeholder="Description of food..."></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="price">Price</label>
+                                                <input type="price" name="price" class="form-control" id="modal-price" placeholder="$0.00" min="0.00" max="10000.00">
+                                            </div> 
+                                    
+                                            <div class="modal-footer">
+                                                <input name="addsubmit" type = "submit" class="btn btn-primary" value="Submit">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="tablecontainer d-block mx-auto">
+                            <table data-toggle="table" class = "table table-bordered" data-pagination = "true" data-search="true">
+                                <thead>
+                                    <tr>
+                                        <th>Dish ID</th>
+                                        <th>Dish Image</th>
+                                        <th>Dish Name</th>
+                                        <th>Dish Description</th>
+                                        <th>Dish Price</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                 </thead>
+                                <tbody>
+                                    {% for info in appetizers %}
+                                    <tr>
+                                        <td class="text-center">{{ info['dish_id'] }}</td>
+                                        <td class="images w-25 text-center">
+                                            <img src="{{ info['img'] }} " class="img-fluid img-thumbnail img-responsive" class="foodimages"> 
+                                        </td>
+                                        <td class="text-center">{{ info['name'] }}</td>
+                                        <td class="text-center">{{ info['description'] }} </td>
+                                        <td class="text-center">${{ info['price'] }} </td>
+                                        <td class="text-center">
+                                            <div class = "buttons">
+                                                <button class = "edit-btn" data-bs-toggle="modal" data-bs-target="#appetizeredit-modal">Edit</button>
+                                                <div class="modal fade" id = "appetizeredit-modal" tabindex="-1" aria-labelledby = "modal-title" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class = "modal-title" id = "modal-title">Edit Item</h5>
+                                                                <button type = "button" class="modal-delivery-button-close btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="" method = "POST">
+                                                                    <div class="form-group">
+                                                                        <label for="dishid">Dish ID</label>
+                                                                        <input type="dishid" name="dishid" class="form-control" id="dishid" value= "{{ info['dish_id'] }}" readonly="{{ info['dish_id'] }}" placeholder="{{ info['dish_id'] }}">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="customeFile">Upload New Image</label>
+                                                                        <input type="file" name="newimage" class="form-control" id="customfile">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="modal-fname" class = "form-label">Edit Item Name:</label>
+                                                                        <input name="itemname" type="itemname" class = "form-control" id = "modal-itemname" placeholder="Item Name">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="modal-lname" class = "form-label">Edit Description:</label>
+                                                                        <textarea name="editdescription" class="form-control" id="editdescription" cols="20" rows="5" placeholder="Description of food..."></textarea>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="editprice">Edit Price</label>
+                                                                        <input type="editprice" name="editprice" class="form-control" id="modal-editprice" placeholder="$0.00" min="0.00" max="10000.00">
+                                                                    </div>
+                                                            
+                                                                    <div class="modal-footer">
+                                                                        <input name="editsubmit" type = "submit" class="btn btn-primary" value="Submit">
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <form action="" method="POST">
+                                                    <button name="removeitem" type = "submit" value = "{{ info['dish_id'] }}" class = "remove-btn">Remove</button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                        
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                                </thead>
+                            </table>
+                        </div>
+                       
+                    </div>
+                </div>
+
+                <div id = "EditEntrees" class = "cheftabcontent">
+                    
+                    <div class="entrees-items">
+                        <h1 class = "menu-item-heading">
+                            ENTREES
+                        </h1>
+                        <hr class="solid">
+
+                        <button class="additembutton" data-bs-toggle="modal" data-bs-target="#addentree-modal"><i class='bx bx-add-to-queue' ></i>Add Entree</button>
+                        <div class="modal fade" id="addentree-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id = "modal-title">Adding Entree</h5>
+                                        <button type = "button" class="modal-delivery-button-close btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
+
+                                    </div>
+
+                                    <div class="modal-body">
+
+                                        <form action="" method="POST">
+                                            <div class="form-group">
+                                                <label for="chefid">Chef ID</label>
+                                                <input type="chefid" name="chefid" class="form-control" id="chefid" value="{{ user.id }}" placeholder="{{ user.id }}" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="dishid">Dish Type</label>
+                                                <input type="dishtype" name="dishtype" class="form-control" id="dishtype" value="entree" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="customeFile">Upload Image</label>
+                                                <input type="imagename" name="image" class="form-control" id="customfile">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="modal-fname" class = "form-label">Item Name:</label>
+                                                <input name="itemname" type="itemname" class = "form-control" id = "modal-itemname" placeholder="Item Name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="modal-lname" class = "form-label">Description:</label>
+                                                <textarea name="description" class="form-control" id="description" cols="20" rows="5" placeholder="Description of food..."></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="price">Price</label>
+                                                <input type="price" name="price" class="form-control" id="modal-price" placeholder="$0.00" min="0.00" max="10000.00">
+                                            </div> 
+                                    
+                                            <div class="modal-footer">
+                                                <input name="addsubmit" type = "submit" class="btn btn-primary" value="Submit">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="tablecontainer d-block mx-auto">
+                            <table data-toggle="table" class = "table table-bordered" data-pagination = "true" data-search="true">
+                                <thead>
+                                    <tr>
+                                        <th>Dish ID</th>
+                                        <th>Dish Image</th>
+                                        <th>Dish Name</th>
+                                        <th>Dish Description</th>
+                                        <th>Dish Price</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                 </thead>
+                                    <tbody>
+                                        {% for info in entree %}
+                                        <tr>
+                                            <td class="text-center">{{ info['dish_id'] }}</td>
+                                            <td class="images w-25 text-center">
+                                                <img src=" {{ info['img'] }}" class="img-fluid img-thumbnail img-responsive" class="foodimages"> 
+                                            </td>
+                                            <td class="text-center">{{ info['name'] }}</td>
+                                            <td class="text-center">{{ info['description'] }} </td>
+                                            <td class="text-center">${{ info['price'] }} </td>
+                                            <td class="text-center">
+                                                <div class = "buttons">
+                                       
+                                                    <button class = "edit-btn" data-bs-toggle="modal" data-bs-target="#entreeedit-modal">Edit</button>
+                                                    <div class="modal fade" id = "entreeedit-modal" tabindex="-1" aria-labelledby = "modal-title" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class = "modal-title" id = "modal-title">Edit Item</h5>
+                                                                    <button type = "button" class="modal-delivery-button-close btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="" method = "POST">
+                                                                        <div class="form-group">
+                                                                            <label for="dishid">Dish ID</label>
+                                                                            <input type="dishid" name="dishid" class="form-control" id="dishid" value= "{{ info['dish_id'] }}" readonly="{{ info['dish_id'] }}" placeholder="{{ info['dish_id'] }}">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="customeFile">Upload New Image</label>
+                                                                            <input type="file" name="newimage" class="form-control" id="customfile">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="modal-fname" class = "form-label">Edit Item Name:</label>
+                                                                            <input name="itemname" type="itemname" class = "form-control" id = "modal-itemname" placeholder="Item Name">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="modal-lname" class = "form-label">Edit Description:</label>
+                                                                            <textarea name="editdescription" class="form-control" id="editdescription" cols="20" rows="5" placeholder="Description of food..."></textarea>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="editprice">Edit Price</label>
+                                                                            <input type="editprice" name="editprice" class="form-control" id="modal-editprice" placeholder="$0.00" min="0.00" max="10000.00">
+                                                                        </div>
+                                                                
+                                                                        <div class="modal-footer">
+                                                                            <input name="editsubmit" type = "submit" class="btn btn-primary" value="Submit">
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <form action="" method="POST">
+                                                        <button name="removeitem" type = "submit" value = "{{ info['dish_id'] }}" class = "remove-btn">Remove</button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                            
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div id = "EditDesserts" class = "cheftabcontent">
+                    <div class="dessert-items">
+                        <h1 class = "menu-item-heading">
+                            DESSERTS
+                        </h1>
+                        <hr class="solid">
+                        <button class="additembutton" data-bs-toggle="modal" data-bs-target="#adddessert-modal"><i class='bx bx-add-to-queue' ></i>Add Dessert</button>
+                        <div class="modal fade" id="adddessert-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id = "modal-title">Adding Dessert</h5>
+                                        <button type = "button" class="modal-delivery-button-close btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
+
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <form action="" method="POST" >
+                                            <div class="form-group">
+                                                <label for="chefid">Chef ID</label>
+                                                <input type="chefid" name="chefid" class="form-control" id="chefid" value="{{ user.id }}" placeholder="{{ user.id }}" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="dishid">Dish Type</label>
+                                                <input type="dishtype" name="dishtype" class="form-control" id="dishtype" value="dessert" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="customeFile">Upload Image</label>
+                                                <input type="imagename" name="image" class="form-control" id="customfile">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="modal-fname" class = "form-label">Item Name:</label>
+                                                <input name="itemname" type="itemname" class = "form-control" id = "modal-itemname" placeholder="Item Name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="modal-lname" class = "form-label">Description:</label>
+                                                <textarea name="description" class="form-control" id="description" cols="20" rows="5" placeholder="Description of food..."></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="price">Price</label>
+                                                <input type="price" name="price" class="form-control" id="modal-price" placeholder="$0.00" min="0.00" max="10000.00">
+                                            </div> 
+                                    
+                                            <div class="modal-footer">
+                                                <input name="addsubmit" type = "submit" class="btn btn-primary" value="Submit">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tablecontainer d-block mx-auto">
+                            <table data-toggle="table" class = "table table-bordered" data-pagination = "true" data-search="true">
+                                <thead>
+                                    <tr>
+                                        <th>Dish ID</th>
+                                        <th>Dish Image</th>
+                                        <th>Dish Name</th>
+                                        <th>Dish Description</th>
+                                        <th>Dish Price</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                 </thead>
+                                    <tbody>
+                                        {% for info in desserts %}
+                                        <tr>
+                                            <td class="text-center">{{ info['dish_id'] }}</td>
+                                            <td class="images w-25 text-center">
+                                                <img src=" {{ info['img'] }}" class="img-fluid img-thumbnail img-responsive" class="foodimages"> 
+                                            </td>
+                                            <td class="text-center">{{ info['name'] }}</td>
+                                            <td class="text-center">{{ info['description'] }} </td>
+                                            <td class="text-center">${{ info['price'] }} </td>
+                                            <td class="text-center">
+                                                <div class = "buttons">
+                                       
+                                                    <button class = "edit-btn" data-bs-toggle="modal" data-bs-target="#dessertedit-modal">Edit</button>
+                                                    <div class="modal fade" id = "dessertedit-modal" tabindex="-1" aria-labelledby = "modal-title" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class = "modal-title" id = "modal-title">Edit Item</h5>
+                                                                    <button type = "button" class="modal-delivery-button-close btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="" method = "POST">
+                                                                        <div class="form-group">
+                                                                            <label for="dishid">Dish ID</label>
+                                                                            <input type="dishid" name="dishid" class="form-control" id="dishid" value= "{{ info['dish_id'] }}" readonly="{{ info['dish_id'] }}" placeholder="{{ info['dish_id'] }}">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="customeFile">Upload New Image</label>
+                                                                            <input type="file" name="newimage" class="form-control" id="customfile">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="modal-fname" class = "form-label">Edit Item Name:</label>
+                                                                            <input name="itemname" type="itemname" class = "form-control" id = "modal-itemname" placeholder="Item Name">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="modal-lname" class = "form-label">Edit Description:</label>
+                                                                            <textarea name="editdescription" class="form-control" id="editdescription" cols="20" rows="5" placeholder="Description of food..."></textarea>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="editprice">Edit Price</label>
+                                                                            <input type="editprice" name="editprice" class="form-control" id="modal-editprice" placeholder="$0.00" min="0.00" max="10000.00">
+                                                                        </div>
+                                                                
+                                                                        <div class="modal-footer">
+                                                                            <input name="editsubmit" type = "submit" class="btn btn-primary" value="Submit">
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <form action="" method="POST">
+                                                        <button name="removeitem" type = "submit" value = "{{ info['dish_id'] }}" class = "remove-btn">Remove</button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                            
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div id = "EditDrinks" class = "cheftabcontent">
+                    <div class="drink-items">
+                        <h1 class = "menu-item-heading">
+                            DRINKS
+                        </h1>
+                        <hr class="solid">
+                        <button class="additembutton" data-bs-toggle="modal" data-bs-target="#adddrink-modal"><i class='bx bx-add-to-queue' ></i>Add Drink</button>
+                        <div class="modal fade" id="adddrink-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id = "modal-title">Adding Drink</h5>
+                                        <button type = "button" class="modal-delivery-button-close btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
+
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <form action="" method="POST" >
+                                            <div class="form-group">
+                                                <label for="chefid">Chef ID</label>
+                                                <input type="chefid" name="chefid" class="form-control" id="chefid" value="{{ user.id }}" placeholder="{{ user.id }}" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="dishid">Dish Type</label>
+                                                <input type="dishtype" name="dishtype" class="form-control" id="dishtype" value="drink" readonly>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="customeFile">Upload Image</label>
+                                                <input type="imagename" name="image" class="form-control" id="customfile">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="modal-fname" class = "form-label">Item Name:</label>
+                                                <input name="itemname" type="itemname" class = "form-control" id = "modal-itemname" placeholder="Item Name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="modal-lname" class = "form-label">Description:</label>
+                                                <textarea name="description" class="form-control" id="description" cols="20" rows="5" placeholder="Description of food..."></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="price">Price</label>
+                                                <input type="price" name="price" class="form-control" id="modal-price" placeholder="$0.00" min="0.00" max="10000.00">
+                                            </div> 
+                                    
+                                            <div class="modal-footer">
+                                                <input name="addsubmit" type = "submit" class="btn btn-primary" value="Submit">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="tablecontainer d-block mx-auto">
+                            <table data-toggle="table" class = "table table-bordered" data-pagination = "true" data-search="true">
+                                <thead>
+                                    <tr>
+                                        <th>Drink ID</th>
+                                        <th>Drink Image</th>
+                                        <th>Drink Name</th>
+                                        <th>Drink Description</th>
+                                        <th>Drink Price</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                 </thead>
+                                    <tbody>
+                                        {% for info in drinks %}
+                                        <tr>
+                                            <td class="text-center">{{ info['dish_id'] }}</td>
+                                            <td class="images w-25 text-center">
+                                                <img src=" {{ info['img'] }}" class="img-fluid img-thumbnail img-responsive" class="foodimages"> 
+                                            </td>
+                                            <td class="text-center">{{ info['name'] }}</td>
+                                            <td class="text-center">{{ info['description'] }} </td>
+                                            <td class="text-center">${{ info['price'] }} </td>
+                                            <td class="text-center">
+                                                <div class = "buttons">
+                                       
+                                                    <button class = "edit-btn" data-bs-toggle="modal" data-bs-target="#edit-modal">Edit</button>
+                                                    <div class="modal fade" id = "edit-modal" tabindex="-1" aria-labelledby = "modal-title" aria-hidden="true">
+                                                        <div class="modal-dialog modal-lg">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class = "modal-title" id = "modal-title">Edit Item</h5>
+                                                                    <button type = "button" class="modal-delivery-button-close btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <form action="" method = "POST">
+                                                                        <div class="form-group">
+                                                                            <label for="dishid">Dish ID</label>
+                                                                            <input type="dishid" name="dishid" class="form-control" id="dishid" value= "{{ info['dish_id'] }}" readonly="{{ info['dish_id'] }}" placeholder="{{ info['dish_id'] }}">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="customeFile">Upload New Image</label>
+                                                                            <input type="file" name="newimage" class="form-control" id="customfile">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="modal-fname" class = "form-label">Edit Item Name:</label>
+                                                                            <input name="itemname" type="itemname" class = "form-control" id = "modal-itemname" placeholder="Item Name">
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="modal-lname" class = "form-label">Edit Description:</label>
+                                                                            <textarea name="editdescription" class="form-control" id="editdescription" cols="20" rows="5" placeholder="Description of food..."></textarea>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                            <label for="editprice">Edit Price</label>
+                                                                            <input type="editprice" name="editprice" class="form-control" id="modal-editprice" placeholder="$0.00" min="0.00" max="10000.00">
+                                                                        </div>
+                                                                
+                                                                        <div class="modal-footer">
+                                                                            <input name="editsubmit" type = "submit" class="btn btn-primary" value="Submit">
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <form action="" method="POST">
+                                                        <button name="removeitem" type = "submit" value = "{{ info['dish_id'] }}" class = "remove-btn">Remove</button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                            
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </thead>
+                            </table>
+                        </div>
+                       
+                    </div>
+                </div>
+
+                <div id = "ChefCompliments" class = "cheftabcontent">
+                    <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">Compliment ID</th>
+                            <th scope="col">Description Of Compliment</th>
+                 
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for info in compliments %}
+                            <tr>
+                                <td>{{ info['compliment_id'] }}</td>
+                                <td>{{ info['compliment_content'] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                      </table>
+                </div>
+                
+                <div id = "ChefComplaints" class = "cheftabcontent">
+                    <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">Complaint ID</th>
+                            <th scope="col">Description Of Complaint</th>
+                            <th scope="col">Dispute</th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for info in complaints %}
+                            <tr>
+                                <td>{{ info['complaint_id'] }}</td>
+                                <td>{{ info['complaint_content'] }}</td>
+                                <td> 
+                                    <!-- <section class="bg-light" > -->
+                                        <button class = "dispute-btn d-block mx-auto" data-bs-toggle="modal" data-bs-target="#delivery-modal"><i class="bi bi-x-octagon"></i>Dispute</button>
+                                        <div class="modal fade" id = "delivery-modal" tabindex="-1" aria-labelledby = "modal-title" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class = "modal-title" id = "modal-title">Dispute Form</h5>
+                                                        <button type = "button" class="modal-delivery-button-close btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="" method = "post">
+                                                            <input type="hidden" id="complainerid" name="complainerid" value="{{ info['complainer_id'] }}">
+                                                            <div class="form-group">
+                                                                <label for="userid">Your User ID:</label>
+                                                                <input name="userid" id="userid" type ="text" class="form-control" value ="{{ user['id'] }}" readonly>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modal-fname" class = "form-label">Enter Your First Name:</label>
+                                                                <input name = "firstname" type="text" class = "form-control" id = "modal-fname" placeholder="First Name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modal-lname" class = "form-label">Enter Your Last Name:</label>
+                                                                <input name = "lastname" type="text" class = "form-control" id = "modal-lname" placeholder="Last Name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="deliverydisputebox">Enter Dispute Description:</label>
+                                                                <textarea name="deliverydispute" id="deliverydisputebox" type ="text" cols="20" rows="5" class="form-control" placeholder="Smelly..."></textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="date">Enter Date:</label>
+                                                                <div class="input-group date" class="datepicker" data-provide="datepicker">
+                                                                    <input name ="disputedate" onload="getDate()" id="txtdate" type="text" class = "form-control" placeholder="MM/DD/YYYY">
+                                                                    <span class="input-group-addon" for="txtdate">
+                                                                        <span id ="calender-btn" class="btn btn-default">
+                                                                            <i class='bx bxs-calendar'></i> 
+                                                                        </span> 
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <!-- <div class="modal-footer"> -->
+                                                                <input name = "disputesubmit" type = "submit" class="btn btn-primary d-block" value = "submit">  
+                                                            <!-- </div> -->
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <!-- </section> -->
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+               
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>   
+                <script src='bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' type='text/javascript'></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+                <script src="https://unpkg.com/bootstrap-table@1.20.0/dist/bootstrap-table.min.js"></script>
+                <script src='bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' type='text/javascript'></script>
+                
+                <script>
+                    if ( window.history.replaceState ) {
+                        window.history.replaceState( null, null, window.location.href );
+                    }
+                </script>
+                <script>
+                    let chefsidebar = document.querySelector(".chefsidebar");
+                    let chefsidebarBtn = document.querySelector(".chefsidebarBtn");
+                
+                
+                    chefsidebarBtn.onclick = function(){
+                        chefsidebar.classList.toggle("active");
+                    }
+                
+                    function openTab(evt, tabName) {
+                        var i, tabcontent, tablinks;
+                        tabcontent = document.getElementsByClassName("cheftabcontent");
+                        for (i = 0; i < tabcontent.length; i++) {
+                            tabcontent[i].style.display = "none";
+                        }
+                        tablinks = document.getElementsByClassName("cheftablinks");
+                        for (i = 0; i < tablinks.length; i++) {
+                            tablinks[i].className = tablinks[i].className.replace(" active", "");
+                        }
+                        document.getElementById(tabName).style.display = "block";
+                        evt.currentTarget.className += " active";
+                
+                    }
+
+                    $('.remove-btn').click(function() {removeItem(this);});
+                    /* remove item from cart and recalculate summary */
+                    function removeItem(removeButton) {
+                        /* remove row */
+                        var productRow = $(removeButton).parent().parent()
+                        productRow.slideUp(fadeTime, 
+                            function() {
+                                productRow.remove();
+                            }
+                        )
+                    }
+                    var fadeTime = 300;
+
+                    // document.querySelector('.edit-btn').addEventListener('click',function(){
+                    //     document.querySelector('.bg-modal').style.display = "flex";
+                    // });
+
+                    // document.querySelector('.btn-cancel').addEventListener('click',function(){
+                    //     document.querySelector('.bg-modal').style.display = "none";
+                    // });
+
+                </script>
+
+            {% else %}
+                <!-- delivery personal html go here -->
+                <div class="deliverysidebar">
+                    <div class = "logo-details">
+                        <img class = "logo" alt="My Image" src="../static/assets/onebite_logo.png" />
+                    </div>
+                    <button class="deliverytablinks" onclick="openTab(event, 'Dashboard')"><i class='bx bx-grid-alt'></i>Dashboard</button>
+                    <button class="deliverytablinks" onclick="openTab(event, 'Current_deliveries')"><i class='bx bxs-package'></i>Deliveries</button>
+                    <button class="deliverytablinks" onclick="openTab(event, 'DeliveryBidding')"><i class='bx bx-money-withdraw'></i>Delivery Bidding</button>
+                    <button class="deliverytablinks" onclick="openTab(event, 'DeliveryCompliments')"><i class='bx bx-wink-smile'></i>Compliments</button>
+                    <button class="deliverytablinks" onclick="openTab(event, 'DeliveryComplaints')"><i class='bx bx-angry' ></i>Complaints</button>
+                    <a href = "{{ url_for('logout') }}" style = "text-decoration: none;"><button class = "deliverytablinks" type = "button"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</button></a>
+                </div>
+                
+                <section class = "delivery-home-section">
+                    <nav class = "delivery-nav">
+                        <div class = "delivery-sidebar-button">
+                            <i class='bx bx-menu deliverysidebarBtn'></i>
+                            <span class="delivery-dashboard">Dashboard</span>
+                        </div>
+                        <div class="delivery-welcome d-block mx-auto">
+                            Welcome, Deliverer {{ user.firstName}} {{ user.lastName }}
+                        </div>
+                        <div class="delivery-logout">
+                        
+                        </div>
+                    </nav>
+                </section>
+                
+                
+                <div id = "Dashboard" class = "deliverytabcontent">
+                    <div class="alert warning-alert d-block mx-auto">
+                        <button class = "dashboard-buttons">
+                            <h3 class = "text"><i class='bx bx-error'></i>WARNINGS:</h3>
+                            <h2 class = "num-of-warnings">{{ user.warnings }}</h2>
+                            
+                        </button>
+                    </div>
+                
+                    <div class="alert warning-alert d-block mx-auto">
+                        <button class = "dashboard-buttons" onclick="openTab(event, 'DeliveryCompliments')">
+                            <h3 class = "text"><i class='bx bx-wink-smile'></i>COMPLIMENTS:</h3>
+                            <h2 class = "num-of-compliments">{{ user.compliments }}</h2>
+                        </button>
+                    </div>
+                
+                    <div class="alert warning-alert d-block mx-auto">
+                        <button class = "dashboard-buttons" onclick="openTab(event, 'DeliveryComplaints')">
+                            <h3 class = "text"><i class='bx bx-angry' ></i>COMPLAINTS:</h3>
+                            <h2 class = "num-of-complaints">{{ user.complaints }}</h2>
+                        </button>
+                    </div>
+                </div>
+                
+                
+                <div id = "DeliveryCompliments" class = "deliverytabcontent">
+                    <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">Compliment ID</th>
+                            <th scope="col">Description Of Compliment</th>
+                 
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for info in compliments %}
+                            <tr>
+                                <td>{{ info['compliment_id'] }}</td>
+                                <td>{{ info['compliment_content'] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                      </table>
+                </div>
+                
+                <div id = "DeliveryComplaints" class = "deliverytabcontent">
+                    <table class="table table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">Complaint ID</th>
+                            <th scope="col">Description Of Complaint</th>
+                            <th scope="col">Dispute</th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for info in complaints %}
+                            <tr>
+                                <td>{{ info['complaint_id'] }}</td>
+                                <td>{{ info['complaint_content'] }}</td>
+                                <td> 
+                                    <!-- <section class="bg-light" > -->
+                                        <button class = "dispute-btn d-block mx-auto" data-bs-toggle="modal" data-bs-target="#delivery-modal"><i class="bi bi-x-octagon"></i>Dispute</button>
+                                        <div class="modal fade" id = "delivery-modal" tabindex="-1" aria-labelledby = "modal-title" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class = "modal-title" id = "modal-title">Dispute Form</h5>
+                                                        <button type = "button" class="modal-delivery-button-close btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="" method = "post">
+                                                            <input type="hidden" id="complainerid" name="complainerid" value="{{ info['complainer_id'] }}">
+                                                            <div class="form-group">
+                                                                <label for="userid">Your User ID:</label>
+                                                                <input name="userid" id="userid" type ="text" class="form-control" value ="{{ user['id'] }}" readonly>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modal-fname" class = "form-label">Enter Your First Name:</label>
+                                                                <input name = "firstname" type="text" class = "form-control" id = "modal-fname" placeholder="First Name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modal-lname" class = "form-label">Enter Your Last Name:</label>
+                                                                <input name = "lastname" type="text" class = "form-control" id = "modal-lname" placeholder="Last Name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="deliverydisputebox">Enter Dispute Description:</label>
+                                                                <textarea name="deliverydispute" id="deliverydisputebox" type ="text" cols="20" rows="5" class="form-control" placeholder="Smelly..."></textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="date">Enter Date:</label>
+                                                                <div class="input-group date" class="datepicker" data-provide="datepicker">
+                                                                    <input name ="disputedate" onload="getDate()" id="txtdate" type="text" class = "form-control" placeholder="MM/DD/YYYY">
+                                                                    <span class="input-group-addon" for="txtdate">
+                                                                        <span id ="calender-btn" class="btn btn-default">
+                                                                            <i class='bx bxs-calendar'></i> 
+                                                                        </span> 
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <!-- <div class="modal-footer"> -->
+                                                                <input name = "disputesubmit" type = "submit" class="btn btn-primary d-block" value = "submit">  
+                                                            <!-- </div> -->
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </td>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                
+                <div id = "Current_deliveries" class = "deliverytabcontent">
+                    <section class = "past-delivery-section">
+                        <div class="delivery-home-content">
+                            <div class="delivery-number-overview-box">
+                                {% if recentDelivery %}
+                                <div class="delivery-box">
+                                    <div class="delivery-left">
+                                        <div class="delivery-number">Delivery Location for Delivery # {{ recentDelivery["order_id"] }}</div>
+                                        
+                                        <button class = "complain-btn" data-bs-toggle="modal" data-bs-target="#complain-modal"><i class='bx bxs-angry'></i>Complain</button>
+                                        <div class="modal fade" id = "complain-modal" tabindex="-1" aria-labelledby = "modal-title" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class = "modal-title" id = "modal-title">Complaint Form</h5>
+                                                        <button type = "button" class="modal-delivery-button-close btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="" method = "POST" >
+                                                            <div class="form-group">
+                                                                <label for="modal-userid" class = "form-label">Your User ID:</label>
+                                                                <input name="userid" type="userid" class = "form-control" id = "modal-userid" value="{{ user['id'] }}" readonly>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modal-receiverid" class = "form-label">Complaint Receiver ID:</label>
+                                                                <input name="receiverid" type="receiverid" class = "form-control" id = "modal-receiverid" value="{{ recentDelivery['customer_id'] }}" readonly>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modal-fname" class = "form-label">Enter Your First Name:</label>
+                                                                <input name="firstname" type="fname" class = "form-control" id = "modal-fname" placeholder="First Name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="modal-lname" class = "form-label">Enter Your Last Name:</label>
+                                                                <input name="lastname" type="lname" class = "form-control" id = "modal-lname" placeholder="Last Name">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="complaintdisputebox">Enter Description of Complaint:</label>
+                                                                <textarea name="complaintbox" class="form-control" id="deliverycomplainbox" cols="20" rows="5" placeholder="Complaining b/c..."></textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="date">Enter Date:</label>
+                                                                <div class="input-group date" class="datepicker" data-provide="datepicker">
+                                                                    <input name ="complaindate" onload="getDate()" id="txtdate" type="text" class = "form-control" placeholder="MM/DD/YYYY">
+                                                                    <span class="input-group-addon" for="txtdate">
+                                                                        <span id ="calender-btn" class="btn btn-default">
+                                                                            <i class='bx bxs-calendar'></i> 
+                                                                        </span> 
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <input name="complaintsubmit" type = "submit" class="btn btn-primary" value="Submit">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="delivery-customer-info">
+                                            <div class="delivery-customer-name">Customer Name: {{ recentDelivery["fname"] }} {{ recentDelivery["lname"] }}</div>
+                                            <div class="delivery-customer-address">Customer Address: {{ recentDelivery["address"] }}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                    <div class="tablecontainer d-block mx-auto">
+                        <h4 class = "text-center">Past Deliveries</h4>
+                        <table data-toggle="table" class = "table table-bordered" data-pagination = "true" data-search="true">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Date</th>
+                                    <th>SubTotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for info in rows %}
+                                <tr>
+                                    <td>#{{ info["order_id"] }}</td>
+                                    <td>{{ info["first_name"] }} {{ info["last_name"] }}</td>
+                                    <td>{{ info["delivery_date"].strftime('%m-%d-%Y') }}</td>
+                                    <td>${{ info["subtotal"] }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                            
+                        </table>
+                    </div>
+                    </section>
+                </div>
+
+                <div id = "DeliveryBidding" class = "deliverytabcontent">
+                    <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Order ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Phone #</th>
+                            <th scope="col">Total</th>
+                            <th scope="col"># of Bids</th>
+                            <th scope="col">Current Bid</th>
+                            <th scope="col">Place Your Bid</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            {% for customer in deliverybids %}
+                            <tr>
+                                <th scope="row">{{ customer["order_id"] }}</th>
+                                <td>{{ customer["fname"] }} {{ customer["lname"] }}</td>
+                                <td>{{ customer["address"] }}</td>
+                                <td>{{ customer["phone"] }}</td>
+                                <td>{{ "$%.2f"|format(customer["total"]) }}</td>
+                                <td>{{ customer["num_bids"] }}</td>
+                                <td>{{ "$%.2f"|format(customer["current_bid"]) }}</td>
+                                <td>
+                                    <form action = "" method = "post">
+                                        <input type = "hidden" id = "order_bid" name = "order_bid" value = "{{ customer['order_id'] }}">
+                                        <input type = "hidden" id = "num_bid" name = "num_bid" value = "{{ customer['num_bids'] }}">
+                                        <input type = "hidden" id = "old_bid" name = "old_bid" value = "{{ customer['current_bid'] }}">
+                                        <input type = "hidden" id = "delivery_id" name = "delivery_id" value = "{{ user.id }}">
+                                        {% if customer["current_bid"] == 0 %}
+                                            <input type = "number" step = "0.01" id = "bid" name = "bid" placeholder = "{{ '$%.2f'|format(customer['current_bid']+0.01) }}" autocomplete = "off" required min="0.01">
+                                        {% else %}
+                                        <input type = "number" step = "0.01" id = "bid" name = "bid" placeholder = "{{ '$%.2f'|format(customer['current_bid']-0.01) }}" autocomplete = "off" required min="0.01">
+                                        {% endif %}
+                                        <input type = "submit" id = "bid-submit" name = "bid-submit">
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                
+                <script src='bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' type='text/javascript'></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+                <script src="https://unpkg.com/bootstrap-table@1.20.0/dist/bootstrap-table.min.js"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+                
+                <script>
+                    let deliverysidebar = document.querySelector(".deliverysidebar");
+                    let deliverysidebarBtn = document.querySelector(".deliverysidebarBtn");
+                
+                
+                    deliverysidebarBtn.onclick = function(){
+                        deliverysidebar.classList.toggle("active");
+                    }
+                
+                    function openTab(evt, tabName) {
+                        var i, tabcontent, tablinks;
+                        tabcontent = document.getElementsByClassName("deliverytabcontent");
+                        for (i = 0; i < tabcontent.length; i++) {
+                            tabcontent[i].style.display = "none";
+                        }
+                        tablinks = document.getElementsByClassName("deliverytablinks");
+                        for (i = 0; i < tablinks.length; i++) {
+                            tablinks[i].className = tablinks[i].className.replace(" active", "");
+                        }
+                        document.getElementById(tabName).style.display = "block";
+                        evt.currentTarget.className += " active";
+                
+                    }
+
+                    $('#form').submit(function(e) {
+                        $('#messages').removeClass('hide').addClass('alert alert-success alert-dismissible').slideDown().show();
+                        $('#messages_content').html('<h4>MESSAGE HERE</h4>');
+                        $('#modal').modal('show');
+                        e.preventDefault();
+                    });
+
+                  
+                </script>
+                <script type = "text/javascript">
+                    $("#datepicker").datepicker("setDate", new Date());
+                </script>
+                <script>
+                    if ( window.history.replaceState ) {
+                        window.history.replaceState( null, null, window.location.href );
+                    }
+                </script>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endblock mainContent %}

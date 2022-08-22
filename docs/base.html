@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- internal css styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/footer.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/navbar.css') }}">
+    <!-- external styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css">
+
+    
+    {% block links %}
+        
+    {% endblock links %}
+
+    <title>{% block titlePage %}
+        Base Template
+    {% endblock titlePage %}</title>
+</head>
+<body>
+    {% if user and user.userType == 'customer' %}
+        <nav id="user-nav">
+            <div class="navbar">
+                <div class="navbar-right">
+                    <a href="{{ url_for('homePage') }}"><i class="fa fa-fw fa-home"></i>Home</a>
+                    <a href="{{ url_for('aboutPage') }}"><i class="fa fa-fw fa-info-circle"></i>About</a>
+                    <a href="{{ url_for('menu') }}"><i class="fa fa-fw fa-book"></i>Menu</a>
+                    <a href="{{ url_for('cartPage') }}"><i class="fa fa-fw fa-shopping-cart"></i>Cart</a>
+                    <div class = "user-drop">
+                        <button type = "button" class = "drop-btn">
+                            <i class="fa fa-fw fa-user"></i>
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <ul class = "user-content">
+                            <li>{{ user.email }}</li>
+                            <li>Wallet: {{ "$%.2f"|format(user.wallet) }}</li>
+                            <li>Warnings: {{ user.warnings }}</li>
+                            <li>Status: 
+                                {% if user.isVIP == 1 %}
+                                    <i class="fa fa-fw fa-certificate" style = "color: rgb(247, 203, 61); font-size: larger;"></i>VIP Customer
+                                {% else %}
+                                    Registered Customer
+                                {% endif %}
+                            </li>
+                            <li><hr></li>
+                            <li><a href = "{{ url_for('profilePage') }}"><i class="fa fa-fw fa-user-circle-o"></i>Profile</a></li>
+                            <li><a href = "{{ url_for('orders') }}"><i class="fa fa-fw fa-inbox"></i>Orders</a></li>
+                            <li><a href = "{{ url_for('dashboard') }}"><i class="fa fa-fw fa-bar-chart"></i>Dashboard</a></li>
+                            <li><a href="{{ url_for('logout') }}"><i class="fa fa-fw fa-sign-in"></i>Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="navbar-left">
+                    <a href="{{ url_for('homePage') }}"><img class="logo-icon" src="../static/assets/onebite_logo.png"/></a>
+                </div>
+                <label class="navbar-hamburger-menu" for="toggle">&#9776;</label>
+                <input type="checkbox" id="toggle"/>
+                <div class="navbar-all">
+                    <a href="{{ url_for('homePage') }}"><i class="fa fa-fw fa-home"></i>Home</a>
+                    <a href="{{ url_for('aboutPage') }}"><i class="fa fa-fw fa-info-circle"></i>About</a>
+                    <a href="{{ url_for('menu') }}"><i class="fa fa-fw fa-book"></i>Menu</a>
+                    <a href="{{ url_for('cartPage') }}"><i class="fa fa-fw fa-shopping-cart"></i>Cart</a>
+                    <a href="{{ url_for('profilePage') }}"><i class="fa fa-fw fa-user"></i>Profile</a>
+                    <a href="{{ url_for('orders') }}"><i class="fa fa-fw fa-inbox"></i>Orders</a>
+                    <a href="{{ url_for('dashboard') }}"><i class="fa fa-fw fa-bar-chart"></i>Dashboard</a>
+                    <a href="{{ url_for('logout') }}"><i class="fa fa-fw fa-sign-in"></i>Logout</a>
+                </div>
+            </div>     
+        </nav>
+    {% elif user and (user.userType == 'manager' or user.userType == 'chef' or user.userType == 'delivery') %}
+        <!-- navbar does not show up -->
+    {% else %}
+        <nav id="guest-nav">
+            <div class="navbar">
+                <div class="navbar-right">
+                    <a href="{{ url_for('homePage') }}"><i class="fa fa-fw fa-home"></i>Home</a>
+                    <a href="{{ url_for('aboutPage') }}"><i class="fa fa-fw fa-info-circle"></i>About</a>
+                    <a href="{{ url_for('menu') }}"><i class="fa fa-fw fa-book"></i>Menu</a>
+                    <a href="{{ url_for('loginPage') }}"><i class="fa fa-fw fa-user-circle"></i>Login</a>
+                </div>
+                <div class="navbar-left">
+                    <a href="{{ url_for('homePage') }}"><img class="logo-icon" src="../static/assets/onebite_logo.png"/></a>
+                </div>
+                <label class="navbar-hamburger-menu" for="toggle">&#9776;</label>
+                <input type="checkbox" id="toggle"/>
+                <div class="navbar-all">
+                    <a href="{{ url_for('homePage') }}"><i class="fa fa-fw fa-home"></i>Home</a>
+                    <a href="{{ url_for('aboutPage') }}"><i class="fa fa-fw fa-info-circle"></i>About</a>
+                    <a href="{{ url_for('menu') }}"><i class="fa fa-fw fa-book"></i>Menu</a>
+                    <a href="{{ url_for('loginPage') }}"><i class="fa fa-fw fa-user-circle"></i>Login</a>
+                </div>
+            </div>
+        </nav> 
+    {% endif %} 
+    
+
+    {% with messages = get_flashed_messages(with_categories = true)%}
+        {% if messages %}
+            {% for category, message in messages %}
+            {% if category == 'error' %}
+                <div class = "alert alert-danger alert-dismissable show" role = "alert">
+                    {{ message }}
+                </div>
+            {% elif category == 'warning' %}
+                <div class = "alert alert-warning alert-dismissable show" role = "alert">
+                    {{ message }}
+                </div>
+            {% else %}
+                <div class = "alert alert-success alert-dismissable show" role = "alert">
+                    {{ message }}
+                </div>
+            {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    {% block mainContent %}
+        <!-- Put all content for different websites here -->
+        <!-- NOT HERE, USE JINJA SYNTAX AND PUT ALL THE CONTENT IN ANOTHER HTML FILE -->
+
+        <a href = "{{ url_for('homePage') }}"></a>
+        <a href = "{{ url_for('customerPage') }}"></a>
+        <a href = "{{ url_for('loginPage') }}"></a> 
+        <a href = "{{ url_for('forgotpassPage') }}"></a> 
+        <a href = "{{ url_for('newuserPage') }}"></a> 
+        <a href = "{{ url_for('cartPage') }}"></a>
+        <a href = "{{ url_for('checkoutPage') }}"></a>
+        <a href = "{{ url_for('orderPlacedPage') }}"></a>
+        <a href = "{{ url_for('profilePage') }}"></a>
+        <a href = "{{ url_for('deliveryPage') }}"></a> 
+
+    {% endblock mainContent %}
+
+    {% if user and (user.userType == 'manager' or user.userType == 'chef' or user.userType == 'delivery') %}
+        <!-- footer does not show up -->
+    {% else %}
+    <button onclick = "topFunction()" id = "top-btn" title = "Go to Top"><i class = "arrow up"></i></button>
+
+    <footer>
+        <div id="footer">
+            <div class="footer-container">
+                <h3 class="footer-container-title">Contact Us</h3>
+                
+                <ul class="footer-list">
+                    <li class="footer-list-item footer-contact-info">Email: example@example.com</li>
+                    <li class="footer-list-item footer-contact-info">Phone: 123-456-7890</li>
+                    <li class="footer-list-item footer-contact-info">Hours: Weekdays from 10 AM - 5 PM EST</li>
+                </ul>
+            </div>
+
+            <div class="footer-container" id="footer-follow-us">
+                <h3 class="footer-container-title">Follow Us</h3>
+                <ul class="footer-list">
+                    <li class="footer-list-item"><a href="https://twitter.com" target="_blank">Twitter</a></li>
+                    <li class="footer-list-item"><a href="https://instagram.com" target="_blank">Instagram</a></li>
+                    <li class="footer-list-item"><a href="https://youtube.com" target="_blank">Youtube</a></li>
+                    <li class="footer-list-item"><a href="https://www.linkedin.com/" target="_blank">Linkedin</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-container">
+                <h3 class="footer-container-title">Resources</h3>
+                <ul class="footer-list">
+                    <li class="footer-list-item"><a href="{{ url_for("aboutPage") }}">About Us</a></li>
+                    <li class="footer-list-item"><a href="{{ url_for("faqs") }}">FAQs</a></li>
+                    <li class="footer-list-item"><a href="{{ url_for("privacyPolicy") }}">Privacy Policy</a></li>
+                    <li class="footer-list-item"><a href="{{ url_for("tos") }}">Terms of Service</a></li>
+                    <li class="footer-list-item"><a href="{{ url_for("customerSupport")}}">Customer Support</a></li>
+                </ul>
+            </div>
+    
+            <div class="footer-container">
+                <h3 class="footer-container-title">Careers</h3>
+                <ul class="footer-list">
+                    <li class="footer-list-item"><a href="{{ url_for("careers")}}">Chefs</a></li>
+                    <li class="footer-list-item"><a href="{{ url_for("careers")}}">Deliveries</a></li>
+                    <li class="footer-list-item"><a href="{{ url_for("careers")}}">Managers</a></li>
+                    <li class="footer-list-item"><a href="{{ url_for("careers")}}">Developers</a></li>
+                    <li class="footer-list-item"><a href="{{ url_for("careers")}}">Other Openings</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="credits">Built By: Team M | &copy Copyright 2022</div>
+
+    </footer>
+    {% endif %}
+
+    <script>
+        mybtn = document.getElementById("top-btn");
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+                mybtn.style.display = "block";
+            } else {
+                mybtn.style.display = "none";
+            }
+        }
+
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+    </script>
+
+</body>
+</html>

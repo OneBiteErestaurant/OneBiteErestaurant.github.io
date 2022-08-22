@@ -1,0 +1,1040 @@
+:root {
+    --general-background-color: rgba(255, 0, 0, 0);
+    --general-text-color: rgb(0, 0, 0);
+    --navbar-background-color: rgba(34, 34, 34);
+    --general-font-size: 50px;
+}
+
+
+navbar, nav * {
+    background-color: transparent;
+    color: #ACACAC;
+}
+
+.logo{ /* Resize Logo */
+    width: 240px;
+    height: auto;
+    padding-top: 15px;
+    padding-bottom: 10px;
+    transition: all 0.5s ease;
+}
+
+.managersidebar{
+    height: 100%;
+    position: fixed;
+    width: 240px;
+    background: url('https://static.wixstatic.com/media/27eac3_499a4d4d3039486ba9baacaa16504a27~mv2.jpg/v1/fill/w_1467,h_1408,al_c,q_90/27eac3_499a4d4d3039486ba9baacaa16504a27~mv2.webp');
+    transition: all 0.5s ease;
+
+}
+
+.managertablinks{
+    height: 60px;
+    min-width: 100%;
+    align-items: center;
+    transition: all 0.4s ease;
+    background: none;
+    border: none;
+    color: #fff;
+    display: flex;
+    font-size: 18px;
+    font-weight: 400;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.managersidebar .managertablinks:hover{
+    background: #ACACAC;
+    cursor: pointer;
+    
+}
+
+.managersidebar .managertablinks i{
+    /* background: red; */
+    min-width: 50px;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    padding-right: 5px;
+}
+.managersidebar.active i{
+    min-width: 45px;
+    margin-right: 15px;
+    transition: all 0.5s ease;
+}
+
+.managersidebar.active .managertablinks{
+    color:rgba(255, 0, 0, 0);
+}
+.managersidebar.active .logo{
+    width: 60px;
+    height: auto;
+    transition: all 0.5s ease;
+}
+
+.managersidebar.active{
+    width: 60px;
+    transition: all 0.5s ease;
+}
+
+
+/* manager home section navigation bar css */
+.manager-home-section{
+    position: relative;
+    background: #f5f5f5;
+    width: calc(100% - 240px);
+    left: 240px;
+    transition: all 0.5s ease;
+}
+
+
+.manager-home-section .manager-nav{
+    height: 100px;
+    padding: 0 20px;
+    display:flex;
+    align-items: center;
+    background: #fff;
+    justify-content: space-between;
+}
+
+
+.manager-home-section .manager-nav .manager-sidebar-button{
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.manager-home-section .manager-nav .manager-sidebar-button i{
+    font-size: 35px;
+    margin-right: 10px;
+    color: #646464;
+}
+
+.manager-home-section .manager-nav .manager-welcome{
+    height: 50px;
+    width: 550px;
+    margin: 0 20px;
+    position: relative;
+    color: #646464;
+    /* display: block;
+    align-items: center; */
+    font-size: 30px !important;
+    font-weight: 500 !important;
+}
+
+.manager-home-section .manager-nav .manager-dashboard{
+    color: #646464;
+} 
+/* end manager home section navigation bar css */
+
+
+/* overview boxes */
+.manager-home-section .manager-home-content{
+    position: relative;
+    padding-top: 104px;
+}
+
+.manager-home-content .manager-overview-boxes{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 20px;
+    margin-bottom: 26px;
+}
+
+.manager-overview-boxes .manager-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% / 4 - 15px);
+    background: #fff;
+    padding: 15px 14px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.manager-overview-boxes .manager-box-topic{
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.manager-home-content .manager-box .manager-number{
+    display: inline-block;
+    font-size: 35px;
+    margin-top: -6px;
+    font-weight: 500;
+}
+
+.manager-home-content .manager-box .manager-indicator{
+    display: flex;
+    align-items: center;
+}
+
+.manager-home-content .manager-box .manager-indicator i{
+    height: 20px;
+    width: 20px;
+    background: #8FDACB;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.manager-box .manager-indicator i.down{
+    background: #e87d88;
+}
+
+.manager-home-content .manager-box .manager-indicator .manager-text{
+    font-size: 12px;
+}  
+
+.manager-home-content .manager-box .cart{
+    display: inline-block;
+    font-size: 32px;
+    height: 50px;
+    width: 50px;
+    background: #cce5ff;
+    line-height: 50px;
+    text-align: center;
+    color: #66b0ff;
+    border-radius: 12px;
+    margin: -15px 0 0 6px;
+}
+
+.manager-home-content .manager-box .cart.two{
+    color: #2BD47D;
+    background: #C0F2D8;
+ }
+
+.manager-home-content .manager-box .cart.three{
+    color: #ffc233;
+    background: #ffe8b3;
+ }
+
+.manager-home-content .manager-box .cart.four{
+    color: #e05260;
+    background: #f7d4d7;
+ }
+
+.manager-home-content .manager-orders-boxes{
+    display: flex;
+    justify-content: space-between;
+}
+/* end overview boxes */
+
+
+/* box details */
+.manager-dashboard-section .manager-home-content .orders-boxes .recent{
+    width: 93%;
+    background: #fff;
+    padding: 20px 30px;
+    margin: 0 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.manager-order-details{
+    width: 100%;
+    display: inline-block;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.manager-dashboard-section .orders-boxes .manager-box .manager-title{
+    font-size: 24px;
+    font-weight: 1000;
+    color: black;
+    background: white;
+    display: flex;
+    left: 0;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+/* end box details */
+
+
+/* see all button */
+.manager-dashboard-section .orders-boxes .manager-box .see-all-button{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.manager-dashboard-section .orders-boxes .manager-box .see-all-button a{
+    color: #fff;
+    background: #0A2558;
+    padding: 4px 12px;
+    font-size: 15px;
+    font-weight: 400;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.manager-dashboard-section .orders-boxes .manager-box .see-all-button a:hover{
+    background:  #0d3073;
+}
+/* end see all button */
+
+
+/* manager dashboard homepage */
+#mDashboard{
+    display: block;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+}
+
+#recent-orders tr {
+    display: none;
+}
+
+#recent-orders tr.active {
+    display: table-row;
+}
+
+#recent-orders{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#recent-orders td, #recent-orders th{
+    /*border: 1px solid #ddd;*/
+    padding: 8px;
+    list-style: none;
+    margin: 8px 0;
+    background: transparent;
+}
+
+#recent-orders td li{
+    background: transparent;
+}
+
+#recent-orders td li a{
+    text-decoration: none;
+    background: transparent;
+}
+
+#recent-orders tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+#recent-orders tr:hover{
+    background-color: #ACACAC;
+}
+
+#recent-orders th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 20px;
+    font-weight: 1000;
+    text-align: left;
+    background-color: transparent;
+    color: black;
+}
+
+/* end manager dashboard homepage */
+
+
+/* manager customer accounts page */
+    /* registered-customers table */
+#registered-customers{
+    border-collapse: collapse;
+    width:100%
+}
+
+#registered-customers tr {
+display: none;
+}
+
+#registered-customers tr.active {
+    display: table-row;
+}
+
+#registered-customers td, #registered-customers th{
+    /*border: 1px solid #ddd;*/
+    padding: 8px;
+    list-style: none;
+    margin: 8px 0;
+    background: transparent;
+}
+
+#registered-customers td li{
+    background: transparent;
+}
+
+#registered-customers td li a{
+    text-decoration: none;
+    background: transparent;
+}
+
+#registered-customers tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+#registered-customers tr:hover{
+    background-color: #ACACAC;
+}
+
+#registered-customers th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 20px;
+    font-weight: 1000;
+    text-align: left;
+    background-color: transparent;
+    color: black;
+}
+
+/* end registered-customers table */
+
+/* lost-customers table */
+#lost-customers{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#lost-customers tr {
+display: none;
+}
+
+#lost-customers tr.active {
+    display: table-row;
+}
+
+#lost-customers td, #lost-customers th{
+    /*border: 1px solid #ddd;*/
+    padding: 8px;
+    list-style: none;
+    margin: 8px 0;
+    background: transparent;
+}
+
+#lost-customers td li{
+    background: transparent;
+}
+
+#lost-customers td li a{
+    text-decoration: none;
+    background: transparent;
+}
+
+#lost-customers tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+#lost-customers tr:hover{
+    background-color: #ACACAC;
+}
+
+#lost-customers th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 20px;
+    font-weight: 1000;
+    text-align: left;
+    background-color: transparent;
+    color: black;
+}
+
+/* end lost-customers table */
+
+/* table buttons */
+#CustomerAccounts .manager-dashboard-section .actionButton {
+    background: transparent;
+    border: none;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 40%;
+}
+
+#CustomerAccounts .manager-dashboard-section #cleardeposit:hover {
+    background-color: #B22B27;
+}
+
+#CustomerAccounts .manager-dashboard-section #deleteaccount:hover {
+    background-color: #B22B27;
+}
+
+#CustomerAccounts .manager-dashboard-section #givewarning:hover {
+    background-color: red;
+}
+
+#CustomerAccounts .manager-dashboard-section .actionButton i {
+    background: transparent;
+}
+    /* end table buttons */
+/* manager customer accounts page */
+
+
+/* manager employee accounts page */
+    /* chef table */
+#chef-table .more{
+    display: none;
+}
+
+#chef-table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#chef-table tr {
+display: none;
+}
+
+#chef-table tr.active {
+    display: table-row;
+}
+
+#chef-table td, #chef-table th{
+    /*border: 1px solid #ddd;*/
+    padding: 8px;
+    list-style: none;
+    margin: 8px 0;
+    background: transparent;
+}
+
+#chef-table td li{
+    background: transparent;
+}
+
+#chef-table td li a{
+    text-decoration: none;
+    background: transparent;
+}
+
+#chef-table .more{
+    display: none;
+}
+
+#chef-table tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+#chef-table tr:hover{
+    background-color: #ACACAC;
+}
+
+#chef-table th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 20px;
+    font-weight: 1000;
+    text-align: left;
+    background-color: transparent;
+    color: black;
+}
+/* end chef table */
+
+/* delivery table */
+#delivery-table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#delivery-table tr {
+display: none;
+}
+
+#delivery-table tr.active {
+    display: table-row;
+}
+
+#delivery-table td, #delivery-table th{
+    /*border: 1px solid #ddd;*/
+    padding: 8px;
+    list-style: none;
+    margin: 8px 0;
+    background: transparent;
+}
+
+#delivery-table td li{
+    background: transparent;
+}
+
+#delivery-table td li a{
+    text-decoration: none;
+    background: transparent;
+}
+
+#delivery-table tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+#delivery-table tr:hover{
+    background-color: #ACACAC;
+}
+
+#delivery-table th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 20px;
+    font-weight: 1000;
+    text-align: left;
+    background-color: transparent;
+    color: black;
+}
+/* end delivery table */
+
+/* table button */
+.actionButton {
+        background: transparent;
+        border: none;
+        padding: 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 40%;
+}
+
+#givewarning:hover {
+    background-color: red;
+}
+    /* table button */
+/* end manager employee accounts page */
+
+
+/* manager discussions page */
+    /* forum table */
+#forum-table{
+    border-collapse: collapse;
+    width: calc(100% - 240px);
+    left: 240px;
+}
+
+#forum-table tr {
+display: none;
+}
+
+#forum-table tr.active {
+    display: table-row;
+}
+
+#forum-table td, #forum-table th{
+    /*border: 1px solid #ddd;*/
+    padding: 8px;
+    list-style: none;
+    margin: 8px 0;
+    background: transparent;
+}
+
+#forum-table td li{
+    background: transparent;
+}
+
+#forum-table td li a{
+    text-decoration: none;
+    background: transparent;
+}
+
+#forum-table tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+#forum-table tr:hover{
+    background-color: #ACACAC;
+}
+
+#forum-table th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 20px;
+    font-weight: 1000;
+    text-align: left;
+    background-color: transparent;
+    color: black;
+}
+
+    /* end forum table */
+/* manager discussions page */
+
+
+/* manager customer comments page */
+    /* comments table */
+#compliment-table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#compliment_table tr {
+display: none;
+}
+
+#compliment_table tr.active {
+    display: table-row;
+}
+
+#compliment_table td, #compliment_table th{
+    /*border: 1px solid #ddd;*/
+    padding: 8px;
+    list-style: none;
+    margin: 8px 0;
+    background: transparent;
+}
+
+#compliment_table td li{
+    background: transparent;
+}
+
+#compliment_table td li a{
+    text-decoration: none;
+    background: transparent;
+}
+
+#compliment_table tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+#compliment_table tr:hover{
+    background-color: #ACACAC;
+}
+
+#compliment_table th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-size: 20px;
+    font-weight: 1000;
+    text-align: left;
+    background-color: transparent;
+    color: black;
+}
+    /* end comments table */
+
+
+    /* Start complaint table */
+
+#complaint-table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#complaint_table tr {
+display: none;
+}
+
+#complaint_table tr.active {
+    display: table-row;
+}
+
+#complaint_table td, #complaint_table th{
+    /*border: 1px solid #ddd;*/
+    padding: 8px;
+    list-style: none;
+    margin: 8px 0;
+    background: transparent;
+}
+
+#complaint_table td li{
+    background: transparent;
+}
+
+#complaint_table td li a{
+    text-decoration: none;
+    background: transparent;
+}
+
+#complaint_table tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+#complaint_table tr:hover{
+    background-color: #ACACAC;
+}
+
+#complaint_table th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-weight: 1000;
+    text-align: left;
+    background-color: transparent;
+    color: black;
+}
+
+    /* end complaint table */
+
+    /* disputed comments table */
+#disputed-comments-table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#disputed-comments-table tr {
+display: none;
+}
+
+#disputed-comments-table tr.active {
+    display: table-row;
+}
+
+#disputed-comments-table td, #disputed-comments-table th{
+    /*border: 1px solid #ddd;*/
+    padding: 8px;
+    list-style: none;
+    margin: 8px 0;
+    background: transparent;
+}
+
+#disputed-comments-table td li{
+    background: transparent;
+}
+
+#disputed-comments-table td li a{
+    text-decoration: none;
+    background: transparent;
+}
+
+#disputed-comments-table tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+#disputed-comments-table tr:hover{
+    background-color: #ACACAC;
+}
+
+#disputed-comments-table th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-weight: 1000;
+    text-align: left;
+    background-color: transparent;
+    color: black;
+}
+
+        /* table buttons */
+.actionButton {
+    background: transparent;
+    border: none;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 40%;
+}
+
+#letstay:hover {
+    background-color: #81de76;
+}
+
+#dismiss:hover {
+    background-color: #B22B27;
+}
+
+.actionButton i {
+    background: transparent;
+}
+        /* table buttons */
+    /* end disputed comments table */
+
+    /* forum warnings table */
+#discussion-warnings-table{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#discussion-warnings-table tr {
+display: none;
+}
+
+#discussion-warnings-table tr.active {
+    display: table-row;
+}
+
+#discussion-warnings-table td, #discussion-warnings-table th{
+    /*border: 1px solid #ddd;*/
+    padding: 8px;
+    list-style: none;
+    margin: 8px 0;
+    background: transparent;
+}
+
+#discussion-warnings-table td li{
+    background: transparent;
+}
+
+#discussion-warnings-table td li a{
+    text-decoration: none;
+    background: transparent;
+}
+
+#discussion-warnings-table tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+#discussion-warnings-table tr:hover{
+    background-color: #ACACAC;
+}
+
+#discussion-warnings-table th{
+    padding-top: 12px;
+    padding-bottom: 12px;
+    font-weight: 1000;
+    text-align: left;
+    background-color: transparent;
+    color: black;
+}
+
+    /* table buttons */
+/* #CustomerComments .manager-dashboard-section .actionButton {
+    background: transparent;
+    border: none;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 40%;
+}
+
+#CustomerComments .manager-dashboard-section #letstay:hover {
+    background-color: #81de76;
+}
+
+#CustomerComments .manager-dashboard-section #dismiss:hover {
+    background-color: #B22B27;
+}
+
+.actionButton i {
+    background: transparent;
+} */
+        /* table buttons */
+    /* end forum warnings table */
+/* end manager customer comments page */
+
+
+
+/* FOR TAB CONTENT */
+
+.managersidebar.active ~ .manager-home-section{
+    width: calc(100% - 60px);
+    left: 60px;
+}
+
+.managersidebar.active .managertablinks:hover{
+    background: none;
+    color: transparent;
+}
+
+.manager-home-section{
+    position: relative;
+    background: #f5f5f5;
+    width: calc(100% - 240px);
+    left: 240px;
+    transition: all 0.5s ease;
+}
+
+.managertabcontent{
+    display: none;
+    padding: 20px;
+    position: relative;
+    width: calc(100% - 240px);
+    left: 240px;
+    transition: all 0.5s ease;
+    /* display: flex;
+    justify-content: center; */
+}
+
+.managersidebar.active ~ .managertabcontent{
+    width: calc(100% - 60px);
+    left: 60px;
+}
+
+#assign-table {
+    width: 100%;
+    text-align: center;
+}
+
+#assign-submit {
+    border-radius: 3px;
+    background-color: rgb(70, 110, 255);
+    border-width: 1px;
+    border-color: rgb(140, 165, 255);
+    color: white;
+}
+
+#del-justify {
+    border-radius: 3px;
+    border-width: 1px;
+}
+
+/* Responsive Media Query */
+@media (max-width: 1150px) {
+    .manager-home-content .orders-boxes{
+        flex-direction: column;
+    }
+    .manager-home-content .orders-boxes .manager-box{
+        width: 100%;
+        overflow-x: scroll;
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .manager-overview-boxes .manager-box{
+        width: calc(100% / 2 - 15px);
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 700px) {
+    .manager-home-content .orders-boxes .manager-order-details{
+        width: 560px;
+    }
+}
+
+@media (max-width: 550px) {
+    .manager-overview-boxes .manager-box{
+        width: 100%;
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 400px) {
+    .managersidebar{
+        width: 0;
+    }
+    .managersidebar.active{
+        width: 60px;
+    }
+    .manager-home-section{
+        width: 100%;
+        left: 0;
+    }
+    .managersidebar.active ~ .manager-home-section{
+        left: 60px;
+        width: calc(100% - 60px);
+    }
+    .manager-home-section .manager-nav{
+        width: 100%;
+        left: 0;
+    }
+    .managersidebar.active ~ .manager-home-section .manager-nav{
+        left: 60px;
+        width: calc(100% - 60px);
+    }
+}
+
+/*dividers */
+
+
+.header-divider{
+    margin: 0;
+}

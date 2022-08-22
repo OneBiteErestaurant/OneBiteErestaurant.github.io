@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/login_forgot_signup.css') }}">
+{% endblock links %}
+
+{% block titlePage %} New User {% endblock %}
+
+{% block mainContent %}
+
+<div id = "backgroundInfo">
+    <div id = "everythingInfo">
+        <h1 id = "infoHeader">New User</h1>
+        <form id = "infoForm" method = "POST" action = "">
+            <div class = "col-flex">
+                <div class = "flex1 row-flex" id = "name-row">
+                    <div class = "flex1 row-flex">
+                        <div class = "flex2 padding8">
+                            <label for="fname">First Name</label>
+                        </div>
+                        <div class = "flex3">
+                            <input type="text" id = "fname" name="fname" placeholder = "Enter First Name" required>
+                        </div>
+                    </div>
+                    <div class = "flex1 row-flex margin20">
+                        <div class = "flex2 padding8">
+                            <label for="lname">Last Name</label>
+                        </div>
+                        <div class = "flex3">
+                            <input type="text" id = "lname" name="lname" placeholder = "Enter Last Name" required>
+                        </div>
+                    </div>
+                </div>
+                <div class = "flex1 row-flex" id = "email-row">
+                    <div class = "flex1 row-flex">
+                        <div class = "flex2 padding8">
+                            <label for="username">Username</label>
+                        </div>
+                        <div class = "flex3">
+                            <input type="text" id = "uname" name="uname" placeholder = "Enter Username" required>
+                        </div>
+                    </div>
+                    <div class = "flex1 row-flex margin20">
+                        <div class = "flex2 padding8">
+                            <label for="email">Email</label>
+                        </div>
+                        <div class = "flex3">
+                            <input type="text" id = "email" name="email" placeholder = "Enter Email" required>
+                        </div>
+                    </div>
+                </div>
+                <div class = "flex1 row-flex" id = "password-row">
+                    <div class = "flex1 row-flex">
+                        <div class = "flex2 padding8">
+                            <label for="password">Password</label>
+                        </div>
+                        <div class = "flex3">
+                            <input type="password" id = "password" name="password" placeholder = "Enter Password" required>
+                        </div>
+                    </div>
+                    <div class = "flex1 row-flex margin20">
+                        <div class = "flex2">
+                            <label for="conpass">Confirm Password</label>
+                        </div>
+                        <div class = "flex3">
+                            <input type="password" id = "conpass" name="conpass" placeholder = "Confirm Password" required>
+                        </div>
+                    </div>
+                </div>
+                <div class = "flex1 row-flex" id = "number-row">
+                    <div class = "flex1 row-flex">
+                        <div class = "flex2 padding8">
+                            <label for="phone">Phone #</label>
+                        </div>
+                        <div class = "flex3">
+                            <input type="text" id = "phone" name="phone" placeholder = "Enter Phone Number"required>
+                        </div>
+                    </div>
+                    <div class = "flex1 row-flex margin20">
+                        <div class = "flex2 padding8">
+                            <label for="cardnum">Card #</label>
+                        </div>
+                        <div class = "flex3">
+                            <input type="text" id = "cardnum" name="cardnum" placeholder = "Enter Card Number" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class = "references">
+                <p id = "cap" style = "display: none;"><b style = "color:rgb(191, 58, 58);">WARNING! Caps lock is on.</b></p>
+            </div>
+            <div class = "references">
+                <input type = "checkbox" onclick = "showPass()">Show Password
+            </div>
+            <div id = "buttondiv">
+                <input type="submit" id = "inputButton" value = "Register">
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function showPass() {
+        var pw = document.getElementById("password");
+        var pw2 = document.getElementById("conpass");
+        if (pw.type === "password") {
+            pw.type = "text";
+            pw2.type = "text";
+        } else {
+            pw.type = "password";
+            pw2.type = "password";
+        }
+    }
+
+    var pw = document.getElementById("password");
+    var pw2 = document.getElementById("conpass");
+    var cap = document.getElementById("cap");
+    pw.addEventListener("keyup", function(event) {
+        if (event.getModifierState("CapsLock")) {
+            cap.style.display = "block";
+        } else {
+            cap.style.display = "none"
+        }
+    });
+    pw2.addEventListener("keyup", function(event) {
+        if (event.getModifierState("CapsLock")) {
+            cap.style.display = "block";
+        } else {
+            cap.style.display = "none"
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/cart_page.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans">
+{% endblock links %}
+
+{% block titlePage %} Cart {% endblock %}
+
+{% block mainContent %}
+<div class = "cover">
+    <h2 class = "title">Cart</h2>
+</div>
+
+<div class = "split-vertical">
+    <div id = "split-left">
+        <div class = "summary-container" id = "cart-summary">
+            <div class = "header-cart">
+                <h1 class = "summary-title" style = "margin-bottom: 3px;">Cart Summary <span class = "title-thin">({{ cartInfo['num_items'] }} items)</span></h1>
+                {% if cart %}
+                    <form class = "cart-removal" method = "POST" action = "/clear-cart/">
+                        <input type = "hidden" id = "all-dish-id" name = "dish-id" value = "">
+                        <button type = "submit" id = "remove-all" class = "remove-btn">Remove All</button>
+                    </form>
+                {% endif %}
+            </div>
+
+            <div id = "summary-cart">
+                <div class = "cart-header">
+                    <div class = "header-product" style = "text-align: left;">Product</div>
+                    <div class = "header-name"></div>
+                    <div class = "header-price" >Price</div>
+                    <div class = "header-quantity" >Quantity</div>
+                    <div class = "header-total" >Total</div>
+                </div><hr>
+
+                <div class = "product-summary">
+                    {% if cart %}
+                        {% for dish in cart %}
+                            <div class = "product">
+                                <div class = "product-image">
+                                    <img class = "cart-image" src = "{{ dish['img'] }}">
+                                </div>
+                                <div class = "product-name" style = "text-align: left;"><b>{{ dish['name'] }}</b></div>
+                                <div class = "product-price">{{ "$%.2f"|format(dish['price']) }}</div>
+                                <div class = "product-quantity flex-container">
+                                    <form class = "change-qty flex1" method = "POST" action = "">
+                                        <input type = "hidden" id = "minus-dish-id" name = "dish-id" value = "{{ dish['dish_id'] }}">
+                                        <input type = "submit" id = "minus-btn" name = "minus" value = "-" class = "plusminus-btn">
+                                    </form>
+                                    <p id = "quantity" class = "input-qty flex4">{{ dish['quantity'] }}</p>
+                                    <form class = "change-qty flex1" method = "POST" action = "">
+                                        <input type = "hidden" id = "plus-dish-id" name = "dish-id" value = "{{ dish['dish_id'] }}">
+                                        <input type = "submit" id = "plus-btn" name = "plus" value = "+" class = "plusminus-btn">
+                                    </form>
+                                </div>
+                                <div class = "product-total">
+                                    <div class = "product-line-price">{{ "$%.2f"|format(dish['quantity']*dish['price']) }}</div>
+                                    <form class = "product-removal" method = "POST" action = "/remove-dish-from-cart/{{ dish['dish_id'] }}" style = "padding-top: 140px;">
+                                        <button id = "remove-product" class = "remove-btn remove-product" type="submit">Remove</button>
+                                    </form>
+                                </div>
+                            </div><hr>
+                        {% endfor %}
+                    {% else %}
+                        <h1 class = "empty-cart">YOUR CART IS EMPTY</h1>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id = "split-right">
+        <div class = "summary-container" id = "order-summary" style = "margin-bottom: 10px;">
+            <h1 class = "summary-title">Order Summary <span class = "title-thin">({{ cartInfo['num_items'] }} items)</span></h1>
+            <hr>
+            <div class = "summary-info" id = "subtotal">
+                <p class = "align-left">Subtotal:</p>
+                <p class = "align-right">{{ "$%.2f"|format(cartInfo['subtotal']) }}</p>
+            </div>
+            <div class = "summary-info" id = "sales-tax">
+                <p class = "align-left">Estimated Tax:</p>
+                <p class = "align-right">{{ "$%.2f"|format(cartInfo['tax']) }}</p>
+            </div>
+            {% if user.isVIP %}
+                <div class = "summary-info" id = "vip-discount">
+                    <p class = "align-left">Discount:</p>
+                    <p class = "align-right">{{ "$%.2f"|format(cartInfo['discount']) }}</p>
+                </div>
+            {% endif %}
+            <hr>
+            <div class = "summary-info" id = "total">
+                <p class = "align-left" style = "font-size: 20px;">Total:</p>
+                <p class = "align-right" stlye = "font-size: 20px;">{{ "$%.2f"|format(cartInfo['total']) }}</p>
+            </div>
+            <form id = "proceed-form" method = "POST" action = "">
+                <input type = "submit" id = "proceed-button" name = "cart-submit" value = "Proceed to Checkout">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

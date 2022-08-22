@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/home_page.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans">
+{% endblock links %}
+
+{% block titlePage %} Home | OneBite {% endblock %}
+
+{% block mainContent %}
+    <div id = "main-container" class = "transparent">
+        <div class = "welcome-container transparent">
+            <div class = "welcome-message transparent">
+                <h1 class = "main-h1 transparent">WELCOME TO ONEBITE{% if user %}, {{ user.firstName }}. {% endif %}</h1>
+                <div class = "motto transparent">
+                    <div class = "motto-spacing transparent" style = "font-size: 80px; letter-spacing: 0.1em;">
+                        Joy with
+                    </div>
+                    <div class = "text-overlay transparent">
+                        <img class = "center transparent" src = "https://see.fontimg.com/api/renderfont4/K7GOD/eyJyIjoiZnMiLCJoIjoxMzAsInciOjIwMDAsImZzIjo2NSwiZmdjIjoiI0RDQzhDOCIsImJnYyI6IiNGRkZGRkYiLCJ0IjoxfQ/ZXZlcnk/hendrickson.png" alt="every-motto.">
+                        <div class = "motto-spacing motto-height transparent" style = "font-size: 80px; letter-spacing: 0.1em;">
+                            bite.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% if user and user.num_orders >= 1 %}
+        <div id = "most-popular" class = "top-dishes">
+            <br>
+            <h2 class = "main-h2">YOUR MOST ORDERED DISHES...</h2>
+            <div class = "split-container">
+                {% for dish in favDishes: %}
+                    <div id = "split-center">
+                        <div class = top-dishes>
+                            <img class = "food-pics" src = "{{ dish.img }}">
+                        </div>
+                        <div id = "dish-info">
+                            <p class = "align-left">{{ dish.name }}</p>
+                            <p class = "align-right">{{ "$%.2f"|format(dish.price) }}</p>
+                        </div>
+                        <div style = "float: center; text-align: center;">
+                            {% for i in range(5): %}
+                                {% if dish.rating >= i+1 %}
+                                    <span class="fa fa-star checked"></span>
+                                {% else %}
+                                    <span class="fa fa-star"></span>
+                                {% endif %}
+                            {% endfor %}
+                            ({{dish.num_ratings}})
+                        </div>
+                        <p class = "padding-txt food-desc">{{ dish.desc }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+{% else %}
+        <div id = "most-popular" class = "top-dishes">
+            <br>
+            <h2 class = "main-h2">TRY OUR MOST POPULAR DISHES...</h2>
+            <div class = "split-container">
+                {% for dish in popularDishes: %}
+                    <div id = "split-center">
+                        <div class = top-dishes>
+                            <img class = "food-pics" src = "{{ dish.img }}">
+                        </div>
+                        <div id = "dish-info">
+                            <p class = "align-left">{{ dish.name }}</p>
+                            <p class = "align-right">{{ "$%.2f"|format(dish.price) }}</p>
+                        </div>
+                        <div style = "float: center; text-align: center;">
+                            {% for i in range(5): %}
+                                {% if dish.rating >= i+1 %}
+                                    <span class="fa fa-star checked"></span>
+                                {% else %}
+                                    <span class="fa fa-star"></span>
+                                {% endif %}
+                            {% endfor %}
+                            ({{dish.num_ratings}})
+                        </div>
+                        <p class = "padding-txt food-desc">{{ dish.desc }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div id = "highest-rated" class = "top-dishes">
+            <br>
+            <h2 class = "main-h2">TRY OUR HIGHEST RATED DISHES...</h2>
+            <div class = "split-container">
+                {% for dish in ratedDishes: %}
+                    <div id = "split-center">
+                        <div class = top-dishes>
+                            <img class = "food-pics" src = "{{ dish.img }}">
+                        </div>
+                        <div id = "dish-info">
+                            <p class = "align-left">{{ dish.name }}</p>
+                            <p class = "align-right">{{ "$%.2f"|format(dish.price) }}</p>
+                        </div>
+                        <div style = "float: center; text-align: center;">
+                            {% for i in range(5): %}
+                                {% if dish.rating >= i+1 %}
+                                    <span class="fa fa-star checked"></span>
+                                {% else %}
+                                    <span class="fa fa-star"></span>
+                                {% endif %}
+                            {% endfor %}
+                            ({{dish.num_ratings}})
+                        </div>
+                        <p class = "padding-txt food-desc">{{ dish.desc }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+{% endif %}
+        <div id = "video-loop">
+            <video autoplay muted loop id = "background-video">
+                <source src = "../static/assets/coffee_video.mp4" type = "video/mp4">
+            </video>
+            <a href="{{ url_for('menu') }}"><div class = "video-text">ORDER NOW</div></a>
+        </div>
+    </div>
+{% endblock %}
